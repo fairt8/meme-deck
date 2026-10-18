@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>RUG DESK</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{--bg:var(--tg-theme-bg-color,#0f1411);--text:var(--tg-theme-text-color,#e8efe9);--hint:var(--tg-theme-hint-color,#8a9a8f);
+--link:var(--tg-theme-link-color,#5cb8ff);--btn:var(--tg-theme-button-color,#2ea44f);--btnt:var(--tg-theme-button-text-color,#fff);
+--sec:var(--tg-theme-secondary-bg-color,#18201b);--good:#2fbf62;--bad:#e5484d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.4 -apple-system,system-ui,sans-serif;padding-bottom:70px}
+header{padding:12px 14px 4px}h1{font-size:18px;margin:0}.hint{color:var(--hint);font-size:12px}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--sec);border-top:1px solid rgba(128,128,128,.2);z-index:9}
+nav button{flex:1;background:none;border:0;color:var(--hint);padding:10px 2px 12px;font-size:12px}nav button.on{color:var(--btn);font-weight:600}
+section{display:none;padding:8px 12px}section.on{display:block}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}.card{background:var(--sec);border-radius:12px;padding:10px}
+.card b{display:block;font-size:20px}.g{color:var(--good)}.r{color:var(--bad)}
+.row{background:var(--sec);border-radius:12px;padding:10px;margin:8px 0}.row .t{display:flex;justify-content:space-between;gap:6px}
+code{font-size:11px;word-break:break-all;color:var(--hint)}a{color:var(--link);text-decoration:none}
+pre{white-space:pre-wrap;background:var(--sec);border-radius:12px;padding:10px;font-size:12px}
+input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(128,128,128,.35);background:var(--sec);color:var(--text);font-size:14px}
+.btn{width:100%;margin-top:8px;padding:11px;border:0;border-radius:10px;background:var(--btn);color:var(--btnt);font-size:15px;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:12px}td,th{padding:5px 4px;border-bottom:1px solid rgba(128,128,128,.18);text-align:left}
+svg{width:100%;height:170px;background:var(--sec);border-radius:12px;margin-top:8px}.pill{font-size:11px;padding:1px 7px;border-radius:9px;background:rgba(128,128,128,.2)}
+</style></head><body>
+<header><h1>RUG DESK <span class="pill">PAPER</span></h1><div class="hint" id="upd">loading…</div></header>
+
+<section id="overview" class="on"><div class="cards" id="cards"></div><svg id="chart" viewBox="0 0 400 170" preserveAspectRatio="none"></svg>
+<div class="hint" style="margin-top:6px">Simulated fills at live DexScreener prices. No wallet, no real funds.</div></section>
+<section id="positions"><div id="poslist"></div></section>
+<section id="trades"><div id="tradelist"></div></section>
+<section id="kills"><h3>Top kill reasons</h3><table id="topk"></table><h3>The 14 checks</h3><ol id="checks14" style="padding-left:20px"></ol><h3>Recent kills</h3><div id="killlist"></div></section>
+<section id="report"><pre id="reptext"></pre></section>
+<section id="check"><p class="hint">Paste a Solana token address. Runs checks 1–13 in your browser against the public Rugcheck and DexScreener APIs with the desk's own numbers. Read-only: it never buys.</p>
+<input id="ca" placeholder="token address (CA)" autocomplete="off" spellcheck="false"><button class="btn" id="go">Run checks</button><div id="out"></div></section>
+
+<nav id="nav"><button data-t="overview" class="on">Overview</button><button data-t="positions">Positions</button><button data-t="trades">Trades</button><button data-t="kills">Kills</button><button data-t="report">Report</button><button data-t="check">Check</button></nav>
+<script>
+const tg = window.Telegram && Telegram.WebApp; if (tg) { tg.ready(); tg.expand(); }
+const $ = id => document.getElementById(id), esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const usd = (x, s) => (s && x > 0 ? "+" : "") + "$" + Number(x).toFixed(2), cls = x => x > 0 ? "g" : x < 0 ? "r" : "";
+const fmt = x => { x = Number(x); return x === 0 ? "0" : x < 0.001 ? x.toPrecision(4) : x.toFixed(6).replace(/0+$/, ""); };
+document.querySelectorAll("nav button").forEach(b => b.onclick = () => {
+  document.querySelectorAll("nav button,section").forEach(e => e.classList.remove("on"));
+  b.classList.add("on"); $(b.dataset.t).classList.add("on"); tg && tg.HapticFeedback && tg.HapticFeedback.selectionChanged(); });
+let CFG = null;
+const LIST14 = ["already rugged","mint authority open","freeze authority open","danger flags","risk score over 40","LP under 90% locked","top 10 over 30%","dev holds over 5%","insiders or bundles","pool under $30k","ticket over 1% of pool","younger than 30 min or older than 72h","buys but zero sells","X read (manual review — no paid API)"];
+
+async function load() {
+  try {
+    const d = await (await fetch("../data.json?t=" + Date.now(), {cache: "no-store"})).json(); CFG = d.config;
+    $("upd").textContent = "last updated " + d.updated + " (UTC+1)";
+    const pnl = d.equity - d.start_balance;
+    $("cards").innerHTML = [["Equity", usd(d.equity), cls(pnl)], ["Total PnL", usd(pnl, 1) + " (" + (pnl / d.start_balance * 100).toFixed(1) + "%)", cls(pnl)],
+      ["Cash", usd(d.cash)], ["Start balance", usd(d.start_balance)], ["Realized", usd(d.realized_pnl, 1), cls(d.realized_pnl)],
+      ["Wins / losses", d.wins + " / " + d.losses], ["Rugs blocked", d.rugs_blocked + ' <span class="hint">+' + d.pool_kills + " pool</span>"],
+      ["Open / checked", d.positions.length + " / " + d.checked]].map(([k, v, c]) => `<div class="card"><span class="hint">${k}</span><b class="${c||""}">${v}</b></div>`).join("");
+    chart(d.equity_series, d.start_balance);
+    $("poslist").innerHTML = d.positions.length ? d.positions.map(p => `<div class="row"><div class="t"><b>${esc(p.symbol)}</b><b class="${cls(p.pct)}">${p.pct > 0 ? "+" : ""}${p.pct.toFixed(1)}%</b></div>
+      <div>$${p.usd} in · entry ${fmt(p.entry)} · now ${fmt(p.last)} · peak ${fmt(p.peak)}</div><div class="hint">opened ${esc(p.opened)} WAT · ladder steps ${p.steps}</div>
+      <code>${esc(p.mint)}</code><div><a href="${esc(p.url)}" onclick="return openLink(this.href)">DexScreener ↗</a></div></div>`).join("") : '<p class="hint">No open positions.</p>';
+    $("tradelist").innerHTML = d.trades.length ? d.trades.map(t => `<div class="row"><div class="t"><b>${esc(t.symbol)} <span class="pill">${esc(t.action)}</span></b><b class="${cls(+t.pnl)}">${t.action === "open" ? usd(t.usd) : usd(+t.pnl, 1)}</b></div>
+      <div class="hint">${esc(t.time)} WAT · ${esc(t.reason)} · $${(+t.usd).toFixed(2)}</div></div>`).join("") : '<p class="hint">No trades yet.</p>';
+    $("topk").innerHTML = d.top_kills.map(([r, n]) => `<tr><td>${esc(r)}</td><td>${n}×</td></tr>`).join("");
+    $("checks14").innerHTML = LIST14.map(x => `<li>${x}</li>`).join("");
+    $("killlist").innerHTML = d.kills.map(k => `<div class="row"><div class="t"><b>${esc(k.symbol || k.mint.slice(0, 6))}</b><span class="pill">${esc(k.stage)}</span></div>
+      <div class="r">${esc(k.reason)}</div><div class="hint">${esc(k.time)} WAT</div><code>${esc(k.mint)}</code></div>`).join("");
+    $("reptext").textContent = d.report || "No report yet.";
+  } catch (e) { $("upd").textContent = "could not load data.json: " + e; }
+}
+function chart(s, start) {
+  const el = $("chart"); if (!s || s.length < 2) { el.innerHTML = '<text x="10" y="90" fill="gray" font-size="12">not enough history yet</text>'; return; }
+  const ys = s.map(r => r[1]).concat([start]), lo = Math.min(...ys), hi = Math.max(...ys), pad = (hi - lo) * 0.1 || 1;
+  const X = i => 6 + i * (388 / (s.length - 1)), Y = v => 160 - (v - lo + pad) / (hi - lo + 2 * pad) * 150;
+  const pts = s.map((r, i) => X(i).toFixed(1) + "," + Y(r[1]).toFixed(1)).join(" ");
+  el.innerHTML = `<line x1="0" x2="400" y1="${Y(start)}" y2="${Y(start)}" stroke="gray" stroke-dasharray="4 4" stroke-width="1"/>
+   <polyline points="${pts}" fill="none" stroke="${s[s.length-1][1] >= start ? "#2fbf62" : "#e5484d"}" stroke-width="2.5"/>
+   <text x="6" y="14" fill="gray" font-size="11">equity · ${esc(s[0][0].slice(5,16))} → ${esc(s[s.length-1][0].slice(5,16))} WAT · dashed = start</text>`;
+}
+function openLink(u) { if (tg && tg.openLink) { tg.openLink(u); return false; } return true; }
+
+// ---- client-side checks 1-13 (same logic and numbers as rugcheck.py + market.py) ----
+async function runCheck() {
+  const mint = $("ca").value.trim(), out = $("out");
+  if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(mint)) { out.innerHTML = '<p class="r">That does not look like a Solana address.</p>'; return; }
+  if (!CFG) await load();
+  const F = CFG.FACTS, T = CFG.TICKET_USD; out.innerHTML = '<p class="hint">checking…</p>';
+  let rc = null, ds = null, rcErr = "", dsErr = "";
+  await Promise.all([
+    fetch(`https://api.rugcheck.xyz/v1/tokens/${mint}/report`).then(r => r.ok ? r.json() : Promise.reject("HTTP " + r.status)).then(j => rc = j).catch(e => rcErr = String(e)),
+    fetch(`https://api.dexscreener.com/tokens/v1/solana/${mint}`).then(r => r.ok ? r.json() : Promise.reject("HTTP " + r.status)).then(j => ds = j).catch(e => dsErr = String(e))]);
+  const res = []; const add = (n, name, ok, val) => res.push({n, name, ok, val});
+  if (rc) {
+    const tok = rc.token || {}, known = rc.knownAccounts || {};
+    const isPool = h => ["AMM", "LOCKER"].includes(String(((known[h.owner] || known[h.address] || {}).type) || "").toUpperCase());
+    const holders = (rc.topHolders || []).filter(h => !isPool(h));
+    const mk = (rc.markets || []).slice().sort((a, b) => (((b.lp||{}).baseUSD||0) + ((b.lp||{}).quoteUSD||0)) - (((a.lp||{}).baseUSD||0) + ((a.lp||{}).quoteUSD||0)));
+    const lp = mk.length ? ((mk[0].lp || {}).lpLockedPct ?? rc.lpLockedPct) : null;
+    const supply = tok.supply || 0, risks = rc.risks || [];
+    const danger = risks.filter(x => x.level === "danger").map(x => x.name);
+    const top10 = rc.topHolders == null ? null : holders.slice(0, 10).reduce((s, h) => s + (h.pct || 0), 0);
+    const dev = supply ? (rc.creatorBalance || 0) / supply * 100 : null;
+    const ins = holders.filter(h => h.insider).length + (rc.graphInsidersDetected ? 1 : 0);
+    const score = rc.score_normalised;
+    add(1, "already rugged", !rc.rugged, rc.rugged ? "rugged" : "no");
+    add(2, "mint authority", !(tok.mintAuthority || rc.mintAuthority), (tok.mintAuthority || rc.mintAuthority) ? "OPEN" : "revoked");
+    add(3, "freeze authority", !(tok.freezeAuthority || rc.freezeAuthority), (tok.freezeAuthority || rc.freezeAuthority) ? "OPEN" : "revoked");
+    add(4, "danger flags", danger.length === 0, danger.join(", ") || "none");
+    add(5, `risk score ≤ ${F.max_risk_score}`, score != null && score <= F.max_risk_score, score ?? "missing (not clean)");
+    add(6, `LP ≥ ${F.min_lp_locked_pct}% locked/burned`, lp != null && lp >= F.min_lp_locked_pct, lp == null ? "missing (not clean)" : lp.toFixed(1) + "%");
+    add(7, `top 10 ≤ ${F.max_top10_pct}% (pools/lockers excluded)`, top10 != null && top10 <= F.max_top10_pct, top10 == null ? "missing" : top10.toFixed(1) + "%");
+    add(8, `dev holds ≤ ${F.max_dev_pct}%`, dev != null && dev <= F.max_dev_pct, dev == null ? "missing" : dev.toFixed(2) + "%");
+    add(9, `insiders ≤ ${F.max_insiders}`, ins <= F.max_insiders, ins);
+  } else for (let i = 1; i <= 9; i++) add(i, LIST14[i - 1], null, "Rugcheck unavailable: " + rcErr + " (404/empty usually = too fresh to index → SKIP)");
+  if (ds) {
+    const pairs = (Array.isArray(ds) ? ds : (ds.pairs || [])).filter(p => (p.baseToken || {}).address === mint);
+    if (!pairs.length) for (let i = 10; i <= 13; i++) add(i, LIST14[i - 1], false, "no_pool (not on a DEX)");
+    else {
+      const p = pairs.reduce((a, b) => (((b.liquidity||{}).usd||0) > ((a.liquidity||{}).usd||0) ? b : a));
+      const liq = (p.liquidity || {}).usd || 0, age = p.pairCreatedAt ? (Date.now() - p.pairCreatedAt) / 60000 : null, h1 = (p.txns || {}).h1 || {};
+      add(10, `pool ≥ $${F.min_liquidity_usd.toLocaleString()}`, liq >= F.min_liquidity_usd, "$" + Math.round(liq).toLocaleString());
+      add(11, `$${T} ticket ≤ ${F.max_ticket_share * 100}% of pool`, liq > 0 && T / liq <= F.max_ticket_share, liq ? (T / liq * 100).toFixed(3) + "%" : "no liquidity");
+      add(12, `age ${F.min_age_min} min – ${F.max_age_hours} h`, age != null && age >= F.min_age_min && age <= F.max_age_hours * 60, age == null ? "missing" : (age < 120 ? Math.round(age) + " min" : (age / 60).toFixed(1) + " h"));
+      add(13, "sells exist (not 20+ buys / 0 sells)", !((h1.buys || 0) >= 20 && (h1.sells || 0) === 0), `1h buys ${h1.buys || 0} / sells ${h1.sells || 0}`);
+      res.sym = (p.baseToken || {}).symbol; res.url = p.url; res.price = p.priceUsd;
+    }
+  } else for (let i = 10; i <= 13; i++) add(i, LIST14[i - 1], null, "DexScreener unavailable: " + dsErr + " → SKIP");
+  add(14, "X read", null, "manual: look the token up on X yourself (no posts, copycat CA, bought hype, rug history)");
+  const hard = res.filter(r => r.n <= 13), fail = hard.filter(r => r.ok === false), unk = hard.filter(r => r.ok === null);
+  const verdict = fail.length ? `KILL — first failure: #${fail[0].n} ${fail[0].name}` : unk.length ? "SKIP — a source was down / token not indexed" : "PASSES checks 1–13 (judge + X read still apply)";
+  out.innerHTML = `<div class="row"><b>${esc(res.sym || mint.slice(0, 6))}</b> ${res.price ? "· $" + esc(res.price) : ""} ${res.url ? `· <a href="${esc(res.url)}" onclick="return openLink(this.href)">DexScreener ↗</a>` : ""}
+    <div class="${fail.length ? "r" : unk.length ? "" : "g"}" style="font-weight:600;margin-top:4px">${verdict}</div></div>
+    <table>${res.map(r => `<tr><td>${r.n}</td><td>${esc(r.name)}</td><td class="${r.ok === true ? "g" : r.ok === false ? "r" : "hint"}">${r.ok === true ? "✔" : r.ok === false ? "✘" : "–"}</td><td>${esc(r.val)}</td></tr>`).join("")}</table>
+    <p class="hint">Read-only. Nothing is bought, logged or queued.</p>`;
+  tg && tg.HapticFeedback && tg.HapticFeedback.notificationOccurred(fail.length ? "error" : "success");
+}
+$("go").onclick = runCheck; $("ca").addEventListener("keydown", e => e.key === "Enter" && runCheck());
+load(); setInterval(load, 120000);
+</script></body></html>
