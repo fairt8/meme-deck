@@ -44,7 +44,7 @@ document.querySelectorAll("nav button").forEach(b => b.onclick = () => {
   document.querySelectorAll("nav button,section").forEach(e => e.classList.remove("on"));
   b.classList.add("on"); $(b.dataset.t).classList.add("on"); tg && tg.HapticFeedback && tg.HapticFeedback.selectionChanged(); });
 let CFG = null;
-const LIST14 = ["already rugged","mint authority open","freeze authority open","danger flags","risk score over 40","LP under 90% locked","top 10 over 30%","dev holds over 5%","insiders or bundles","pool under $30k","ticket over 1% of pool","younger than 30 min or older than 72h","buys but zero sells","X read (manual review — no paid API)"];
+const LIST14 = ["already rugged","mint authority open","freeze authority open","danger flags","risk score over 40","LP under 90% locked","top 10 over 30%","dev holds over 5%","insiders or bundles","pool under $30k","ticket over 1% of pool","younger than 30 min or older than 72h","buys but zero sells","X read (Gemini + Google Search, runs on the desk)"];
 
 async function load() {
   try {
@@ -64,7 +64,7 @@ async function load() {
     $("topk").innerHTML = d.top_kills.map(([r, n]) => `<tr><td>${esc(r)}</td><td>${n}×</td></tr>`).join("");
     $("checks14").innerHTML = LIST14.map(x => `<li>${x}</li>`).join("");
     $("killlist").innerHTML = d.kills.map(k => `<div class="row"><div class="t"><b>${esc(k.symbol || k.mint.slice(0, 6))}</b><span class="pill">${esc(k.stage)}</span></div>
-      <div class="r">${esc(k.reason)}</div><div class="hint">${esc(k.time)} WAT</div><code>${esc(k.mint)}</code></div>`).join("");
+      <div class="r">${esc(k.reason)}</div>${k.x_read ? `<div>X read: ${esc(k.x_read)}</div>` : ""}${k.main_risk ? `<div class="hint">main risk: ${esc(k.main_risk)}</div>` : ""}<div class="hint">${esc(k.time)} WAT</div><code>${esc(k.mint)}</code></div>`).join("");
     $("reptext").textContent = d.report || "No report yet.";
   } catch (e) { $("upd").textContent = "could not load data.json: " + e; }
 }
@@ -125,7 +125,7 @@ async function runCheck() {
       res.sym = (p.baseToken || {}).symbol; res.url = p.url; res.price = p.priceUsd;
     }
   } else for (let i = 10; i <= 13; i++) add(i, LIST14[i - 1], null, "DexScreener unavailable: " + dsErr + " → SKIP");
-  add(14, "X read", null, "manual: look the token up on X yourself (no posts, copycat CA, bought hype, rug history)");
+  add(14, "X read", null, "runs on the desk (Gemini + Google Search), not in the browser. Send /check <CA> to the bot to run 1-14 read-only.");
   const hard = res.filter(r => r.n <= 13), fail = hard.filter(r => r.ok === false), unk = hard.filter(r => r.ok === null);
   const verdict = fail.length ? `KILL — first failure: #${fail[0].n} ${fail[0].name}` : unk.length ? "SKIP — a source was down / token not indexed" : "PASSES checks 1–13 (judge + X read still apply)";
   out.innerHTML = `<div class="row"><b>${esc(res.sym || mint.slice(0, 6))}</b> ${res.price ? "· $" + esc(res.price) : ""} ${res.url ? `· <a href="${esc(res.url)}" onclick="return openLink(this.href)">DexScreener ↗</a>` : ""}
