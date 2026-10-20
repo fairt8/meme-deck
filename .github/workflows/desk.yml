@@ -1,0 +1,97 @@
+# RUG DESK (PAPER) on GitHub Actions. Code: branch `desk`. State: branch `state`. Dashboard: branch `main` (Pages).
+# Paper only: no wallet, no keys to funds. Secrets live in Settings > Secrets and variables > Actions, never in git.
+name: desk
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "test = Telegram off, no state commit, no Pages publish. live = full cycle."
+        type: choice
+        options: [test, live]
+        default: test
+      force_scan:
+        description: "run scan.py this cycle regardless of SCAN_EVERY_MIN"
+        type: boolean
+        default: false
+  # CUTOVER step: uncomment the next two lines (every 15 min). Keep commented while the box loop is primary.
+  # schedule:
+  #   - cron: "*/15 * * * *"
+
+concurrency:
+  group: meme-desk          # runs never overlap; a new run waits for the previous one
+  cancel-in-progress: false
+
+permissions:
+  contents: write           # GITHUB_TOKEN: commit the state branch and publish main (Pages)
+
+jobs:
+  cycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      TZ: Africa/Lagos
+      MODE: ${{ github.event_name == 'schedule' && 'live' || inputs.mode }}
+      # CUTOVER step: set to "1" once the box bot_listener.py is stopped (otherwise Telegram 409 conflicts).
+      DESK_TG_COMMANDS: "0"
+    steps:
+      - name: checkout code (desk)
+        uses: actions/checkout@v4
+        with: { ref: desk, path: code }
+      - name: checkout state
+        uses: actions/checkout@v4
+        with: { ref: state, path: statebr }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: install
+        run: pip install -q -r code/requirements.txt
+      - name: restore state
+        run: rsync -a --exclude .git statebr/ code/ && ls -la code | head -50
+      - name: one desk cycle
+        working-directory: code
+        env:
+          MEME_TG_TOKEN: ${{ secrets.MEME_TG_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          HCNSEN_KEY: ${{ secrets.HCNSEN_KEY }}
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          DESK_NO_TG: ${{ env.MODE == 'live' && '0' || '1' }}
+          DESK_FORCE_SCAN: ${{ inputs.force_scan && '1' || '0' }}
+        run: |
+          echo "mode=$MODE tg_commands=$DESK_TG_COMMANDS no_tg=$DESK_NO_TG"
+          for s in MEME_TG_TOKEN TG_CHAT_ID GEMINI_API_KEY HCNSEN_KEY APIFY_TOKEN; do
+            if [ -n "${!s}" ]; then echo "secret $s: set"; else echo "secret $s: MISSING"; fi
+          done
+          python actions_run.py
+      - name: commit state
+        if: env.MODE == 'live'
+        run: |
+          set -e
+          for f in positions.json trades.csv checks.csv equity.csv pending_x_review.jsonl pending_symbols.txt \
+                   desk_state.json tg_offset.json notify.log actions.log; do
+            [ -f "code/$f" ] && cp "code/$f" "statebr/$f"
+          done
+          mkdir -p statebr/x_posts && rsync -a code/x_posts/ statebr/x_posts/
+          cd statebr
+          git config user.name "MEME TRADER (actions)"; git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -qm "state $(date '+%F %H:%M') WAT"
+          git push -q origin HEAD:state
+      - name: publish dashboard (main / Pages)
+        if: env.MODE == 'live'
+        run: |
+          set -e
+          git clone -q --depth 1 --branch main "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" site
+          rsync -a --exclude .git --exclude .github code/web/ site/
+          touch site/.nojekyll
+          cd site
+          git config user.name "MEME TRADER (actions)"; git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -qm "desk update $(date '+%F %H:%M') WAT"
+          git push -q origin HEAD:main
+      - name: test-mode summary
+        if: env.MODE != 'live'
+        working-directory: code
+        run: |
+          echo "TEST MODE: nothing sent, nothing committed, nothing published."
+          tail -20 notify.log || true
+          cat desk_state.json || true

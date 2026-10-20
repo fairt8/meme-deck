@@ -1,0 +1,29 @@
+# never commit secrets or the chat id
+.tg_chat
+.agentrouter.env
+*.env
+.env*
+*.key
+*.pem
+# state lives in the `state` branch, not here
+positions.json
+trades.csv
+checks.csv
+equity.csv
+pending_x_review.jsonl
+pending_symbols.txt
+desk_state.json
+tg_offset.json
+x_posts/
+*.log
+loop.heartbeat
+bot.disabled
+report.txt
+*.png
+web/index.html
+web/data.json
+web/.git/
+web/.nojekyll
+gh/
+__pycache__/
+*.tmp
