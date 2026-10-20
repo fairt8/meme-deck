@@ -157,3 +157,8 @@ time,mint,symbol,stage,verdict,reason,confidence,price,liq_usd,age_min,risk_scor
 2026-10-20 19:02:06,CcfmQBZ6o3suCyd638CbjCVZtdsYHSwYnkHbPbSgpump,CUMROCKET,judge,SKIP,"low confidence 0.65; free signals: buy_pressure, active_volume, x_linked, low_risk_score, no_warnings, clean_roundtrip",0.65,0.0001961,37341.42,32,1,100,11.6,0.0,0,,pending (check 14: X posts -> judge_x.py),,
 2026-10-20 19:02:06,CaRD6oAFhB3ejYy9Bo1qfYMLRYSKHHDS7FfMqE9LRoLL,CARDROLL,facts,KILL,danger:Large Amount of LP Unlocked|Low Liquidity,,,,,58,0,51.89,0.0,1,,,,
 2026-10-20 19:02:07,6gXN9N4yGwstzHHEABzpkPFWqZfpS9aBqMHewe5Vpump,Pikachu,pool,KILL,too_fresh,,0.0001412,31196.2,29,1,100,4.72,0.0,0,,,,
+2026-10-20 19:27:53,3aQq2P9atK84s58fbqSMuoJdCmwXGNH3HyjRzbMSpump,ROCKET,pool,KILL,thin_pool,,3.074e-05,0,8,1,100,28.0,0.0,0,,,,
+2026-10-20 19:27:54,GmxYy7ZSQs6m3cVgbMUwxJpxVmKXLwq2uXpcFHNxpump,FCAT,pool,KILL,thin_pool,,2.644e-05,12480.74,3,1,100,24.6,0.0,0,,,,
+2026-10-20 19:27:55,C7yWWv32D2QLhZ2JAs53MhZpvxpgdeUmn4rdeCUXpump,Gachapad,pool,KILL,thin_pool,,1.565e-05,0,10,1,100,21.09,0.0,0,,,,
+2026-10-20 19:27:56,BAcyfLP2itBKzPUqhrpnTyyJfCiaFx3oH8TDmgvspump,ROCKET,pool,KILL,thin_pool,,3.078e-06,0,11,1,100,1.69,0.0,0,,,,
+2026-10-20 19:27:56,8joZywj2Rc5JmyEXWmDR3w2cwBexW2dYB2Vjr5T3pump,LUCIA,facts,KILL,insiders,,,,,20,100,6.36,0.0,1,,,,
