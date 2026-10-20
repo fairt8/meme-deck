@@ -22,3 +22,8 @@
   GH_DESK_TOKEN lacks Workflows/Actions-write/Secrets permissions: the workflow file could not be pushed, so it sits in the `desk`
   branch at actions/desk.yml (and /workspace/desk/gh/desk.yml). No workflow exists on GitHub yet; no Actions run happened.
   `state` branch seeded from the box at 18:50 WAT (re-seed with seed_state.sh at cutover). Local simulation of one test-mode cycle: all steps rc=0.
+- 2026-10-20 19:27 WAT: CUTOVER to GitHub Actions. Token got Workflows/Actions/Secrets. Secrets set (MEME_TG_TOKEN, TG_CHAT_ID, GEMINI_API_KEY,
+  HCNSEN_KEY, APIFY_TOKEN). Workflow lives on main at .github/workflows/desk.yml (box copy web/.github/workflows/desk.yml). Test run 39474673487 green,
+  live run 39474908729 green (state + Pages committed). Box loop.sh and bot_listener.py stopped, bot.disabled created; cron */15 and DESK_TG_COMMANDS=1 enabled.
+  Rollback: disable the workflow (or comment the cron), rm bot.disabled, `bash -lc 'cd /workspace/desk && setsid nohup ./loop.sh >> loop.log 2>&1 < /dev/null &'`
+  after copying the latest state branch files back into /workspace/desk.
