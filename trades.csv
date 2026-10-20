@@ -1,0 +1,9 @@
+time,mint,symbol,action,usd,pnl,reason
+2026-10-18 12:06:07,3zxtzoumrXqaqS2CDRjnbVEbf1tb12d5fWwMfa2Npump,CATSZN,open,25,0,entry
+2026-10-18 12:20:22,6o2oeMWR9GeEm5acoi793f1XUQp4uoCcMBrw2mZopump,Chaton,open,10,0,entry
+2026-10-18 12:20:36,7UAWdJjrBykopzco6bCBmMLdggaiec6bd4bTKmQqpump,MASSIVE,open,10,0,entry
+2026-10-18 12:20:51,9kXG537MZvtTBUieRvrye9KG93FbA25QAk7zf5oYpump,blocus,open,10,0,entry
+2026-10-18 12:40:37,6o2oeMWR9GeEm5acoi793f1XUQp4uoCcMBrw2mZopump,Chaton,close,4.4686,-5.5314,stop
+2026-10-18 16:41:02,7UAWdJjrBykopzco6bCBmMLdggaiec6bd4bTKmQqpump,MASSIVE,close,5.7037,-4.2963,stop
+2026-10-18 17:14:47,9kXG537MZvtTBUieRvrye9KG93FbA25QAk7zf5oYpump,blocus,close,5.3957,-4.6043,stop
+2026-10-18 17:47:37,3zxtzoumrXqaqS2CDRjnbVEbf1tb12d5fWwMfa2Npump,CATSZN,close,15.4635,-9.5365,stop
