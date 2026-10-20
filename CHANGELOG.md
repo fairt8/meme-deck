@@ -19,3 +19,6 @@
   gated by DESK_TG_COMMANDS=1 (off until cutover, so no 409 with the box listener); offset kept in tg_offset.json.
   GLM backup re-tested 2026-10-20 with fictional spam: glm-5.3 -> SKIP 0.92 (coordinated bot wave), ~229 s per call.
   Repo layout fairt8/meme-deck: `main` = Pages (+ .github/workflows/desk.yml), `desk` = code, `state` = desk state. Workflow is dispatch-only; cron commented.
+  GH_DESK_TOKEN lacks Workflows/Actions-write/Secrets permissions: the workflow file could not be pushed, so it sits in the `desk`
+  branch at actions/desk.yml (and /workspace/desk/gh/desk.yml). No workflow exists on GitHub yet; no Actions run happened.
+  `state` branch seeded from the box at 18:50 WAT (re-seed with seed_state.sh at cutover). Local simulation of one test-mode cycle: all steps rc=0.
