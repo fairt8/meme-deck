@@ -105,9 +105,13 @@ def main():
         log("not started: bot.disabled present (remove it to enable)"); return
     if not TOK or not CHAT:
         log("not started: MEME_TG_TOKEN or .tg_chat missing"); return
+    if os.environ.get("DESK_NO_TG") == "1":   # server dry run: stay idle (no polling, no sends) so systemd does not restart-loop
+        log("idle: DESK_NO_TG=1 (test mode), not polling")
+        while True: time.sleep(3600)
     call("deleteWebhook")   # long polling needs no webhook set
     setup(); log("listener started")
-    offset = None
+    try: offset = json.load(open(OFFSET_FILE)).get("offset")   # resume after a restart, never re-answer old commands
+    except Exception: offset = None
     while True:
         try:
             j = call("getUpdates", timeout=50, offset=offset, allowed_updates=["message"])
@@ -119,6 +123,9 @@ def main():
                 log(f"cmd: {(m.get('text') or '')[:60]}")
                 try: handle(m)
                 except Exception: log("handler error: " + traceback.format_exc().splitlines()[-1])
+            if j.get("result"):
+                try: json.dump({"offset": offset}, open(OFFSET_FILE, "w"))
+                except Exception: pass
             if not j: time.sleep(5)
             elif not j.get("ok"):
                 if j.get("error_code") == 409:

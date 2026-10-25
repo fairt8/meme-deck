@@ -1,0 +1,10 @@
+[Unit]
+Description=RUG DESK daily prune 03:15 WAT
+
+[Timer]
+OnCalendar=*-*-* 03:15:00 Africa/Lagos
+Persistent=true
+RandomizedDelaySec=120
+
+[Install]
+WantedBy=timers.target

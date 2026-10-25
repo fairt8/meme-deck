@@ -1,0 +1,10 @@
+[Unit]
+Description=RUG DESK nightly state backup 02:45 WAT
+
+[Timer]
+OnCalendar=*-*-* 02:45:00 Africa/Lagos
+Persistent=true
+RandomizedDelaySec=120
+
+[Install]
+WantedBy=timers.target

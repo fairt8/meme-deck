@@ -1,0 +1,25 @@
+[Unit]
+Description=RUG DESK nightly state backup push to branch state (memedesk)
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=memedesk
+Group=memedesk
+WorkingDirectory=/home/memedesk/desk
+EnvironmentFile=/home/memedesk/desk/.env
+EnvironmentFile=-/home/memedesk/desk/mode.env
+Environment=TZ=Africa/Lagos PYTHONUNBUFFERED=1 PATH=/home/memedesk/venv/bin:/usr/local/bin:/usr/bin:/bin
+LogNamespace=memedesk
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=tmpfs
+BindPaths=/home/memedesk
+ReadWritePaths=/home/memedesk
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+Nice=10
+ExecStart=/usr/bin/flock /home/memedesk/desk/.cycle.lock /home/memedesk/desk/server/backup_state.sh
+MemoryMax=256M
+CPUQuota=25%

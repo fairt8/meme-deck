@@ -1,0 +1,32 @@
+[Unit]
+Description=RUG DESK paper trader loop (memedesk; watch 10m, scan 30m, X via Apify, Pages, report 21:30 WAT)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=memedesk
+Group=memedesk
+WorkingDirectory=/home/memedesk/desk
+EnvironmentFile=/home/memedesk/desk/.env
+EnvironmentFile=-/home/memedesk/desk/mode.env
+Environment=TZ=Africa/Lagos PYTHONUNBUFFERED=1 PATH=/home/memedesk/venv/bin:/usr/local/bin:/usr/bin:/bin
+LogNamespace=memedesk
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=tmpfs
+BindPaths=/home/memedesk
+ReadWritePaths=/home/memedesk
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+Nice=10
+ExecStart=/home/memedesk/desk/server/desk_loop.sh
+Restart=always
+RestartSec=30
+MemoryMax=512M
+CPUQuota=50%
+TasksMax=128
+
+[Install]
+WantedBy=multi-user.target

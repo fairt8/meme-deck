@@ -1,0 +1,31 @@
+[Unit]
+Description=RUG DESK Telegram command listener (memedesk; live long-poll, chat 1318404489 only)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=memedesk
+Group=memedesk
+WorkingDirectory=/home/memedesk/desk
+EnvironmentFile=/home/memedesk/desk/.env
+EnvironmentFile=-/home/memedesk/desk/mode.env
+Environment=TZ=Africa/Lagos PYTHONUNBUFFERED=1 PATH=/home/memedesk/venv/bin:/usr/local/bin:/usr/bin:/bin
+LogNamespace=memedesk
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=tmpfs
+BindPaths=/home/memedesk
+ReadWritePaths=/home/memedesk
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+Nice=10
+ExecStart=/home/memedesk/venv/bin/python bot_listener.py
+Restart=always
+RestartSec=15
+MemoryMax=256M
+TasksMax=64
+
+[Install]
+WantedBy=multi-user.target

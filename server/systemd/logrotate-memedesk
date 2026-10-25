@@ -1,0 +1,11 @@
+# /etc/logrotate.d/memedesk - RUG DESK file logs (daily, keep 7, compress). journald handles service stdout.
+/home/memedesk/desk/*.log {
+    su memedesk memedesk
+    daily
+    rotate 7
+    compress
+    missingok
+    notifempty
+    copytruncate
+    maxsize 20M
+}
