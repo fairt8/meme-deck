@@ -4,3 +4,9 @@
 [19:27:56] x_fetch_apify.py rc=0 0s
 [19:27:56] judge_x.py rc=0 0s
 [19:28:00] dashboard.py rc=0 3s
+[01:13:14] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[01:13:14] watch.py rc=0 0s
+[01:13:20] scan.py rc=0 6s
+[01:13:21] x_fetch_apify.py rc=0 0s
+[01:13:21] judge_x.py rc=0 0s
+[01:13:24] dashboard.py rc=0 3s
