@@ -2,6 +2,12 @@
 # publish_pages.sh - copy web/ into a clone of meme-deck main and push (no force). main's .github/ is never touched,
 # so .github/workflows/desk.yml (cron commented out = Actions fallback only) survives every publish. token never printed.
 D=/home/memedesk/desk; P=/home/memedesk/pages
+# primary: Cloudflare Pages (direct upload) when CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID are in .env.
+# the GitHub main push for web/ then runs only if DESK_PUBLISH_GITHUB=1 (GitHub Pages is down for the account since 10-20).
+if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then
+  /home/memedesk/venv/bin/python "$D/server/cf_pages_deploy.py" 2>&1 | sed 's/^/  /'
+  [ "${DESK_PUBLISH_GITHUB:-0}" = "1" ] || exit 0
+fi
 [ -z "$GH_DESK_TOKEN" ] && { echo "  publish: no GH_DESK_TOKEN"; exit 0; }
 URL="https://x-access-token:${GH_DESK_TOKEN}@github.com/fairt8/meme-deck.git"
 if [ ! -d "$P/.git" ]; then

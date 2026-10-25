@@ -5,7 +5,10 @@ import json, os, subprocess, sys, time, traceback
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 import requests
 
-APP_URL = "https://fairt8.github.io/meme-deck/app/"
+# dashboard base: .pages_url (written by server/cf_pages_deploy.py) > env DESK_DASH_URL > old GitHub Pages
+DASH_URL = ((open(".pages_url").read().strip() if os.path.exists(".pages_url") else "") or os.environ.get("DESK_DASH_URL", "")
+            or "https://fairt8.github.io/meme-deck").rstrip("/")
+APP_URL = DASH_URL + "/app/"
 TOK = os.environ.get("MEME_TG_TOKEN", "")
 CHAT = (open(".tg_chat").read().strip() if os.path.exists(".tg_chat") else "") or os.environ.get("TG_CHAT_ID", "").strip()
 API = f"https://api.telegram.org/bot{TOK}/"
