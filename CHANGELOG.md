@@ -52,3 +52,10 @@
   3. On main, uncomment the 2 `schedule`/`cron` lines in .github/workflows/desk.yml (and in actions/desk.yml here). Note the schedule never fired on 10-20, so check that GitHub Actions actually runs for the account, or use workflow_dispatch mode=live.
   4. Never run the server bot and an Actions/box listener together (Telegram 409).
 
+
+## 2026-10-25 01:40 WAT: Cloudflare Pages publisher prepared (waiting for a token)
+- GitHub Pages has been dead for the fairt8 account since 10-20, so the dashboard and mini app move to Cloudflare Pages (account f6420e67…, project `meme-deck`, which will be https://meme-deck.pages.dev unless Cloudflare assigns a suffix).
+- server/cf_pages_deploy.py: a small Python implementation of the Pages direct-upload API (upload-token, check-missing, upload, upsert-hashes, deployment with a manifest; blake3 asset keys, same as wrangler). It creates the project if it's missing and writes the live URL to .pages_url. blake3 is added to requirements.
+- server/publish_pages.sh: deploys to Cloudflare when CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID are in .env. The GitHub main push for web/ then runs only with DESK_PUBLISH_GITHUB=1. Without the token it keeps the old GitHub push. The nightly state backup to `state` is unchanged.
+- bot_listener.py: the dashboard and mini app URL comes from .pages_url (or env DESK_DASH_URL), with old GitHub Pages as the fallback. The menu button, the /app button and the /status button all use it, and setChatMenuButton runs on every listener start.
+- Blocked: the Cloudflare MCP connection is OAuth. It can't create API tokens (403: needs "API Tokens Write") and it can't create Pages projects (needs one more permission and a fresh sign-in). CLOUDFLARE_ACCOUNT_ID and CF_PAGES_PROJECT are in the server .env; CLOUDFLARE_API_TOKEN is not yet.
