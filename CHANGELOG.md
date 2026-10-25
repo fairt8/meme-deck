@@ -27,3 +27,28 @@
   live run 39474908729 green (state + Pages committed). Box loop.sh and bot_listener.py stopped, bot.disabled created; cron */15 and DESK_TG_COMMANDS=1 enabled.
   Rollback: disable the workflow (or comment the cron), rm bot.disabled, `bash -lc 'cd /workspace/desk && setsid nohup ./loop.sh >> loop.log 2>&1 < /dev/null &'`
   after copying the latest state branch files back into /workspace/desk.
+
+## 2026-10-25 01:13 WAT: desk moved from GitHub Actions to the Oracle server (152.67.154.102)
+- Found at the start: the Actions `schedule` never fired after the 10-20 cutover (0 scheduled runs; the book was last updated 2026-10-20 19:28 WAT), and since 10-20 GitHub Pages hasn't built and the account/repo/Pages return 404 to anonymous visitors (authenticated API works). So no trades were lost, but the desk sat idle for about 4.5 days.
+- Server: Linux user `memedesk` (no sudo, home 750). SSH: `ssh -i ~/.ssh/oracle_desk memedesk@152.67.154.102`. I installed python3.12-venv. Code is a clone of branch `desk` in /home/memedesk/desk; venv is /home/memedesk/venv; secrets are in /home/memedesk/desk/.env (600, memedesk).
+- Units (/etc/systemd/system, sources in server/systemd/), all User=memedesk, Nice=10, TZ=Africa/Lagos, ProtectSystem=strict, ProtectHome=tmpfs (only /home/memedesk visible), NoNewPrivileges:
+  - desk-loop.service: server/desk_loop.sh, which runs actions_run.py every 10 min and then server/publish_pages.sh. Restart=always, MemoryMax=512M, CPUQuota=50%.
+  - desk-bot.service: bot_listener.py live long-poll. Restart=always, MemoryMax=256M. It now resumes from tg_offset.json and idles when DESK_NO_TG=1.
+  - desk-prune.timer: daily 03:15. desk-guard.timer: hourly. desk-backup.timer: 02:45 (push state files to branch `state`).
+  - Optional /home/memedesk/desk/mode.env: DESK_NO_TG=1 / DESK_NO_PUBLISH=1 for test mode.
+- Logs: service stdout goes to journal namespace `memedesk` (/etc/systemd/journald@memedesk.conf: 50M max, 7 days). Read it with `sudo journalctl --namespace=memedesk -u desk-loop`. File logs use /etc/logrotate.d/memedesk (daily, rotate 7, compress, copytruncate).
+- Retention (server/prune.py):
+  - x_posts older than 3 days are deleted.
+  - checks.csv rows older than 30 days move to archive/checks-YYYY-MM.csv.gz; archives are kept 3 months.
+  - notify.log/bot.log lines are kept 7 days; actions.log keeps 2000 lines; the pip cache is cleared.
+  - Guard: if the desk folder is over 500 MB or / is over 85% used, prune harder (12 h / 7 days / 1 month / 2 days) and send one Telegram warning a day.
+  - trades.csv, equity.csv and positions.json are never pruned.
+- Publishing: publish_pages.sh copies web/ into a clone of main, excluding .git and .github, and pushes without force. So main's .github/workflows/desk.yml is kept.
+- main + actions/desk.yml: the `schedule` cron is commented out; workflow_dispatch stays as the emergency fallback.
+- Cutover: dry run with DESK_NO_TG=1 and no publish (clean cycle 01:09 WAT). At 01:13 WAT I stopped the units, re-pulled the book from `state` (462a5f4), turned Telegram on and started them. I sent one Telegram announcement at 01:15. The box loop stays stopped (bot.disabled).
+- Rollback to Actions:
+  1. As ubuntu: `sudo systemctl disable --now desk-loop desk-bot desk-prune.timer desk-guard.timer desk-backup.timer`.
+  2. As memedesk: `~/desk/server/backup_state.sh` (pushes the latest book to `state`).
+  3. On main, uncomment the 2 `schedule`/`cron` lines in .github/workflows/desk.yml (and in actions/desk.yml here). Note the schedule never fired on 10-20, so check that GitHub Actions actually runs for the account, or use workflow_dispatch mode=live.
+  4. Never run the server bot and an Actions/box listener together (Telegram 409).
+
