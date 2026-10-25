@@ -13,9 +13,10 @@ on:
         description: "run scan.py this cycle regardless of SCAN_EVERY_MIN"
         type: boolean
         default: false
-  # LIVE since 2026-10-20 cutover (box loop stopped): every 15 min.
-  schedule:
-    - cron: "*/15 * * * *"
+  # schedule OFF since 2026-10-25: the desk runs on the Oracle server (desk-loop/desk-bot systemd units, user memedesk).
+  # workflow_dispatch stays as the emergency fallback. rollback: stop the server units, then uncomment the 2 lines below.
+  # schedule:
+  #   - cron: "*/15 * * * *"
 
 concurrency:
   group: meme-desk          # runs never overlap; a new run waits for the previous one
