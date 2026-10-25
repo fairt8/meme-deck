@@ -27,3 +27,7 @@ web/.nojekyll
 gh/
 __pycache__/
 *.tmp
+# oracle server runtime
+.cycle.lock
+archive/
+mode.env
