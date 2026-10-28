@@ -1,0 +1,52 @@
+{
+ "mint": "Az5naRCqYLfMi9KT92QCzJwR74BR5X33nZtMkXyvpump",
+ "symbol": "CRAZYROLL",
+ "fetched_at": "2026-10-27T03:43:50Z",
+ "source": "apify:lance_api~x-tweet-scraper-api",
+ "queries": [
+  "Az5naRCqYLfMi9KT92QCzJwR74BR5X33nZtMkXyvpump",
+  "$CRAZYROLL (solana OR pump OR pumpfun OR sol)"
+ ],
+ "posts": [
+  {
+   "text": "$CRAZYROLL just hit 3X\n\n117K \u2192 358K\n\nand only 26m to get here\n\nCA: Az5naRCqYLfMi9KT92QCzJwR74BR5X33nZtMkXyvpump\n\ncalls posted here: https://t.co/JGKkcOG57X https://t.co/MLqN7urk1Y",
+   "author_username": "Gwendolyn_zwart",
+   "author_created_at": "2020-03-31T16:17:26.000Z",
+   "followers": 47,
+   "created_at": "2026-10-27T03:43:28.000Z",
+   "url": "https://x.com/Gwendolyn_zwart/status/2114925926488375354"
+  },
+  {
+   "text": "$CRAZYROLL 3X\n\n117K \u21d2 358K\n\nran the whole way in 26m\n\npinned got the details\n\nCA: Az5naRCqYLfMi9KT92QCzJwR74BR5X33nZtMkXyvpump https://t.co/J50ddKuolG",
+   "author_username": "plsea",
+   "author_created_at": "2009-11-19T10:30:03.000Z",
+   "followers": 444,
+   "created_at": "2026-10-27T03:43:07.000Z",
+   "url": "https://x.com/plsea/status/2114925838533800333"
+  },
+  {
+   "text": "\ud83e\uddfb Bathroom chaos meets meme culture.\n\u2800\n\ud83e\udd81 $CRAZYROLL | \ud83d\udfe3 Solana\n\ud83d\udcb0 $338.4K MCap\n\ud83d\udca7 $49K liquidity\n\ud83d\udfe2 Reported change: +744%\n\u2800\n\ud83d\udcac Can the community keep rolling?\n\u2800\n\ud83d\udcf2 CA &amp; chart:\nhttps://t.co/vKqFEwcxfx\n\u2800\n\u2795 Follow @coinlistcalls\n\u26a0\ufe0f Unverified snapshot \u2022 DYOR\n\u2800\n#Solana https://t.co/llIHuViQ3k",
+   "author_username": "coinlistcalls",
+   "author_created_at": "2014-05-12T06:22:35.000Z",
+   "followers": 49,
+   "created_at": "2026-10-27T03:43:28.000Z",
+   "url": "https://x.com/coinlistcalls/status/2114925925934809407"
+  },
+  {
+   "text": "\ud83d\udd25 $CRAZYROLL crossed 2X\n\n117K \u2192 251K\n\nSlow grind \u2192 loud breakout.\n\nand only 17m to get here\n\n2X already paid inner circle\n\nAz5naRCqYLfMi9KT92QCzJwR74BR5X33nZtMkXyvpump https://t.co/9a7TLonnCT",
+   "author_username": "plsea",
+   "author_created_at": "2009-11-19T10:30:03.000Z",
+   "followers": 444,
+   "created_at": "2026-10-27T03:33:32.000Z",
+   "url": "https://x.com/plsea/status/2114923426280591810"
+  },
+  {
+   "text": "Pump migration: $CRAZYROLL (Crazy Roll) just hit the AMM.\n\nSitting at $45.4K MC with $14.4K liquidity and 47 holders. Mint is renounced and LP shows locked.\n\nCA below if you're tracking it:\n99ozqvThY81JBc7a3Sqfwp92nm9Ur8zGQADZFF73pump\n\n\ud83d\udcb9 Chart &amp; Trade: https://t.co/OB4zuHhq9X",
+   "author_username": "GemChaserSOL",
+   "author_created_at": "2025-12-15T16:57:36.000Z",
+   "followers": 2272,
+   "created_at": "2026-10-27T01:40:21.000Z",
+   "url": "https://x.com/GemChaserSOL/status/2114894939335397769"
+  }
+ ]
+}
