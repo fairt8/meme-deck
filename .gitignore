@@ -13,6 +13,8 @@ equity.csv
 pending_x_review.jsonl
 pending_symbols.txt
 desk_state.json
+insightx_state.json
+insightx_state.json.lock
 tg_offset.json
 x_posts/
 *.log

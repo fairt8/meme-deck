@@ -1,7 +1,7 @@
 # check.py
 # one contract address in, one verdict out. LIMITS -> FACTS -> POOL -> JUDGE -> FILL.
 # usage: python3 check.py <mint> [--readonly] [--x]
-# scan path: checks 1-13 + free judge. a pass is queued for check 14 (pending_x_review.jsonl); judge_x.py finishes it
+# scan path: checks 1-13 + free judge + check 13b (InsightX bundlers/clusters, insightx.py). a pass is queued for check 14 (pending_x_review.jsonl); judge_x.py finishes it
 # once x_posts/<mint>.json exists. --readonly: never opens a position, never writes checks.csv or the queue.
 # --readonly --x: also runs check 14 if a fresh x_posts/<mint>.json exists (no search).
 import csv, json, os, sys, time
@@ -10,13 +10,14 @@ from config import LOG, PAPER, TICKET_USD, EXTRA_SELL_TEST, FEE_PCT, SLIPPAGE_PC
 from rugcheck import report, fact_kill
 from market import pool, market_kill, sell_test
 from judge import judge
-import gemini, glm, xqueue
+import gemini, glm, xqueue, insightx
 from config import MIN_CONFIDENCE, PENDING_X
 import book
 from notify import send
 
 FIELDS = ["time", "mint", "symbol", "stage", "verdict", "reason", "confidence", "price", "liq_usd",
-          "age_min", "risk_score", "lp_locked_pct", "top10_pct", "dev_pct", "insiders", "action", "x_read", "main_risk", "judge_model"]
+          "age_min", "risk_score", "lp_locked_pct", "top10_pct", "dev_pct", "insiders", "action", "x_read", "main_risk", "judge_model",
+          "bundler_pct", "max_cluster_pct"]
 
 def _migrate_header():
     """older checks.csv files lack the x_read/main_risk columns: rewrite once with the new header."""
@@ -142,12 +143,23 @@ def check(mint: str, readonly: bool = False, posts_doc: dict | None = None) -> d
     extra = {"impact_pct": sell_info.get("impact_pct", 0), **({"limits_note": g} if g else {})}
     if ans["verdict"] != "BUY":
         return {**ans, **base, "stage": "judge", "reason": ans["why"], **extra}
+    # check 13b: InsightX bundlers + clusters. only here, after 1-13 and the free judge passed. down/budget -> skipped, no kill.
+    ix = insightx.check13b(mint)
+    if ix["status"] == "down":
+        print(ix["reason"], file=sys.stderr)
+        extra["insightx_note"] = ix["reason"]
+    else:
+        base = {**base, "bundler_pct": ix["bundler_pct"], "max_cluster_pct": ix["max_cluster_pct"]}
+        extra["insightx_note"] = ix["reason"]
+        if ix["status"] == "kill":
+            return {**base, **extra, "stage": "insightx", "verdict": "KILL", "reason": ix["reason"], "free_confidence": ans["confidence"]}
     ctx = {"_ctx": {"token": token, "pool": m, "free": ans}}
     if posts_doc is None:
         if not readonly: xqueue.enqueue(mint, m["symbol"], ans["confidence"], m["url"])
         return {**ans, **base, **extra, **ctx, "stage": "judge", "verdict": "PENDING_X",
-                "reason": ans["why"] + " -> queued for check 14 (X read)", "free_confidence": ans["confidence"]}
+                "reason": ans["why"] + " | " + extra["insightx_note"] + " -> queued for check 14 (X read)", "free_confidence": ans["confidence"]}
     x = x_judge(mint, token, m, base, ans, posts_doc)
+    if ix["status"] == "down": x["reason"] = str(x.get("reason")) + " | " + ix["reason"]
     return {**x, "signals": ans["signals"], **extra, **ctx}
 
 if __name__ == "__main__":

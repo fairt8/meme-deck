@@ -29,6 +29,8 @@ for mint in fresh[:SCAN_MAX_NEW]:
         v = json.loads(out)
     except Exception:
         print(f"{mint}: check.py gave no verdict"); continue
+    if v.get("insightx_note"):   # check 13b ran (or was skipped: SOURCE DOWN: InsightX ...) - one journal line per token
+        print(f"{v.get('symbol') or mint[:6]}: {v['insightx_note']}" + (" -> KILL" if v.get("stage") == "insightx" else ""))
     if v.get("verdict") == "BUY":
         print(f"BUY {v.get('symbol')} conf {v.get('confidence')} | x_read: {v.get('x_read')} | {v.get('why')} | {v.get('action')} | {v.get('url')}")
     elif "down" in str(v.get("reason", "")):

@@ -10,7 +10,7 @@ if [ ! -d "$S/.git" ]; then
   git -C "$S" config user.name "MEME TRADER"; git -C "$S" config user.email "desk@localhost"
 fi
 git -C "$S" -c credential.helper= fetch -q --depth 1 "$URL" state >/dev/null 2>&1 && git -C "$S" reset -q --hard FETCH_HEAD
-for f in positions.json trades.csv checks.csv equity.csv pending_x_review.jsonl pending_symbols.txt desk_state.json tg_offset.json notify.log actions.log; do
+for f in positions.json trades.csv checks.csv equity.csv pending_x_review.jsonl pending_symbols.txt desk_state.json insightx_state.json tg_offset.json notify.log actions.log; do
   [ -f "$D/$f" ] && cp "$D/$f" "$S/$f"
 done
 rsync -a --delete "$D/x_posts/" "$S/x_posts/" 2>/dev/null

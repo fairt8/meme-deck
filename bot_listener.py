@@ -73,6 +73,10 @@ def cmd_check(ca):
     if v.get("confidence") is not None: lines.append(f"free-signal confidence: {v['confidence']} (needs ≥ 0.7)")
     for k in ("risk_score", "lp_locked_pct", "top10_pct", "dev_pct", "insiders", "liq_usd", "age_min", "price"):
         if v.get(k) is not None: lines.append(f"{k}: {v[k]}")
+    if v.get("insightx_note"):   # check 13b (InsightX): bundlers and the largest holder cluster, each must be <= 20%
+        lines.append(f"bundler_pct: {v.get('bundler_pct') if v.get('bundler_pct') is not None else 'n/a'}")
+        lines.append(f"max_cluster_pct: {v.get('max_cluster_pct') if v.get('max_cluster_pct') is not None else 'n/a'}")
+        lines.append(f"check 13b: {v['insightx_note']}")
     if v.get("x_read"): lines.append(f"X read (Gemini, check 14): {v['x_read']}")
     if v.get("main_risk"): lines.append(f"main risk: {v['main_risk']}")
     if v.get("limits_note"): lines.append(f"(desk limits would block a buy right now: {v['limits_note']})")

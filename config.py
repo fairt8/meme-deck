@@ -63,3 +63,8 @@ APIFY_MAX_FETCHES_PER_DAY = 20                  # budget guard: ~$0.12/day worst
 APIFY_TIMEOUT_S = 180
 SCAN_EVERY_MIN = 30                             # Actions runs every 15 min; scan on every other run
 REPORT_AT_HHMM = 2130                           # evening report, WAT
+
+# check 13b (added 2026-10-29): InsightX bundlers + holder clusters, only on tokens that passed 1-13, before the X queue.
+# KILL if bundlers > 20% of supply or any single cluster > 20% (liquidity_pool / exchange / vesting / locker clusters ignored).
+# free plan = 1,000 calls/month; stop at 900 so manual /check calls never hit the hard cap. over budget -> SOURCE DOWN, 13b skipped.
+INSIGHTX = {"max_bundler_pct": 20, "max_cluster_pct": 20, "monthly_budget": 900}

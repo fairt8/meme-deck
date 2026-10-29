@@ -64,7 +64,7 @@ async function load() {
     $("topk").innerHTML = d.top_kills.map(([r, n]) => `<tr><td>${esc(r)}</td><td>${n}×</td></tr>`).join("");
     $("checks14").innerHTML = LIST14.map(x => `<li>${x}</li>`).join("");
     $("killlist").innerHTML = d.kills.map(k => `<div class="row"><div class="t"><b>${esc(k.symbol || k.mint.slice(0, 6))}</b><span class="pill">${esc(k.stage)}</span></div>
-      <div class="r">${esc(k.reason)}</div>${k.x_read ? `<div>X read: ${esc(k.x_read)}</div>` : ""}${k.main_risk ? `<div class="hint">main risk: ${esc(k.main_risk)}</div>` : ""}<div class="hint">${esc(k.time)} WAT</div><code>${esc(k.mint)}</code></div>`).join("");
+      <div class="r">${esc(k.reason)}</div>${(k.bundler_pct || k.max_cluster_pct) ? `<div class="hint">13b InsightX: bundlers ${esc(k.bundler_pct || "n/a")}% · max cluster ${esc(k.max_cluster_pct || "n/a")}%</div>` : ""}${k.x_read ? `<div>X read: ${esc(k.x_read)}</div>` : ""}${k.main_risk ? `<div class="hint">main risk: ${esc(k.main_risk)}</div>` : ""}<div class="hint">${esc(k.time)} WAT</div><code>${esc(k.mint)}</code></div>`).join("");
     $("reptext").textContent = d.report || "No report yet.";
   } catch (e) { $("upd").textContent = "could not load data.json: " + e; }
 }
@@ -125,9 +125,10 @@ async function runCheck() {
       res.sym = (p.baseToken || {}).symbol; res.url = p.url; res.price = p.priceUsd;
     }
   } else for (let i = 10; i <= 13; i++) add(i, LIST14[i - 1], null, "DexScreener unavailable: " + dsErr + " → SKIP");
+  add("13b", "bundlers ≤ 20% and no holder cluster > 20% (InsightX)", null, "runs on the desk only (needs the API key). Send /check <CA> to the bot.");
   add(14, "X read", null, "runs on the desk (Gemini + Google Search), not in the browser. Send /check <CA> to the bot to run 1-14 read-only.");
   const hard = res.filter(r => r.n <= 13), fail = hard.filter(r => r.ok === false), unk = hard.filter(r => r.ok === null);
-  const verdict = fail.length ? `KILL — first failure: #${fail[0].n} ${fail[0].name}` : unk.length ? "SKIP — a source was down / token not indexed" : "PASSES checks 1–13 (judge + X read still apply)";
+  const verdict = fail.length ? `KILL — first failure: #${fail[0].n} ${fail[0].name}` : unk.length ? "SKIP — a source was down / token not indexed" : "PASSES checks 1–13 (judge, 13b InsightX + X read still apply)";
   out.innerHTML = `<div class="row"><b>${esc(res.sym || mint.slice(0, 6))}</b> ${res.price ? "· $" + esc(res.price) : ""} ${res.url ? `· <a href="${esc(res.url)}" onclick="return openLink(this.href)">DexScreener ↗</a>` : ""}
     <div class="${fail.length ? "r" : unk.length ? "" : "g"}" style="font-weight:600;margin-top:4px">${verdict}</div></div>
     <table>${res.map(r => `<tr><td>${r.n}</td><td>${esc(r.name)}</td><td class="${r.ok === true ? "g" : r.ok === false ? "r" : "hint"}">${r.ok === true ? "✔" : r.ok === false ? "✘" : "–"}</td><td>${esc(r.val)}</td></tr>`).join("")}</table>

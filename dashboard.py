@@ -39,7 +39,8 @@ def table(head, rows):
 open_rows = [[E(p["symbol"]), f"<code>{E(m)}</code>", f"${p['usd']}", f"{p['entry']:.6g}", f"{p.get('last', p['entry']):.6g}",
               f"{(p.get('last', p['entry'])/p['entry']-1)*100:+.1f}%", time.strftime("%m-%d %H:%M", time.localtime(p["opened"]))] for m, p in opn.items()]
 trade_rows = [[E(t["time"]), E(t["symbol"]), E(t["action"]), f"${float(t['usd']):.2f}", f"${float(t['pnl']):+.2f}", E(t["reason"])] for t in trades[-20:][::-1]]
-kill_rows = [[E(r["time"]), E(r["symbol"] or r["mint"][:6]), f"<code>{E(r['mint'])}</code>", E(r["stage"]), E(r["reason"])] for r in kills[-25:][::-1]]
+kill_rows = [[E(r["time"]), E(r["symbol"] or r["mint"][:6]), f"<code>{E(r['mint'])}</code>", E(r["stage"]), E(r["reason"]),
+              E(r.get("bundler_pct") or ""), E(r.get("max_cluster_pct") or "")] for r in kills[-25:][::-1]]
 img = f'<img src="data:image/png;base64,{base64.b64encode(png).decode()}" alt="balance">' if png else "<p class=m>no balance history yet</p>"
 
 page = f"""<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -62,7 +63,7 @@ th{{color:#8a9a8f}} code{{font-size:11px;word-break:break-all}} img{{max-width:1
 <h2>Top kill reasons</h2>{table(["reason", "count"], [[E(r), n] for r, n in reasons])}
 <h2>Open positions</h2>{table(["symbol", "CA", "in", "entry", "last", "pnl", "opened"], open_rows)}
 <h2>Recent trades</h2>{table(["time", "symbol", "action", "usd", "pnl", "reason"], trade_rows)}
-<h2>Recent kills</h2>{table(["time", "symbol", "CA", "stage", "reason"], kill_rows)}
+<h2>Recent kills</h2>{table(["time", "symbol", "CA", "stage", "reason", "bundler %", "max cluster %"], kill_rows)}
 </body></html>"""
 open("web/index.html", "w").write(page)
 print_path = os.path.abspath("web/index.html")
@@ -88,7 +89,7 @@ data = {
                    "pct": round((p.get("last", p["entry"]) / p["entry"] - 1) * 100, 2),
                    "url": f"https://dexscreener.com/solana/{m}"} for m, p in opn.items()],
     "trades": trades[-100:][::-1],
-    "kills": [{k: r.get(k) for k in ("time", "mint", "symbol", "stage", "reason", "liq_usd", "risk_score", "top10_pct", "dev_pct", "insiders", "x_read", "main_risk")} for r in kills[-60:][::-1]],
+    "kills": [{k: r.get(k) for k in ("time", "mint", "symbol", "stage", "reason", "liq_usd", "risk_score", "top10_pct", "dev_pct", "insiders", "x_read", "main_risk", "bundler_pct", "max_cluster_pct")} for r in kills[-60:][::-1]],
     "equity_series": [[r["time"], float(r["equity"]), float(r["cash"])] for r in eqrows[-300:]],
     "report": rep,
     "config": {"TICKET_USD": C.TICKET_USD, "FACTS": C.FACTS, "MIN_CONFIDENCE": C.MIN_CONFIDENCE, "EXIT": C.EXIT,
