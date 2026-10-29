@@ -76,7 +76,7 @@ def cmd_check(ca):
     if v.get("insightx_note"):   # check 13b (InsightX): bundlers and the largest holder cluster, each must be <= 20%
         lines.append(f"bundler_pct: {v.get('bundler_pct') if v.get('bundler_pct') is not None else 'n/a'}")
         lines.append(f"max_cluster_pct: {v.get('max_cluster_pct') if v.get('max_cluster_pct') is not None else 'n/a'}")
-        lines.append(f"check 13b: {v['insightx_note']}")
+        n = v["insightx_note"]; lines.append(n if n.startswith("13b") else f"check 13b: {n}")
     if v.get("x_read"): lines.append(f"X read (Gemini, check 14): {v['x_read']}")
     if v.get("main_risk"): lines.append(f"main risk: {v['main_risk']}")
     if v.get("limits_note"): lines.append(f"(desk limits would block a buy right now: {v['limits_note']})")
