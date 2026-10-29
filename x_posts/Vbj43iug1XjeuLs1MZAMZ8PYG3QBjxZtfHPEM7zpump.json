@@ -1,0 +1,124 @@
+{
+ "mint": "Vbj43iug1XjeuLs1MZAMZ8PYG3QBjxZtfHPEM7zpump",
+ "symbol": "ANTS",
+ "fetched_at": "2026-10-28T18:13:57Z",
+ "source": "apify:lance_api~x-tweet-scraper-api",
+ "queries": [
+  "Vbj43iug1XjeuLs1MZAMZ8PYG3QBjxZtfHPEM7zpump",
+  "$ANTS (solana OR pump OR pumpfun OR sol)"
+ ],
+ "posts": [
+  {
+   "text": "Decent 3x profit pump up on $ANTS\n\nVbj43iug1XjeuLs1MZAMZ8PYG3QBjxZtfHPEM7zpump https://t.co/3NduWClZlC",
+   "author_username": "VantageAlpha_1",
+   "author_created_at": "2023-12-30T20:39:06.000Z",
+   "followers": 2589,
+   "created_at": "2026-10-28T18:13:16.000Z",
+   "url": "https://x.com/VantageAlpha_1/status/2115507202920243643"
+  },
+  {
+   "text": "2.9X up on my call $ANTS\nDm for entry\ud83c\udf40\n\nVbj43iug1XjeuLs1MZAMZ8PYG3QBjxZtfHPEM7zpump https://t.co/P84kJMC9VK",
+   "author_username": "Sol_b33y",
+   "author_created_at": "2016-02-25T04:47:10.000Z",
+   "followers": 1189,
+   "created_at": "2026-10-28T18:12:55.000Z",
+   "url": "https://x.com/Sol_b33y/status/2115507116706275705"
+  },
+  {
+   "text": "CA;\n\nVbj43iug1XjeuLs1MZAMZ8PYG3QBjxZtfHPEM7zpump https://t.co/AGfWphWoRa",
+   "author_username": "VantageAlpha_1",
+   "author_created_at": "2023-12-30T20:39:06.000Z",
+   "followers": 2589,
+   "created_at": "2026-10-28T18:11:46.000Z",
+   "url": "https://x.com/VantageAlpha_1/status/2115506826305327556"
+  },
+  {
+   "text": "Who\u2019s in on $ANTS\nCa::\n\nVbj43iug1XjeuLs1MZAMZ8PYG3QBjxZtfHPEM7zpump https://t.co/qziLzjrq3s",
+   "author_username": "Sol_b33y",
+   "author_created_at": "2016-02-25T04:47:10.000Z",
+   "followers": 1189,
+   "created_at": "2026-10-28T18:11:15.000Z",
+   "url": "https://x.com/Sol_b33y/status/2115506696881942789"
+  },
+  {
+   "text": "\ud83d\udd25 SOL CTO ALERT\n\nAnthropic ($ANTS)\nCA: Vbj43iug1XjeuLs1MZAMZ8PYG3QBjxZtfHPEM7zpump\n\nStatus: Pump Fun migrated\nATH MC: $514.5K\nHolders: 2229\nTop10: 2.01%\n\n\u26a1 Trade on GMGN: https://t.co/iGMVsuI1nN",
+   "author_username": "AiSolanaKols",
+   "author_created_at": "2025-05-03T14:10:12.000Z",
+   "followers": 1761,
+   "created_at": "2026-10-28T18:07:07.000Z",
+   "url": "https://x.com/AiSolanaKols/status/2115505658263118004"
+  },
+  {
+   "text": "$ANTS\n\nAnthropic integrates AI concepts into Solana based projects. Its approach could appeal to users seeking novel intersections of intelligence and decentralized tech.\n\nMC: $265.0K\n\n1h Vol: $372.4K https://t.co/EDNjkpKXrz",
+   "author_username": "SeeThreePio_Bot",
+   "author_created_at": "2021-07-03T17:45:20.000Z",
+   "followers": 44,
+   "created_at": "2026-10-28T17:57:45.000Z",
+   "url": "https://x.com/SeeThreePio_Bot/status/2115503301286384078"
+  },
+  {
+   "text": "\ud83d\udc8e $ANTS breaking resistance\n\n2X \u2014 147K \u2192 296K\n\nBulls winning\n\nclean run, 52m flat\n\nearly called before this hit feeds\n\nVbj43iug1XjeuLs1MZAMZ8PYG3QBjxZtfHPEM7zpump https://t.co/MDKLxCocrc",
+   "author_username": "Bitkesh2",
+   "author_created_at": "2020-12-02T17:34:04.000Z",
+   "followers": 120,
+   "created_at": "2026-10-28T16:22:17.000Z",
+   "url": "https://x.com/Bitkesh2/status/2115479274958496181"
+  },
+  {
+   "text": "$ANTS looked interesting, in on it at 191k on solana\n\nVbj43iug1XjeuLs1MZAMZ8PYG3QBjxZtfHPEM7zpump https://t.co/wL5nTQXf2N",
+   "author_username": "bullishmaddy",
+   "author_created_at": "2017-08-24T18:32:01.000Z",
+   "followers": 15237,
+   "created_at": "2026-10-28T15:29:16.000Z",
+   "url": "https://x.com/bullishmaddy/status/2115465934328742394"
+  },
+  {
+   "text": "Ants Coin Address on @Pumpfun \nhttps://t.co/jt3UaUnZI2\n\nthe-open-network:native $ANTS #TON",
+   "author_username": "ants_coin_x",
+   "author_created_at": "2026-05-14T09:39:32.000Z",
+   "followers": 703,
+   "created_at": "2026-10-28T10:06:26.000Z",
+   "url": "https://x.com/ants_coin_x/status/2115384690882596900"
+  },
+  {
+   "text": "$ANTS looked interesting, took a position in it at 87k on solana\n\nFpEgGYXbRH6vLmbwXkCo7yPV7et4YHFnmJBYvbZpump https://t.co/cDXyR1lwOf",
+   "author_username": "bullishmaddy",
+   "author_created_at": "2017-08-24T18:32:01.000Z",
+   "followers": 15237,
+   "created_at": "2026-10-28T07:59:27.000Z",
+   "url": "https://x.com/bullishmaddy/status/2115352732836180393"
+  },
+  {
+   "text": "30x up on $ANTS\n\n#Crypto #Dewtee #helevier #Solana https://t.co/VKj0cIESV2",
+   "author_username": "Noblesol47",
+   "author_created_at": "2010-11-02T20:37:30.000Z",
+   "followers": 1360,
+   "created_at": "2026-10-27T17:43:51.000Z",
+   "url": "https://x.com/Noblesol47/status/2115137415296041056"
+  },
+  {
+   "text": "23x up on $ANTS\n\n#Crypto #Dewtee #helevier #Solana https://t.co/bU4wEfULE3",
+   "author_username": "Noblesol47",
+   "author_created_at": "2010-11-02T20:37:30.000Z",
+   "followers": 1360,
+   "created_at": "2026-10-27T17:42:31.000Z",
+   "url": "https://x.com/Noblesol47/status/2115137079474544872"
+  },
+  {
+   "text": "$ANTS\nCa,,,\n\nxQrtBBhh5A7iR57BQF3Q3EgXYYM1jZvDDQ18qnspump\n\n#Crypto #Dewtee #helevier #Solana https://t.co/V69Y6G5qqX",
+   "author_username": "Noblesol47",
+   "author_created_at": "2010-11-02T20:37:30.000Z",
+   "followers": 1360,
+   "created_at": "2026-10-27T17:41:21.000Z",
+   "url": "https://x.com/Noblesol47/status/2115136782941438357"
+  },
+  {
+   "text": "30x up from my tg on $ANTS\nDm me now to join my vip group for early alpha calls \n\nxQrtBBhh5A7iR57BQF3Q3EgXYYM1jZvDDQ18qnspump\n\n#memecoin #Dewtee #helevier #Solana https://t.co/YAoKfehu3N",
+   "author_username": "Sol_Gems00",
+   "author_created_at": "2010-07-16T04:38:31.000Z",
+   "followers": 1681,
+   "created_at": "2026-10-27T16:51:11.000Z",
+   "url": "https://x.com/Sol_Gems00/status/2115124161655849366"
+  }
+ ]
+}

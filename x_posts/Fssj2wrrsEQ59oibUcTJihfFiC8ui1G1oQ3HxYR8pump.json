@@ -1,0 +1,44 @@
+{
+ "mint": "Fssj2wrrsEQ59oibUcTJihfFiC8ui1G1oQ3HxYR8pump",
+ "symbol": "STFD",
+ "fetched_at": "2026-10-28T03:13:45Z",
+ "source": "apify:lance_api~x-tweet-scraper-api",
+ "queries": [
+  "Fssj2wrrsEQ59oibUcTJihfFiC8ui1G1oQ3HxYR8pump",
+  "$STFD (solana OR pump OR pumpfun OR sol)"
+ ],
+ "posts": [
+  {
+   "text": "\ud83d\udfe2 CTO PING: $STFD (StonkFoundry)\n\n\ud83d\udcb0 MC: $265.7K | \ud83d\udca7 Liq: $38.3K | \ud83d\udc65 2461 HODLers\n\ud83d\udee1 Taxes: 0%/0% | \ud83d\udeab Mint: \u2705 Renounced\n\ud83d\udd25 Burned: 100% | \ud83d\uded1 Rug Ratio: 51%\n\n\ud83d\udc49 CA: $STFD\n\n\ud83d\udcb9 Chart &amp; Trade: https://t.co/ArzmasqdhX",
+   "author_username": "SolanaMemesScan",
+   "author_created_at": "2025-05-07T19:07:29.000Z",
+   "followers": 4201,
+   "created_at": "2026-10-28T03:10:35.000Z",
+   "url": "https://x.com/SolanaMemesScan/status/2115280036089524337"
+  },
+  {
+   "text": "$STFD topped 244K (3X from 76K), holding 235K now\n\ntook 27m, no waiting around\n\npinned got the details\n\nCA: Fssj2wrrsEQ59oibUcTJihfFiC8ui1G1oQ3HxYR8pump https://t.co/VkQqgkKm75",
+   "author_username": "Bitkesh2",
+   "author_created_at": "2020-12-02T17:34:04.000Z",
+   "followers": 115,
+   "created_at": "2026-10-28T03:11:04.000Z",
+   "url": "https://x.com/Bitkesh2/status/2115280157678473386"
+  },
+  {
+   "text": "Posted $STFD at 76K.\n\nAnyone who caught it is up 3X. Now 232K.\n\nand it only took 27m\n\ndms open if you want in\n\nFssj2wrrsEQ59oibUcTJihfFiC8ui1G1oQ3HxYR8pump https://t.co/1cRZDNf7Om",
+   "author_username": "AdonyeGally",
+   "author_created_at": "2017-11-20T11:47:36.000Z",
+   "followers": 50,
+   "created_at": "2026-10-28T03:09:33.000Z",
+   "url": "https://x.com/AdonyeGally/status/2115279777691238520"
+  },
+  {
+   "text": "$STFD 76K \u21d2 171K (2X)\n\na 25m run from the call\n\nit's all in bio\n\nCA: Fssj2wrrsEQ59oibUcTJihfFiC8ui1G1oQ3HxYR8pump https://t.co/GghkalJspb",
+   "author_username": "tony_leveau",
+   "author_created_at": "2011-01-08T16:52:09.000Z",
+   "followers": 535,
+   "created_at": "2026-10-28T03:08:57.000Z",
+   "url": "https://x.com/tony_leveau/status/2115279626247487704"
+  }
+ ]
+}
