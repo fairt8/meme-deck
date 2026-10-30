@@ -1,0 +1,84 @@
+{
+ "mint": "HYv2VeLzVpGiGoBPbPmHDjJXNjBWsqz1axvZCv7Qpump",
+ "symbol": "SLEGO",
+ "fetched_at": "2026-10-29T02:43:47Z",
+ "source": "apify:lance_api~x-tweet-scraper-api",
+ "queries": [
+  "HYv2VeLzVpGiGoBPbPmHDjJXNjBWsqz1axvZCv7Qpump",
+  "$SLEGO (solana OR pump OR pumpfun OR sol)"
+ ],
+ "posts": [
+  {
+   "text": "$SLEGO called it 1.1 hours ago at launch and already sitting on +560% with $290K volume matching the $280K mcap. Only $40K liquidity so I'm not holding bags too long but this moved fast.\n\nHYv2VeLzVpGiGoBPbPmHDjJXNjBWsqz1axvZCv7Qpump https://t.co/YfkYmZeg5i",
+   "author_username": "Tata_Solana",
+   "author_created_at": "2011-02-14T10:05:48.000Z",
+   "followers": 2573,
+   "created_at": "2026-10-29T02:34:01.000Z",
+   "url": "https://x.com/Tata_Solana/status/2115633224718450862"
+  },
+  {
+   "text": "5x \u2705\u2705\u2705\u2705\u2705\u2705\u2705\u2705\u2705\u2705 \n\n$SLEGO \n\nMCAP: $350K\n\nCA: HYv2VeLzVpGiGoBPbPmHDjJXNjBWsqz1axvZCv7Qpump\n\n#SOL\n#SLEGO https://t.co/ZoBIpVymEP",
+   "author_username": "Raghavak0nSol",
+   "author_created_at": "2018-10-09T13:18:03.000Z",
+   "followers": 136701,
+   "created_at": "2026-10-29T02:30:43.000Z",
+   "url": "https://x.com/Raghavak0nSol/status/2115632393277087806"
+  },
+  {
+   "text": "\ud83d\udea8 PAID DEX SIGNAL\n$SLEGO | MC $420.5K | Liq $42.3K\nBundlers 13 | Fresh 25 | Age 69m\nSocials: X Yes | TG No\n\n\ud83d\udd17 Open on GMGN: https://t.co/zx4sdzgbr2",
+   "author_username": "SolanaMemesScan",
+   "author_created_at": "2025-05-07T19:07:29.000Z",
+   "followers": 4216,
+   "created_at": "2026-10-29T02:39:12.000Z",
+   "url": "https://x.com/SolanaMemesScan/status/2115634525870895233"
+  },
+  {
+   "text": "\ud83d\udea8 CTO SIGNAL \ud83d\udfe2 MIGRATED\n\nToken: SLEEGO\nTicker: $SLEGO\nRoute: Pump Fun \u2192 pump_amm\n\nATH MC: $370.5K\nLiq: $47.1K\nHolders: 1851\n\nCTO: \u2705\nDEX Updated: \u2705\nBurn: 100%\n\nCA: HYv2VeLzVpGiGoBPbPmHDjJXNjBWsqz1axvZCv7Qpump\n\n\u26a1 Trade on GMGN: https://t.co/5CHKGuMjK0",
+   "author_username": "SolTokenScan",
+   "author_created_at": "2026-03-17T17:41:51.000Z",
+   "followers": 3134,
+   "created_at": "2026-10-29T02:30:05.000Z",
+   "url": "https://x.com/SolTokenScan/status/2115632232484294792"
+  },
+  {
+   "text": "\ud83d\udc36 Sleepy chihuahua. Coffee first. \u2615\n\u2800\n\ud83e\udd81 SLEEGO | $SLEGO\n\ud83d\udfe3 Solana\n\ud83d\udcb0 $338.2K MCap\n\ud83d\udca7 $48.8K liquidity\n\u2800\n\ud83d\udcac Can a relatable mascot build a community?\n\u2800\n\ud83d\udcf2 CA &amp; chart:\nhttps://t.co/vKqFEwcxfx\n\u2800\n\ud83e\udd81 @coinlistcalls\n\u26a0\ufe0f Unverified snapshot \u2022 DYOR\n\u2800\n#Solana #SLEGO https://t.co/X1SJPhYcDN",
+   "author_username": "coinlistcalls",
+   "author_created_at": "2014-05-12T06:22:35.000Z",
+   "followers": 59,
+   "created_at": "2026-10-29T02:37:10.000Z",
+   "url": "https://x.com/coinlistcalls/status/2115634015579611449"
+  },
+  {
+   "text": "$SLEGO gave 314K ATH from 141K (2X).\n\nRiding 247K for the continuation.\n\n21m to pull this off\n\nquietly called before this hit feeds\n\nHYv2VeLzVpGiGoBPbPmHDjJXNjBWsqz1axvZCv7Qpump\n\n\ud83d\udfe3 Chain: SOLANA https://t.co/MC09Rm3J6M",
+   "author_username": "plsea",
+   "author_created_at": "2009-11-19T10:30:03.000Z",
+   "followers": 455,
+   "created_at": "2026-10-29T02:29:34.000Z",
+   "url": "https://x.com/plsea/status/2115632103492604076"
+  },
+  {
+   "text": "2x \u2705\u2705\u2705\u2705\u2705\u2705\u2705\u2705\u2705\u2705 \n\n$SLEGO \n\nMCAP: $135K \n\nCA: HYv2VeLzVpGiGoBPbPmHDjJXNjBWsqz1axvZCv7Qpump\n\n#SOL\n#SLEGO https://t.co/R8wTPBZ37Q",
+   "author_username": "Raghavak0nSol",
+   "author_created_at": "2018-10-09T13:18:03.000Z",
+   "followers": 136701,
+   "created_at": "2026-10-29T02:09:49.000Z",
+   "url": "https://x.com/Raghavak0nSol/status/2115627133041078707"
+  },
+  {
+   "text": "$SLEGO \n\nMCAP: $69K \n\nCA: HYv2VeLzVpGiGoBPbPmHDjJXNjBWsqz1axvZCv7Qpump\n\n#SOL\n#SLEGO https://t.co/LqPyRM12A5",
+   "author_username": "Raghavak0nSol",
+   "author_created_at": "2018-10-09T13:18:03.000Z",
+   "followers": 136701,
+   "created_at": "2026-10-29T02:07:17.000Z",
+   "url": "https://x.com/Raghavak0nSol/status/2115626495515259093"
+  },
+  {
+   "text": "giving $SLEGO a shot around 99k on solana\n\nDvBBeixBLbsrUFPs8M48TWPVVSUKrAVqShsqYxFypump https://t.co/Y2EZs2gwCl",
+   "author_username": "bullishmaddy",
+   "author_created_at": "2017-08-24T18:32:01.000Z",
+   "followers": 15235,
+   "created_at": "2026-10-28T04:25:24.000Z",
+   "url": "https://x.com/bullishmaddy/status/2115298864521752793"
+  }
+ ]
+}
