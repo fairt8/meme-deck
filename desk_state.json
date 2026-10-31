@@ -1,9 +1,9 @@
 {
- "runs": 732,
- "last_scan_ts": 1793323141,
+ "runs": 876,
+ "last_scan_ts": 1793409541,
  "seeded_from_box": "2026-10-20 19:27:06",
- "last_run": "2026-10-30 02:39:06",
- "apify_day": "2026-10-29",
- "apify_fetches": 3,
- "last_report_date": "2026-10-29"
+ "last_run": "2026-10-31 02:39:06",
+ "apify_day": "2026-10-31",
+ "apify_fetches": 1,
+ "last_report_date": "2026-10-30"
 }
