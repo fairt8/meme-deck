@@ -1,94 +1,249 @@
 <!doctype html>
-<html lang="en"><head>
+<html lang="en" data-theme="dark"><head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>RUG DESK</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<title>MEME Desk · paper</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<!-- 2026-11-03: card UI (FVG-X Desk style). one file serves / (web/index.html, copied by dashboard.py) and /app/ (Telegram mini app).
+     every number comes from data.json, which dashboard.py builds from the desk files. nothing here is estimated. -->
 <style>
-:root{--bg:var(--tg-theme-bg-color,#0f1411);--text:var(--tg-theme-text-color,#e8efe9);--hint:var(--tg-theme-hint-color,#8a9a8f);
---link:var(--tg-theme-link-color,#5cb8ff);--btn:var(--tg-theme-button-color,#2ea44f);--btnt:var(--tg-theme-button-text-color,#fff);
---sec:var(--tg-theme-secondary-bg-color,#18201b);--good:#2fbf62;--bad:#e5484d}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.4 -apple-system,system-ui,sans-serif;padding-bottom:70px}
-header{padding:12px 14px 4px}h1{font-size:18px;margin:0}.hint{color:var(--hint);font-size:12px}
-nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--sec);border-top:1px solid rgba(128,128,128,.2);z-index:9}
-nav button{flex:1;background:none;border:0;color:var(--hint);padding:10px 2px 12px;font-size:12px}nav button.on{color:var(--btn);font-weight:600}
-section{display:none;padding:8px 12px}section.on{display:block}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}.card{background:var(--sec);border-radius:12px;padding:10px}
-.card b{display:block;font-size:20px}.g{color:var(--good)}.r{color:var(--bad)}
-.row{background:var(--sec);border-radius:12px;padding:10px;margin:8px 0}.row .t{display:flex;justify-content:space-between;gap:6px}
-code{font-size:11px;word-break:break-all;color:var(--hint)}a{color:var(--link);text-decoration:none}
-pre{white-space:pre-wrap;background:var(--sec);border-radius:12px;padding:10px;font-size:12px}
-input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(128,128,128,.35);background:var(--sec);color:var(--text);font-size:14px}
-.btn{width:100%;margin-top:8px;padding:11px;border:0;border-radius:10px;background:var(--btn);color:var(--btnt);font-size:15px;font-weight:600}
-table{width:100%;border-collapse:collapse;font-size:12px}td,th{padding:5px 4px;border-bottom:1px solid rgba(128,128,128,.18);text-align:left}
-svg{width:100%;height:170px;background:var(--sec);border-radius:12px;margin-top:8px}.pill{font-size:11px;padding:1px 7px;border-radius:9px;background:rgba(128,128,128,.2)}
+:root{--bg:#0a0d14;--bg2:#0f131c;--card:#131826;--card2:#1a2031;--line:#232b3d;--text:#e9edf5;--mute:#8a93a7;--blue:#4f8cff;--good:#22c983;--bad:#f0506e;--warn:#f5b83d;--violet:#8b6cff;
+--hero:linear-gradient(135deg,#1c2350 0%,#161c33 45%,#121725 100%)}
+[data-theme=light]{--bg:#f3f5f9;--bg2:#fff;--card:#fff;--card2:#f1f4f9;--line:#e1e6ef;--text:#141a26;--mute:#667085;--hero:linear-gradient(135deg,#e3e9ff 0%,#f1f4ff 50%,#fff 100%)}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 Inter,-apple-system,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{padding-bottom:calc(72px + env(safe-area-inset-bottom))}a{color:var(--blue);text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:10px;padding:10px 16px}
+.logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#4f8cff,#8b6cff);display:grid;place-items:center;font-weight:800;font-size:13px;color:#fff}
+.ttl b{display:block;font-size:16px;white-space:nowrap}.ttl span{white-space:nowrap}.ttl span{font-size:12px;color:var(--mute)}.sp{flex:1}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 11px;font-size:12px;font-weight:600}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 8px var(--good)}.dot.w{background:var(--warn);box-shadow:0 0 8px var(--warn)}.dot.b{background:var(--bad);box-shadow:0 0 8px var(--bad)}
+.ib{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);display:grid;place-items:center;cursor:pointer;font-size:15px}
+main section{display:none;padding:14px 0}main section.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.hero{background:var(--hero)}.lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.big{font-size:34px;font-weight:800;letter-spacing:-.02em;margin:4px 0 8px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.pill{white-space:nowrap;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--line)}
+.pill.g{background:rgba(34,201,131,.14);color:var(--good);border-color:transparent}.pill.r{background:rgba(240,80,110,.14);color:var(--bad);border-color:transparent}
+.pill.b{background:rgba(79,140,255,.16);color:var(--blue);border-color:transparent}.pill.y{background:rgba(245,184,61,.15);color:var(--warn);border-color:transparent}.pill.v{background:rgba(139,108,255,.16);color:var(--violet);border-color:transparent}
+.g{color:var(--good)}.r{color:var(--bad)}.m{color:var(--mute)}.y{color:var(--warn)}
+.spark{width:100%;height:110px;display:block;margin:10px 0}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.tile{background:color-mix(in srgb,var(--card2) 80%,transparent);border:1px solid var(--line);border-radius:12px;padding:9px 11px}
+.tile .lbl{font-size:10px}.tile b{display:block;font-size:16px;margin-top:2px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(5,1fr)}.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}.big{font-size:40px}}
+h3{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:20px 2px 10px;display:flex;justify-content:space-between}
+h3 a{text-transform:none;letter-spacing:0;font-size:12px;cursor:pointer}
+.seg{display:flex;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px;margin-bottom:12px}
+.seg button{flex:1;border:0;background:none;color:var(--mute);padding:9px;border-radius:9px;font-weight:600;font-size:14px;cursor:pointer}.seg button.on{background:var(--card2);color:var(--text)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;align-items:center}.chip{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer}
+.chip.on{background:rgba(79,140,255,.18);color:var(--blue);border-color:transparent}
+.list{display:grid;gap:10px}@media(min-width:760px){.list{grid-template-columns:1fr 1fr}}
+.pos .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.sym{font-size:17px;font-weight:800}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0 6px}.kv .lbl{font-size:10px}.kv div b{display:block;font-size:13px;font-weight:600}
+.bar{position:relative;height:8px;border-radius:6px;background:linear-gradient(90deg,rgba(240,80,110,.25),rgba(240,80,110,.08) var(--e),rgba(34,201,131,.08) var(--e),rgba(34,201,131,.18));margin:18px 0 22px}
+.bar .fill{position:absolute;top:0;bottom:0;border-radius:6px}.bar .knob{position:absolute;top:50%;width:15px;height:15px;border-radius:50%;transform:translate(-50%,-50%);border:3px solid var(--card)}
+.bar .tick{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--mute);opacity:.6}.bar .tick.t{background:var(--good);opacity:1}
+.bar .tl{position:absolute;top:13px;transform:translateX(-50%);font-size:10px;color:var(--mute);white-space:nowrap}.bar .tl.t{color:var(--good);font-weight:700}
+.bar .tt{position:absolute;bottom:12px;transform:translateX(-50%);font-size:10px;color:var(--mute);white-space:nowrap}
+.row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}.row:last-child{border:0}.row span:first-child{color:var(--mute)}.row span:last-child{text-align:right;font-weight:600}
+code{font-size:11px;color:var(--mute);word-break:break-all}.small{font-size:12px}
+.empty{text-align:center;color:var(--mute);padding:28px 10px}
+.dbar{display:flex;align-items:center;gap:8px;padding:6px 0;white-space:nowrap}.dbar i{display:block;height:8px;border-radius:4px}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:10;background:color-mix(in srgb,var(--bg2) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+nav .wrap{display:flex;max-width:620px}nav button{flex:1;background:none;border:0;color:var(--mute);padding:9px 2px 10px;font-size:11px;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
+nav button svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}nav button.on{color:var(--blue)}
+input{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-size:14px}
+.btn{width:100%;margin-top:8px;padding:11px;border:0;border-radius:10px;background:var(--blue);color:#fff;font-size:15px;font-weight:700;cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:12px}td,th{padding:6px 4px;border-bottom:1px solid var(--line);text-align:left}
+pre{white-space:pre-wrap;font-size:12px;margin:0}ol{padding-left:20px;margin:6px 0}ol li{margin:3px 0}
 </style></head><body>
-<header><h1>RUG DESK <span class="pill">PAPER</span></h1><div class="hint" id="upd">loading…</div></header>
-
-<section id="overview" class="on"><div class="cards" id="cards"></div><svg id="chart" viewBox="0 0 400 170" preserveAspectRatio="none"></svg>
-<div class="hint" style="margin-top:6px">Simulated fills at live DexScreener prices. No wallet, no real funds.</div></section>
-<section id="positions"><div id="poslist"></div><p class="hint" id="exitrules"></p></section>
-<section id="trades"><div id="tradelist"></div></section>
-<section id="kills"><h3>Top kill reasons</h3><table id="topk"></table><h3>The 14 checks</h3><ol id="checks14" style="padding-left:20px"></ol><h3>Recent kills</h3><div id="killlist"></div></section>
-<section id="report"><pre id="reptext"></pre></section>
-<section id="check"><p class="hint">Paste a Solana token address. Runs checks 1–13 in your browser against the public Rugcheck and DexScreener APIs with the desk's own numbers. Read-only: it never buys.</p>
-<input id="ca" placeholder="token address (CA)" autocomplete="off" spellcheck="false"><button class="btn" id="go">Run checks</button><div id="out"></div></section>
-
-<nav id="nav"><button data-t="overview" class="on">Overview</button><button data-t="positions">Positions</button><button data-t="trades">Trades</button><button data-t="kills">Kills</button><button data-t="report">Report</button><button data-t="check">Check</button></nav>
+<header><div class="wrap"><div class="logo">MD</div><div class="ttl"><b>MEME Desk</b><span>paper · no real funds</span></div><div class="sp"></div>
+<span class="badge" id="live" title=""><i class="dot" id="livedot"></i><span id="livetxt">loading</span></span>
+<button class="ib" id="theme" title="theme">◐</button><button class="ib" id="refresh" title="refresh">↻</button></div></header>
+<main class="wrap">
+<section id="home" class="on">
+  <div class="card hero"><div class="lbl">Total equity · paper</div><div class="big" id="eq">–</div><div class="pills" id="eqpills"></div>
+    <svg class="spark" id="spark" viewBox="0 0 600 110" preserveAspectRatio="none"></svg>
+    <div class="tiles"><div class="tile"><div class="lbl">Realized</div><b id="t_real">–</b></div><div class="tile"><div class="lbl">Unrealized</div><b id="t_unr">–</b></div><div class="tile"><div class="lbl">Start</div><b id="t_start">–</b></div></div></div>
+  <h3>Desk stats <span class="m" id="since"></span></h3><div class="grid" id="stats"></div>
+  <div class="cols"><div><h3>Open positions <a data-go="positions">All ›</a></h3><div id="homepos"></div></div>
+  <div><h3>Latest kills <a data-go="alerts">All ›</a></h3><div class="card" id="homekills"></div></div></div>
+</section>
+<section id="positions">
+  <div class="seg" id="posseg"><button data-s="open" class="on">Open · 0</button><button data-s="pend">Pending X review · 0</button></div>
+  <div id="pos_open"><div class="chips"><span class="sp"></span><b id="unrsum"></b></div><div class="list" id="poslist"></div></div>
+  <div id="pos_pend" style="display:none"><div class="list" id="pendlist"></div></div>
+  <p class="m small" id="exitrules"></p>
+</section>
+<section id="alerts">
+  <div class="chips" id="kchips"></div><div class="list" id="killlist"></div>
+  <h3>Top kill reasons</h3><div class="card"><table id="topk"></table></div>
+</section>
+<section id="pnl">
+  <div class="card hero"><div class="lbl">Realized P&amp;L</div><div class="big" id="p_real">–</div><div class="pills" id="p_pills"></div></div>
+  <div class="cols"><div><h3>Daily P&amp;L (WAT)</h3><div class="card" id="daily"></div></div><div><h3>Desk ratios</h3><div class="card" id="ratios"></div></div></div>
+  <h3>Closed trades</h3><div class="list" id="closedlist"></div>
+  <h3>All fills</h3><div class="card"><table id="fills"></table></div>
+</section>
+<section id="more">
+  <div class="cols"><div><h3>Exit rules</h3><div class="card" id="rules"></div><h3>Limits</h3><div class="card" id="limits"></div></div>
+  <div><h3>Filters (checks 1–14)</h3><div class="card" id="filters"></div></div></div>
+  <div class="cols"><div><h3>Sources · last 24 h</h3><div class="card" id="sources"></div></div><div><h3>Links</h3><div class="card" id="links"></div></div></div>
+  <h3>Check a token (read-only, checks 1–13 in your browser)</h3><div class="card"><input id="ca" placeholder="token address (CA)" autocomplete="off" spellcheck="false"><button class="btn" id="go">Run checks</button><div id="out"></div></div>
+  <h3>Daily report</h3><div class="card"><pre id="reptext"></pre></div>
+</section>
+</main>
+<nav><div class="wrap" id="nav">
+<button data-t="home" class="on"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
+<button data-t="positions"><svg viewBox="0 0 24 24"><path d="M4 20V10M9 20V4M14 20v-8M19 20v-5M2 20h20"/></svg>Positions</button>
+<button data-t="alerts"><svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></svg>Alerts</button>
+<button data-t="pnl"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>PnL</button>
+<button data-t="more"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/></svg>More</button></div></nav>
 <script>
-const tg = window.Telegram && Telegram.WebApp; if (tg) { tg.ready(); tg.expand(); }
+const tg = window.Telegram && Telegram.WebApp && Telegram.WebApp.initData ? Telegram.WebApp : null; if (tg) { tg.ready(); tg.expand(); }
+const DATA = /\/app(\/|\/index\.html)?$/.test(location.pathname) ? "../data.json" : "data.json";
 const $ = id => document.getElementById(id), esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const usd = (x, s) => (s && x > 0 ? "+" : "") + "$" + Number(x).toFixed(2), cls = x => x > 0 ? "g" : x < 0 ? "r" : "";
-const fmt = x => { x = Number(x); return x === 0 ? "0" : x < 0.001 ? x.toPrecision(4) : x.toFixed(6).replace(/0+$/, ""); };
-document.querySelectorAll("nav button").forEach(b => b.onclick = () => {
-  document.querySelectorAll("nav button,section").forEach(e => e.classList.remove("on"));
-  b.classList.add("on"); $(b.dataset.t).classList.add("on"); tg && tg.HapticFeedback && tg.HapticFeedback.selectionChanged(); });
-let CFG = null;
+const money = (x, sign) => x == null ? "–" : (sign && x > 0 ? "+" : x < 0 ? "−" : "") + "$" + Math.abs(Number(x)).toFixed(2);
+const pctf = (x, d = 2) => x == null ? "–" : (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(d) + "%";
+const cls = x => x > 0 ? "g" : x < 0 ? "r" : "", px = x => { x = Number(x); return !isFinite(x) ? "–" : x === 0 ? "0" : x < 0.001 ? x.toPrecision(4) : x < 1 ? x.toFixed(6).replace(/0+$/, "") : x.toFixed(4); };
+const xm = lv => (1 + lv / 100).toFixed(0) + "x";
+let D = null, CFG = null, KF = "all";
+// theme: saved choice, else Telegram's scheme, else dark
+const setTheme = t => { document.documentElement.dataset.theme = t; try { localStorage.setItem("mdtheme", t); } catch (e) {} };
+setTheme((() => { try { return localStorage.getItem("mdtheme"); } catch (e) { return null; } })() || (tg && tg.colorScheme) || "dark");
+$("theme").onclick = () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+$("refresh").onclick = () => load();
+const go = t => { document.querySelectorAll("#nav button").forEach(b => b.classList.toggle("on", b.dataset.t === t)); document.querySelectorAll("main section").forEach(s => s.classList.toggle("on", s.id === t));
+  window.scrollTo(0, 0); tg && tg.HapticFeedback && tg.HapticFeedback.selectionChanged(); };
+document.querySelectorAll("#nav button").forEach(b => b.onclick = () => go(b.dataset.t));
+document.querySelectorAll("[data-go]").forEach(a => a.onclick = () => go(a.dataset.go));
+document.querySelectorAll("#posseg button").forEach(b => b.onclick = () => { document.querySelectorAll("#posseg button").forEach(x => x.classList.toggle("on", x === b));
+  $("pos_open").style.display = b.dataset.s === "open" ? "" : "none"; $("pos_pend").style.display = b.dataset.s === "pend" ? "" : "none"; });
+function openLink(u) { if (tg && tg.openLink) { tg.openLink(u); return false; } return true; }
 const LIST14 = ["already rugged","mint authority open","freeze authority open","danger flags","risk score over 40","LP under 90% locked","top 10 over 30%","dev holds over 5%","insiders or bundles","pool under $30k","ticket over 1% of pool","younger than 30 min or older than 72h","buys but zero sells","X read (Gemini + Google Search, runs on the desk)"];
+const STAGE = {facts: ["Rugcheck 1–9", "r"], pool: ["Pool 10–13", "y"], insightx: ["InsightX 13b", "v"], judge_x: ["X read 14", "b"], judge: ["Judge", "b"], limits: ["Limits", ""]};
 
+function live() { if (!D) return; const m = Math.max(0, Math.round((Date.now() / 1000 - D.updated_ts) / 60));
+  $("livetxt").textContent = (m < 40 ? "Live · " : "Stale · ") + (m < 60 ? m + "m" : Math.floor(m / 60) + "h " + (m % 60) + "m");
+  $("livedot").className = "dot" + (m < 15 ? "" : m < 40 ? " w" : " b"); $("live").title = "data.json updated " + D.updated + " (cycle every 10 min)"; }
+setInterval(live, 30000);
+
+function spark(el, s, start) {
+  if (!s || s.length < 2) { el.innerHTML = '<text x="8" y="60" fill="currentColor" opacity=".5" font-size="13">not enough history yet</text>'; return; }
+  const ys = s.map(r => r[1]).concat([start]), lo = Math.min(...ys), hi = Math.max(...ys), pad = (hi - lo) * .12 || 1;
+  const X = i => i * (600 / (s.length - 1)), Y = v => 104 - (v - lo + pad) / (hi - lo + 2 * pad) * 98;
+  const pts = s.map((r, i) => X(i).toFixed(1) + "," + Y(r[1]).toFixed(1)).join(" "), up = s[s.length - 1][1] >= start, c = up ? "#22c983" : "#f0506e";
+  el.innerHTML = `<defs><linearGradient id="sg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity=".35"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></linearGradient></defs>
+   <line x1="0" x2="600" y1="${Y(start)}" y2="${Y(start)}" stroke="currentColor" opacity=".35" stroke-dasharray="4 5"/>
+   <polygon points="0,110 ${pts} 600,110" fill="url(#sg)"/><polyline points="${pts}" fill="none" stroke="${c}" stroke-width="2.2" vector-effect="non-scaling-stroke"/>
+   <circle cx="600" cy="${Y(s[s.length - 1][1])}" r="3.5" fill="${c}"/>`;
+}
+// progress bar: log scale from the stop (-35%) through entry (1x) to the last TP rung
+function ladderBar(p) {
+  // stop -> entry takes the first 25% of the bar (linear), entry -> last rung the rest (log), so every rung stays readable
+  const X = CFG.EXIT, lad = X.ladder, s0 = 1 + X.stop_pct / 100, hi = Math.log(1 + lad[lad.length - 1][0] / 100) * 1.05, E = 25;
+  const at = m => Math.min(100, Math.max(0, m < 1 ? (m - s0) / (1 - s0) * E : E + Math.log(m) / hi * (100 - E))), e = at(1), now = at(p.last / p.entry), up = p.last >= p.entry;
+  const rung = lad.map(([lv]) => { const t = p.taken.includes(lv), x = at(1 + lv / 100); return `<i class="tick${t ? " t" : ""}" style="left:${x}%"></i><span class="tl${t ? " t" : ""}" style="left:${x}%">${t ? "✓" : ""}${xm(lv)}</span>`; }).join("");
+  return `<div class="bar" style="--e:${e}%"><span class="tt" style="left:0;transform:none">SL ${X.stop_pct}%</span><span class="tt" style="left:${e}%">entry</span>
+   <i class="fill" style="left:${Math.min(e, now)}%;width:${Math.abs(now - e)}%;background:${up ? "var(--good)" : "var(--bad)"}"></i>
+   <i class="tick" style="left:${e}%;background:var(--text)"></i>${rung}<span class="tl" style="left:${e}%">1x</span>
+   <i class="knob" style="left:${now}%;background:${up ? "var(--good)" : "var(--bad)"}"></i></div>`;
+}
+function posCard(p) {
+  const X = CFG.EXIT;
+  return `<div class="card pos"><div class="top"><div><span class="sym">${esc(p.symbol)}</span> <span class="pill b">LONG</span> <span class="pill">paper</span>
+     ${p.trail_armed ? `<span class="pill y">trail armed</span>` : ""}<div class="m small">opened ${esc(p.opened)} WAT · ${p.hours}h · $${p.usd} in · ${p.qty_left_pct}% left</div></div>
+   <div style="text-align:right"><div class="${cls(p.unreal_usd)}" style="font-size:20px;font-weight:800">${pctf(p.unreal_pct, 1)}</div><div class="${cls(p.unreal_usd)} small">${money(p.unreal_usd, 1)} open</div>
+   ${p.realized_usd ? `<div class="${cls(p.realized_usd)} small">${money(p.realized_usd, 1)} taken</div>` : ""}</div></div>
+   <div class="kv"><div><span class="lbl">Entry</span><b>${px(p.entry)}</b></div><div><span class="lbl">Stop ${X.stop_pct}%</span><b class="r">${px(p.stop_px)}</b></div>
+   <div><span class="lbl">Next TP${p.next_tp != null ? " " + xm(p.next_tp) : ""}</span><b class="g">${p.next_tp != null ? px(p.next_tp_px) : "all taken · trail"}</b></div>
+   <div><span class="lbl">Now</span><b>${px(p.last)}</b></div><div><span class="lbl">Peak</span><b>${px(p.peak)}</b></div><div><span class="lbl">Trail −${X.trail_pct}%</span><b class="y">${p.trail_armed ? px(p.trail_px) : "arms at " + xm(X.trail_arm_pct)}</b></div></div>
+   ${ladderBar(p)}<div class="small m">TP legs taken ${p.taken.filter(t => X.ladder.some(l => l[0] === t)).length}/${X.ladder.length}${p.taken.some(t => !X.ladder.some(l => l[0] === t)) ? " (+ old-ladder legs " + p.taken.filter(t => !X.ladder.some(l => l[0] === t)).map(xm).join(", ") + ")" : ""}
+   · <a href="${esc(p.url)}" onclick="return openLink(this.href)">DexScreener ↗</a></div></div>`;
+}
+function killCard(k) {
+  const st = STAGE[k.stage] || [k.stage, ""];
+  return `<div class="card"><div class="pos"><div class="top"><div><span class="sym">${esc(k.symbol || (k.mint || "").slice(0, 6))}</span> <span class="pill ${st[1]}">${esc(st[0])}</span></div><span class="m small">${esc(k.time)} WAT</span></div></div>
+   <div class="r small" style="margin-top:6px">${esc(k.reason)}</div>
+   ${(k.bundler_pct || k.max_cluster_pct) ? `<div class="small" style="margin-top:4px"><span class="pill v">13b</span> bundlers ${esc(k.bundler_pct || "n/a")}% · max cluster ${esc(k.max_cluster_pct || "n/a")}%</div>` : ""}
+   ${k.x_read ? `<div class="small" style="margin-top:4px">X read: ${esc(k.x_read)}</div>` : ""}${k.main_risk ? `<div class="m small">main risk: ${esc(k.main_risk)}</div>` : ""}
+   <div class="small m" style="margin-top:4px">${k.liq_usd ? "pool $" + Math.round(+k.liq_usd).toLocaleString() + " · " : ""}${k.top10_pct ? "top10 " + esc(k.top10_pct) + "% · " : ""}<a href="https://dexscreener.com/solana/${esc(k.mint)}" onclick="return openLink(this.href)">chart ↗</a></div></div>`;
+}
+const tile = (l, v, c = "", sub = "") => `<div class="tile"><div class="lbl">${l}</div><b class="${c}">${v}</b>${sub ? `<span class="m small">${sub}</span>` : ""}</div>`;
+const row = (k, v, c = "") => `<div class="row"><span>${k}</span><span class="${c}">${v}</span></div>`;
+
+function renderKills() {
+  const ks = D.kills.filter(k => KF === "all" || k.stage === KF);
+  $("killlist").innerHTML = ks.length ? ks.slice(0, 40).map(killCard).join("") : '<div class="empty card">No kills for this filter.</div>';
+  document.querySelectorAll("#kchips .chip").forEach(c => c.classList.toggle("on", c.dataset.k === KF));
+}
 async function load() {
   try {
-    const d = await (await fetch("../data.json?t=" + Date.now(), {cache: "no-store"})).json(); CFG = d.config;
-    { const X = CFG.EXIT || {}; if (X.ladder) $("exitrules").textContent = "Exit rules: take profit " +
-        X.ladder.map(([lv, fr]) => `${(1 + lv / 100).toFixed(0)}x sell ${Math.round(fr * 100)}%`).join(", ") +
-        ` of the original size; the rest rides a ${X.trail_pct}% trailing stop (armed at +${X.trail_arm_pct}%). Stop ${X.stop_pct}%, ` +
-        `liquidity −${X.liq_drop_pct}% = out, ${X.time_stop_hours}h without +${X.time_stop_min_pct}% = out.`; }
-    $("upd").textContent = "last updated " + d.updated + " (UTC+1)";
-    const pnl = d.equity - d.start_balance;
-    $("cards").innerHTML = [["Equity", usd(d.equity), cls(pnl)], ["Total PnL", usd(pnl, 1) + " (" + (pnl / d.start_balance * 100).toFixed(1) + "%)", cls(pnl)],
-      ["Cash", usd(d.cash)], ["Start balance", usd(d.start_balance)], ["Realized", usd(d.realized_pnl, 1), cls(d.realized_pnl)],
-      ["Wins / losses", d.wins + " / " + d.losses], ["Rugs blocked", d.rugs_blocked + ' <span class="hint">+' + d.pool_kills + " pool</span>"],
-      ["Open / checked", d.positions.length + " / " + d.checked]].map(([k, v, c]) => `<div class="card"><span class="hint">${k}</span><b class="${c||""}">${v}</b></div>`).join("");
-    chart(d.equity_series, d.start_balance);
-    $("poslist").innerHTML = d.positions.length ? d.positions.map(p => `<div class="row"><div class="t"><b>${esc(p.symbol)}</b><b class="${cls(p.pct)}">${p.pct > 0 ? "+" : ""}${p.pct.toFixed(1)}%</b></div>
-      <div>$${p.usd} in · entry ${fmt(p.entry)} · now ${fmt(p.last)} · peak ${fmt(p.peak)}</div><div class="hint">opened ${esc(p.opened)} WAT · ladder legs taken ${p.steps}/${(CFG.EXIT.ladder || []).length}</div>
-      <code>${esc(p.mint)}</code><div><a href="${esc(p.url)}" onclick="return openLink(this.href)">DexScreener ↗</a></div></div>`).join("") : '<p class="hint">No open positions.</p>';
-    $("tradelist").innerHTML = d.trades.length ? d.trades.map(t => `<div class="row"><div class="t"><b>${esc(t.symbol)} <span class="pill">${esc(t.action)}</span></b><b class="${cls(+t.pnl)}">${t.action === "open" ? usd(t.usd) : usd(+t.pnl, 1)}</b></div>
-      <div class="hint">${esc(t.time)} WAT · ${esc(t.reason)} · $${(+t.usd).toFixed(2)}</div></div>`).join("") : '<p class="hint">No trades yet.</p>';
-    $("topk").innerHTML = d.top_kills.map(([r, n]) => `<tr><td>${esc(r)}</td><td>${n}×</td></tr>`).join("");
-    $("checks14").innerHTML = LIST14.map(x => `<li>${x}</li>`).join("");
-    $("killlist").innerHTML = d.kills.map(k => `<div class="row"><div class="t"><b>${esc(k.symbol || k.mint.slice(0, 6))}</b><span class="pill">${esc(k.stage)}</span></div>
-      <div class="r">${esc(k.reason)}</div>${(k.bundler_pct || k.max_cluster_pct) ? `<div class="hint">13b InsightX: bundlers ${esc(k.bundler_pct || "n/a")}% · max cluster ${esc(k.max_cluster_pct || "n/a")}%</div>` : ""}${k.x_read ? `<div>X read: ${esc(k.x_read)}</div>` : ""}${k.main_risk ? `<div class="hint">main risk: ${esc(k.main_risk)}</div>` : ""}<div class="hint">${esc(k.time)} WAT</div><code>${esc(k.mint)}</code></div>`).join("");
-    $("reptext").textContent = d.report || "No report yet.";
-  } catch (e) { $("upd").textContent = "could not load data.json: " + e; }
+    D = await (await fetch(DATA + "?t=" + Date.now(), {cache: "no-store"})).json(); CFG = D.config; const X = CFG.EXIT; live();
+    const chg = D.equity - D.start_balance, chgp = chg / D.start_balance * 100;
+    $("eq").textContent = money(D.equity);
+    $("eqpills").innerHTML = `<span class="pill ${chg >= 0 ? "g" : "r"}">${chg >= 0 ? "▲" : "▼"} ${money(chg, 1)} · ${pctf(chgp)}</span><span class="pill">${D.positions.length} open</span><span class="pill b">${D.paper ? "paper" : "LIVE"}</span><span class="pill">$${D.ticket_usd} ticket</span>`;
+    spark($("spark"), D.equity_series, D.start_balance);
+    $("t_real").innerHTML = `<span class="${cls(D.realized_pnl)}">${money(D.realized_pnl, 1)}</span>`; $("t_unr").innerHTML = `<span class="${cls(D.unrealized_pnl)}">${money(D.unrealized_pnl, 1)}</span>`; $("t_start").textContent = money(D.start_balance);
+    $("since").textContent = D.since ? "since " + D.since.slice(0, 10) : "";
+    $("stats").innerHTML = [tile("Win rate", D.win_rate == null ? "–" : D.win_rate.toFixed(0) + "%", "", `${D.wins}W / ${D.losses}L`),
+      tile("Avg return / trade", pctf(D.avg_ret_pct, 1), cls(D.avg_ret_pct)), tile("Max drawdown", D.max_dd_pct.toFixed(2) + "%", "r", money(D.max_dd_usd)),
+      tile("Open", D.positions.length, "", `max ${CFG.MAX_OPEN}`), tile("Closed", D.closed_count), tile("Cash", money(D.cash)),
+      tile("Rugs blocked", D.rugs_blocked.toLocaleString(), "g", `+${D.pool_kills.toLocaleString()} pool · ${D.insightx_kills} 13b`), tile("Tokens checked", D.checked.toLocaleString(), "", `${D.checked_24h} in 24h`),
+      tile("Expectancy", money(D.expectancy_usd, 1), cls(D.expectancy_usd), "per closed trade"), tile("Profit factor", D.profit_factor == null ? (D.closed_count ? "∞" : "–") : D.profit_factor.toFixed(2), D.profit_factor != null && D.profit_factor < 1 ? "r" : "g")].join("");
+    $("homepos").innerHTML = D.positions.length ? D.positions.slice(0, 2).map(posCard).join("") : `<div class="card empty">No open positions.<br><span class="small">${D.pending_x.length} waiting for the X read · last scan ${esc(D.last_scan || "–")} WAT</span></div>`;
+    $("homekills").innerHTML = D.kills.slice(0, 6).map(k => row(`<b style="color:var(--text)">${esc(k.symbol || k.mint.slice(0, 6))}</b> <span class="pill ${(STAGE[k.stage] || ["", ""])[1]}">${esc((STAGE[k.stage] || [k.stage])[0])}</span>`, `<span class="small m">${esc(String(k.reason).slice(0, 48))}</span>`)).join("") || '<div class="empty">none</div>';
+    // positions
+    const bs = document.querySelectorAll("#posseg button"); bs[0].textContent = "Open · " + D.positions.length; bs[1].textContent = "Pending X review · " + D.pending_x.length;
+    $("unrsum").innerHTML = `<span class="${cls(D.unrealized_pnl)}">${money(D.unrealized_pnl, 1)} open</span>`;
+    $("poslist").innerHTML = D.positions.length ? D.positions.map(posCard).join("") : '<div class="card empty">No open positions right now. Tokens that pass checks 1–14 open a $' + D.ticket_usd + ' paper ticket.</div>';
+    $("pendlist").innerHTML = D.pending_x.length ? D.pending_x.map(q => `<div class="card"><div class="pos"><div class="top"><span class="sym">${esc(q.symbol)}</span><span class="pill b">X review</span></div></div>
+      <div class="small m">queued ${esc(q.queued)} WAT · free judge confidence ${esc(q.free_confidence)}</div><code>${esc(q.mint)}</code><div class="small"><a href="${esc(q.url || "https://dexscreener.com/solana/" + q.mint)}" onclick="return openLink(this.href)">chart ↗</a></div></div>`).join("")
+      : '<div class="card empty">Nothing waiting for the X read (check 14).</div>';
+    $("exitrules").textContent = "Exit rules: take profit " + X.ladder.map(([lv, fr]) => `${xm(lv)} sell ${Math.round(fr * 100)}%`).join(", ") + ` of the original size; the rest rides a ${X.trail_pct}% trailing stop (armed at +${X.trail_arm_pct}%). Stop ${X.stop_pct}%, liquidity −${X.liq_drop_pct}% = out, ${X.time_stop_hours}h without +${X.time_stop_min_pct}% = out.`;
+    // alerts
+    const stages = [...new Set(D.kills.map(k => k.stage))];
+    $("kchips").innerHTML = `<button class="chip" data-k="all">All · ${D.kills.length}</button>` + stages.map(s => `<button class="chip" data-k="${esc(s)}">${esc((STAGE[s] || [s])[0])} · ${D.kills.filter(k => k.stage === s).length}</button>`).join("") + `<span class="sp"></span><span class="m small">${D.kills_24h} kills in 24h</span>`;
+    document.querySelectorAll("#kchips .chip").forEach(c => c.onclick = () => { KF = c.dataset.k; renderKills(); }); renderKills();
+    $("topk").innerHTML = D.top_kills.map(([r, n]) => `<tr><td>${esc(r)}</td><td style="text-align:right">${n}×</td></tr>`).join("");
+    // pnl
+    $("p_real").innerHTML = `<span class="${cls(D.realized_pnl)}">${money(D.realized_pnl, 1)}</span>`;
+    $("p_pills").innerHTML = `<span class="pill">${D.closed_count} closed</span><span class="pill">${D.wins}W / ${D.losses}L</span><span class="pill ${cls(D.unrealized_pnl)}">${money(D.unrealized_pnl, 1)} open</span>`;
+    const mx = Math.max(1e-9, ...D.daily_pnl.map(d => Math.abs(d[1])));
+    $("daily").innerHTML = D.daily_pnl.length ? D.daily_pnl.slice(0, 30).map(([d, v]) => `<div class="dbar"><span class="m small" style="width:84px">${d}</span><i style="width:${Math.max(2, Math.abs(v) / mx * 60)}%;background:${v >= 0 ? "var(--good)" : "var(--bad)"}"></i><b class="${cls(v)} small">${money(v, 1)}</b></div>`).join("") : '<div class="empty">No exits yet.</div>';
+    $("ratios").innerHTML = row("Win rate", D.win_rate == null ? "–" : D.win_rate.toFixed(1) + "%") + row("Avg return / trade", pctf(D.avg_ret_pct), cls(D.avg_ret_pct)) + row("Expectancy", money(D.expectancy_usd, 1), cls(D.expectancy_usd))
+      + row("Profit factor", D.profit_factor == null ? (D.closed_count ? "∞" : "–") : D.profit_factor.toFixed(2)) + row("Max drawdown", D.max_dd_pct.toFixed(2) + "% · " + money(D.max_dd_usd), "r") + row("Cash", money(D.cash)) + row("Equity", money(D.equity));
+    $("closedlist").innerHTML = D.closed.length ? D.closed.map(e => `<div class="card"><div class="pos"><div class="top"><div><span class="sym">${esc(e.symbol)}</span> <span class="pill ${e.pnl > 0 ? "g" : "r"}">${esc(e.reason)}</span></div>
+      <div style="text-align:right"><b class="${cls(e.pnl)}" style="font-size:17px">${money(e.pnl, 1)}</b><div class="${cls(e.pnl)} small">${pctf(e.ret_pct, 1)}</div></div></div></div>
+      <div class="small m">${esc(e.opened)} → ${esc(e.closed)} WAT · $${e.usd} in · exits: ${esc(e.legs.join(", "))}</div></div>`).join("") : '<div class="card empty">No closed trades yet.</div>';
+    $("fills").innerHTML = "<tr><th>time (WAT)</th><th>token</th><th>action</th><th>$</th><th>pnl</th><th>reason</th></tr>" + D.trades.map(t => `<tr><td>${esc(t.time.slice(5, 16))}</td><td>${esc(t.symbol)}</td><td>${esc(t.action)}</td><td>${(+t.usd).toFixed(2)}</td><td class="${cls(+t.pnl)}">${t.action === "open" ? "" : money(+t.pnl, 1)}</td><td>${esc(t.reason)}</td></tr>`).join("");
+    // more
+    $("rules").innerHTML = X.ladder.map(([lv, fr]) => row(`Take profit ${xm(lv)} (+${lv}%)`, `sell ${Math.round(fr * 100)}% of original`, "g")).join("")
+      + row("Rest of the position", `${Math.round((1 - X.ladder.reduce((s, l) => s + l[1], 0)) * 100)}% rides the trail`) + row("Trailing stop", `−${X.trail_pct}% from peak, arms at ${xm(X.trail_arm_pct)} or after any take`, "y")
+      + row("Hard stop", X.stop_pct + "%", "r") + row("Liquidity pulled", `pool −${X.liq_drop_pct}% from entry → all out`, "r") + row("Time stop", `${X.time_stop_hours}h without +${X.time_stop_min_pct}% → out`)
+      + row("Paper costs", `${CFG.FEE_PCT}% fee + ${CFG.SLIPPAGE_PCT}% slippage per side`);
+    $("limits").innerHTML = row("Ticket", "$" + CFG.TICKET_USD + " flat") + row("Max open", CFG.MAX_OPEN) + row("Max entries / day", CFG.MAX_ENTRIES_PER_DAY) + row("Daily loss halt", "$" + CFG.DAILY_LOSS_HALT_USD) + row("Cooldown after close", CFG.COOLDOWN_HOURS + "h") + row("Min judge confidence", CFG.MIN_CONFIDENCE);
+    const F = CFG.FACTS, IX = CFG.INSIGHTX || {};
+    $("filters").innerHTML = `<ol>${LIST14.map((x, i) => `<li>${esc(x)}</li>${i === 12 ? `<li style="list-style:none;margin-left:-20px"><b>13b</b> InsightX: bundlers ≤ ${IX.max_bundler_pct}% and no holder cluster &gt; ${IX.max_cluster_pct}% (LP/exchange/vesting/locker clusters excluded)</li>` : ""}`).join("")}</ol>`
+      + `<div class="m small">Numbers from config: ${Object.entries(F).map(([k, v]) => esc(k) + " " + esc(v)).join(" · ")}</div>`;
+    const Q = D.quotas || {};
+    $("sources").innerHTML = D.sources.map(s => row(esc(s.name), s.down_24h ? `<span class="y">${s.down_24h} down note${s.down_24h > 1 ? "s" : ""} · last ${esc(s.last_down.slice(11, 16))}</span>` : `<span class="g">no down notes</span>`)).join("")
+      + row("InsightX calls this month", `${Q.insightx_calls_month ?? "–"} / ${Q.insightx_budget} budget · ${Q.insightx_quota_remaining ?? "–"} left on the account`)
+      + row("Apify X fetches today", `${Q.apify_fetches_today ?? 0} / ${Q.apify_max_per_day}`) + row("Last cycle", esc(D.last_run || "–") + " WAT") + row("Last scan", esc(D.last_scan || "–") + " WAT") + row("Cycles run", D.runs ?? "–");
+    $("links").innerHTML = row("Dashboard", '<a href="https://meme-deck.pages.dev/">meme-deck.pages.dev</a>') + row("Telegram mini app", '<a href="https://meme-deck.pages.dev/app/">/app/</a>')
+      + row("Plain tables page", '<a href="https://meme-deck.pages.dev/static.html">/static.html</a>') + row("Raw data", '<a href="https://meme-deck.pages.dev/data.json">data.json</a>') + row("Paper only", "no wallet, no real funds");
+    $("reptext").textContent = D.report || "No report yet.";
+  } catch (e) { $("livetxt").textContent = "data.json failed"; $("livedot").className = "dot b"; console.error(e); }
 }
-function chart(s, start) {
-  const el = $("chart"); if (!s || s.length < 2) { el.innerHTML = '<text x="10" y="90" fill="gray" font-size="12">not enough history yet</text>'; return; }
-  const ys = s.map(r => r[1]).concat([start]), lo = Math.min(...ys), hi = Math.max(...ys), pad = (hi - lo) * 0.1 || 1;
-  const X = i => 6 + i * (388 / (s.length - 1)), Y = v => 160 - (v - lo + pad) / (hi - lo + 2 * pad) * 150;
-  const pts = s.map((r, i) => X(i).toFixed(1) + "," + Y(r[1]).toFixed(1)).join(" ");
-  el.innerHTML = `<line x1="0" x2="400" y1="${Y(start)}" y2="${Y(start)}" stroke="gray" stroke-dasharray="4 4" stroke-width="1"/>
-   <polyline points="${pts}" fill="none" stroke="${s[s.length-1][1] >= start ? "#2fbf62" : "#e5484d"}" stroke-width="2.5"/>
-   <text x="6" y="14" fill="gray" font-size="11">equity · ${esc(s[0][0].slice(5,16))} → ${esc(s[s.length-1][0].slice(5,16))} WAT · dashed = start</text>`;
-}
-function openLink(u) { if (tg && tg.openLink) { tg.openLink(u); return false; } return true; }
 
 // ---- client-side checks 1-13 (same logic and numbers as rugcheck.py + market.py) ----
 async function runCheck() {
   const mint = $("ca").value.trim(), out = $("out");
   if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(mint)) { out.innerHTML = '<p class="r">That does not look like a Solana address.</p>'; return; }
   if (!CFG) await load();
-  const F = CFG.FACTS, T = CFG.TICKET_USD; out.innerHTML = '<p class="hint">checking…</p>';
+  const F = CFG.FACTS, T = CFG.TICKET_USD; out.innerHTML = '<p class="m">checking…</p>';
   let rc = null, ds = null, rcErr = "", dsErr = "";
   await Promise.all([
     fetch(`https://api.rugcheck.xyz/v1/tokens/${mint}/report`).then(r => r.ok ? r.json() : Promise.reject("HTTP " + r.status)).then(j => rc = j).catch(e => rcErr = String(e)),
@@ -133,10 +288,10 @@ async function runCheck() {
   add(14, "X read", null, "runs on the desk (Gemini + Google Search), not in the browser. Send /check <CA> to the bot to run 1-14 read-only.");
   const hard = res.filter(r => r.n <= 13), fail = hard.filter(r => r.ok === false), unk = hard.filter(r => r.ok === null);
   const verdict = fail.length ? `KILL — first failure: #${fail[0].n} ${fail[0].name}` : unk.length ? "SKIP — a source was down / token not indexed" : "PASSES checks 1–13 (judge, 13b InsightX + X read still apply)";
-  out.innerHTML = `<div class="row"><b>${esc(res.sym || mint.slice(0, 6))}</b> ${res.price ? "· $" + esc(res.price) : ""} ${res.url ? `· <a href="${esc(res.url)}" onclick="return openLink(this.href)">DexScreener ↗</a>` : ""}
-    <div class="${fail.length ? "r" : unk.length ? "" : "g"}" style="font-weight:600;margin-top:4px">${verdict}</div></div>
-    <table>${res.map(r => `<tr><td>${r.n}</td><td>${esc(r.name)}</td><td class="${r.ok === true ? "g" : r.ok === false ? "r" : "hint"}">${r.ok === true ? "✔" : r.ok === false ? "✘" : "–"}</td><td>${esc(r.val)}</td></tr>`).join("")}</table>
-    <p class="hint">Read-only. Nothing is bought, logged or queued.</p>`;
+  out.innerHTML = `<div style="margin:10px 0"><b>${esc(res.sym || mint.slice(0, 6))}</b> ${res.price ? "· $" + esc(res.price) : ""} ${res.url ? `· <a href="${esc(res.url)}" onclick="return openLink(this.href)">DexScreener ↗</a>` : ""}
+    <div class="${fail.length ? "r" : unk.length ? "" : "g"}" style="font-weight:700;margin-top:4px">${verdict}</div></div>
+    <table>${res.map(r => `<tr><td>${r.n}</td><td>${esc(r.name)}</td><td class="${r.ok === true ? "g" : r.ok === false ? "r" : "m"}">${r.ok === true ? "✔" : r.ok === false ? "✘" : "–"}</td><td>${esc(r.val)}</td></tr>`).join("")}</table>
+    <p class="m small">Read-only. Nothing is bought, logged or queued.</p>`;
   tg && tg.HapticFeedback && tg.HapticFeedback.notificationOccurred(fail.length ? "error" : "success");
 }
 $("go").onclick = runCheck; $("ca").addEventListener("keydown", e => e.key === "Enter" && runCheck());

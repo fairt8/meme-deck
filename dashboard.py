@@ -1,4 +1,5 @@
-# dashboard.py - builds a static, self-contained web/index.html (+ web/balance.png) from the desk files.
+# dashboard.py - writes web/data.json (all numbers the pages show), web/index.html (= the card UI in web/app/index.html,
+# reading data.json), web/static.html (the old no-JavaScript tables) and web/balance.png from the desk files.
 # read-only on the desk; publishes nothing.
 import base64, csv, html, io, os, time
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -65,7 +66,8 @@ th{{color:#8a9a8f}} code{{font-size:11px;word-break:break-all}} img{{max-width:1
 <h2>Recent trades</h2>{table(["time", "symbol", "action", "usd", "pnl", "reason"], trade_rows)}
 <h2>Recent kills</h2>{table(["time", "symbol", "CA", "stage", "reason", "bundler %", "max cluster %"], kill_rows)}
 </body></html>"""
-open("web/index.html", "w").write(page)
+open("web/static.html", "w").write(page)   # 2026-11-03: the old tables page moved here; web/index.html is the card UI
+import shutil; shutil.copyfile("web/app/index.html", "web/index.html.tmp"); os.replace("web/index.html.tmp", "web/index.html")
 print_path = os.path.abspath("web/index.html")
 if __name__ == "__main__" and os.environ.get("DASH_VERBOSE"): print(print_path)
 
@@ -96,5 +98,75 @@ data = {
                "MAX_OPEN": C.MAX_OPEN, "MAX_ENTRIES_PER_DAY": C.MAX_ENTRIES_PER_DAY, "DAILY_LOSS_HALT_USD": C.DAILY_LOSS_HALT_USD,
                "COOLDOWN_HOURS": C.COOLDOWN_HOURS},
 }
+
+# ---- 2026-11-03: extra fields for the card UI (computed only from the desk files; nothing estimated) ----
+import xqueue, deskstate
+COST = (FEE_PCT + SLIPPAGE_PCT) / 100
+# closed trades = one row per position, open -> close, partial legs summed
+eps, cur = [], {}
+for t in trades:
+    m = t["mint"]
+    if t["action"] == "open":
+        cur[m] = {"mint": m, "symbol": t["symbol"], "opened": t["time"], "usd": float(t["usd"]), "pnl": 0.0, "legs": []}
+    elif t["action"] in ("partial", "close") and m in cur:
+        e = cur[m]; e["pnl"] += float(t["pnl"]); e["legs"].append(t["reason"])
+        if t["action"] == "close":
+            e.update(closed=t["time"], reason=t["reason"], pnl=round(e["pnl"], 4), ret_pct=round(e["pnl"] / e["usd"] * 100, 2) if e["usd"] else 0)
+            eps.append(cur.pop(m))
+gains = sum(e["pnl"] for e in eps if e["pnl"] > 0); loss = -sum(e["pnl"] for e in eps if e["pnl"] <= 0)
+daily = Counter()
+for t in trades:
+    if t["action"] in ("partial", "close"): daily[t["time"][:10]] += float(t["pnl"])
+mdd_pct = mdd_usd = 0.0; pk = None
+for r in eqrows:
+    v = float(r["equity"]); pk = v if pk is None else max(pk, v)
+    if pk and (pk - v) > mdd_usd: mdd_usd, mdd_pct = pk - v, (pk - v) / pk * 100
+ladder = C.EXIT["ladder"]
+def pos_extra(m, p):
+    last = p.get("last", p["entry"]); taken = p.get("taken") or [(100, 200)[i] for i in range(min(p.get("steps", 0), 2))]
+    basis = p["usd"] * p["qty"] / p["qty0"] if p.get("qty0") else p["usd"]
+    nxt = next((lv for lv, _ in ladder if lv not in taken), None)
+    armed = bool(taken) or p["peak"] >= p["entry"] * (1 + C.EXIT["trail_arm_pct"] / 100)
+    return {"taken": taken, "qty_left_pct": round(p["qty"] / p["qty0"] * 100, 1) if p.get("qty0") else 100,
+            "stop_px": p["entry"] * (1 + C.EXIT["stop_pct"] / 100), "next_tp": nxt,
+            "next_tp_px": p["entry"] * (1 + nxt / 100) if nxt is not None else None,
+            "trail_armed": armed, "trail_px": p["peak"] * (1 - C.EXIT["trail_pct"] / 100) if armed else None,
+            "unreal_usd": round(p["qty"] * last * (1 - COST) - basis, 4), "unreal_pct": round(((last * (1 - COST)) / p["entry"] - 1) * 100, 2),
+            "realized_usd": round(sum(float(t["pnl"]) for t in trades if t["mint"] == m and t["action"] == "partial"
+                                      and t["time"] >= time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(p["opened"]))), 4),
+            "hours": round((time.time() - p["opened"]) / 3600, 1)}
+for d_ in data["positions"]: d_.update(pos_extra(d_["mint"], opn[d_["mint"]]))
+day_ago = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() - 86400))
+recent = [r for r in checks if r["time"] >= day_ago]
+def src(name, key, stages=None):
+    seen = [r for r in recent if not stages or r["stage"] in stages]
+    hits = [r for r in seen if key in (r.get("reason") or "")]
+    return {"name": name, "down_24h": len(hits), "last_down": hits[-1]["time"] if hits else None, "rows_24h": len(seen)}
+ds = deskstate.load()
+ixs = json.load(open("insightx_state.json")) if os.path.exists("insightx_state.json") else {}
+data.update({
+    "unrealized_pnl": round(sum(p["unreal_usd"] for p in data["positions"]), 4),
+    "closed": eps[::-1], "closed_count": len(eps),
+    "win_rate": round(sum(1 for e in eps if e["pnl"] > 0) / len(eps) * 100, 1) if eps else None,
+    "avg_ret_pct": round(sum(e["ret_pct"] for e in eps) / len(eps), 2) if eps else None,
+    "expectancy_usd": round(sum(e["pnl"] for e in eps) / len(eps), 4) if eps else None,
+    "profit_factor": (round(gains / loss, 2) if loss else None) if eps else None,
+    "max_dd_pct": round(mdd_pct, 2), "max_dd_usd": round(mdd_usd, 4),
+    "daily_pnl": sorted([[k, round(v, 4)] for k, v in daily.items()], reverse=True),
+    "pending_x": [{k: r.get(k) for k in ("mint", "symbol", "queued", "queued_ts", "free_confidence", "url", "x_read")} for r in xqueue.load()],
+    "insightx_kills": sum(1 for r in kills if r["stage"] == "insightx"), "x_kills": sum(1 for r in kills if r["stage"] == "judge_x"),
+    "checked_24h": len(recent), "kills_24h": sum(1 for r in recent if r["verdict"] == "KILL"),
+    "since": (eqrows[0]["time"] if eqrows else None),
+    "sources": [src("Rugcheck (down or not indexed yet)", "rugcheck down"), src("DexScreener", "dexscreener down"), src("Jupiter sell test", "jupiter down"),
+                src("InsightX 13b", "SOURCE DOWN: InsightX"), src("X read (Gemini / GLM)", "down", ("judge_x",))],
+    "quotas": {"insightx_calls_month": ixs.get("calls"), "insightx_month": ixs.get("month"), "insightx_quota_remaining": ixs.get("quota_remaining"),
+               "insightx_budget": C.INSIGHTX["monthly_budget"], "apify_fetches_today": ds.get("apify_fetches") if ds.get("apify_day") == time.strftime("%Y-%m-%d") else 0,
+               "apify_max_per_day": C.APIFY_MAX_FETCHES_PER_DAY},
+    "last_run": ds.get("last_run"), "last_scan": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ds["last_scan_ts"])) if ds.get("last_scan_ts") else None,
+    "runs": ds.get("runs"),
+})
+step = max(1, len(eqrows) // 300)   # sparkline: whole history, at most ~300 points, last point always kept
+data["equity_series"] = [[r["time"], float(r["equity"]), float(r["cash"])] for r in (eqrows[::step] + ([eqrows[-1]] if eqrows and (len(eqrows) - 1) % step else []))]
+data["config"].update({"INSIGHTX": {k: v for k, v in C.INSIGHTX.items()}, "START_BALANCE": START_BALANCE, "FEE_PCT": FEE_PCT, "SLIPPAGE_PCT": SLIPPAGE_PCT})
 os.makedirs("web/app", exist_ok=True)
 tmp = "web/data.json.tmp"; json.dump(data, open(tmp, "w"), default=str); os.replace(tmp, "web/data.json")
