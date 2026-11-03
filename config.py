@@ -43,8 +43,11 @@ SLIPPAGE_PCT = 1.0              # per side minimum; Jupiter price impact is adde
 
 EXIT = {
     "stop_pct": -35,                       # hard stop
-    "ladder": [(100, 0.50), (200, 0.25)],  # +100%: half goes. +200%: another quarter.
-    "trail_pct": 30,                       # after the first take, out when price drops 30% from peak
+    # 2026-11-03 user request: take profit at 3x, 5x, 10x, 20x. fractions are of the ORIGINAL size (book.sell uses qty0).
+    # was [(100, 0.50), (200, 0.25)]. 25+25+25+15 = 90% sold on the ladder; the last 10% rides on the trail.
+    "ladder": [(200, 0.25), (400, 0.25), (900, 0.25), (1900, 0.15)],  # +200% = 3x, +400% = 5x, +900% = 10x, +1900% = 20x
+    "trail_pct": 30,                       # out (all that's left) when price drops 30% from peak, once the trail is armed
+    "trail_arm_pct": 100,                  # 2026-11-03 user request: trail arms once the peak reaches +100% (2x), or after any take
     "time_stop_hours": 6,                  # six hours without +20%: out
     "time_stop_min_pct": 20,
     "liq_drop_pct": 40,                    # pool liquidity down 40% from entry: out, all of it

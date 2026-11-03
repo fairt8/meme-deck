@@ -27,7 +27,7 @@ svg{width:100%;height:170px;background:var(--sec);border-radius:12px;margin-top:
 
 <section id="overview" class="on"><div class="cards" id="cards"></div><svg id="chart" viewBox="0 0 400 170" preserveAspectRatio="none"></svg>
 <div class="hint" style="margin-top:6px">Simulated fills at live DexScreener prices. No wallet, no real funds.</div></section>
-<section id="positions"><div id="poslist"></div></section>
+<section id="positions"><div id="poslist"></div><p class="hint" id="exitrules"></p></section>
 <section id="trades"><div id="tradelist"></div></section>
 <section id="kills"><h3>Top kill reasons</h3><table id="topk"></table><h3>The 14 checks</h3><ol id="checks14" style="padding-left:20px"></ol><h3>Recent kills</h3><div id="killlist"></div></section>
 <section id="report"><pre id="reptext"></pre></section>
@@ -49,6 +49,10 @@ const LIST14 = ["already rugged","mint authority open","freeze authority open","
 async function load() {
   try {
     const d = await (await fetch("../data.json?t=" + Date.now(), {cache: "no-store"})).json(); CFG = d.config;
+    { const X = CFG.EXIT || {}; if (X.ladder) $("exitrules").textContent = "Exit rules: take profit " +
+        X.ladder.map(([lv, fr]) => `${(1 + lv / 100).toFixed(0)}x sell ${Math.round(fr * 100)}%`).join(", ") +
+        ` of the original size; the rest rides a ${X.trail_pct}% trailing stop (armed at +${X.trail_arm_pct}%). Stop ${X.stop_pct}%, ` +
+        `liquidity −${X.liq_drop_pct}% = out, ${X.time_stop_hours}h without +${X.time_stop_min_pct}% = out.`; }
     $("upd").textContent = "last updated " + d.updated + " (UTC+1)";
     const pnl = d.equity - d.start_balance;
     $("cards").innerHTML = [["Equity", usd(d.equity), cls(pnl)], ["Total PnL", usd(pnl, 1) + " (" + (pnl / d.start_balance * 100).toFixed(1) + "%)", cls(pnl)],
@@ -57,7 +61,7 @@ async function load() {
       ["Open / checked", d.positions.length + " / " + d.checked]].map(([k, v, c]) => `<div class="card"><span class="hint">${k}</span><b class="${c||""}">${v}</b></div>`).join("");
     chart(d.equity_series, d.start_balance);
     $("poslist").innerHTML = d.positions.length ? d.positions.map(p => `<div class="row"><div class="t"><b>${esc(p.symbol)}</b><b class="${cls(p.pct)}">${p.pct > 0 ? "+" : ""}${p.pct.toFixed(1)}%</b></div>
-      <div>$${p.usd} in · entry ${fmt(p.entry)} · now ${fmt(p.last)} · peak ${fmt(p.peak)}</div><div class="hint">opened ${esc(p.opened)} WAT · ladder steps ${p.steps}</div>
+      <div>$${p.usd} in · entry ${fmt(p.entry)} · now ${fmt(p.last)} · peak ${fmt(p.peak)}</div><div class="hint">opened ${esc(p.opened)} WAT · ladder legs taken ${p.steps}/${(CFG.EXIT.ladder || []).length}</div>
       <code>${esc(p.mint)}</code><div><a href="${esc(p.url)}" onclick="return openLink(this.href)">DexScreener ↗</a></div></div>`).join("") : '<p class="hint">No open positions.</p>';
     $("tradelist").innerHTML = d.trades.length ? d.trades.map(t => `<div class="row"><div class="t"><b>${esc(t.symbol)} <span class="pill">${esc(t.action)}</span></b><b class="${cls(+t.pnl)}">${t.action === "open" ? usd(t.usd) : usd(+t.pnl, 1)}</b></div>
       <div class="hint">${esc(t.time)} WAT · ${esc(t.reason)} · $${(+t.usd).toFixed(2)}</div></div>`).join("") : '<p class="hint">No trades yet.</p>';

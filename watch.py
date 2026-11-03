@@ -36,14 +36,21 @@ def watch() -> list[str]:
             out(1.0, "liquidity_pulled"); continue
         if pct <= EXIT["stop_pct"]:
             out(1.0, "stop"); continue
-        ladder = EXIT["ladder"]
-        if s["steps"] < len(ladder) and pct >= ladder[s["steps"]][0]:
-            out(ladder[s["steps"]][1], f"take_profit_{ladder[s['steps']][0]}")
-            b = book.load()
-            if mint in b:
-                b[mint]["steps"] += 1; book.save(b)
+        # ladder legs are tracked by their threshold in s["taken"], so a ladder change never re-sells a leg already taken.
+        # positions opened under the old ladder have only "steps": their legs map to the old thresholds (+100%, +200%).
+        taken = set(s.get("taken") or [(100, 200)[i] for i in range(min(s.get("steps", 0), 2))])
+        due = [(lv, fr) for lv, fr in EXIT["ladder"] if lv not in taken and pct >= lv]
+        if due:
+            for lv, fr in due:   # a gap through several levels takes every due leg this round, one trade each
+                if mint not in book.load(): break
+                out(fr, f"take_profit_{lv}")
+                taken.add(lv)
+                b = book.load()
+                if mint in b:
+                    b[mint]["taken"] = sorted(taken); b[mint]["steps"] = len(taken); book.save(b)
             continue
-        if s["steps"] > 0 and price <= s["peak"] * (1 - EXIT["trail_pct"] / 100):
+        armed = bool(taken) or s["peak"] >= s["entry"] * (1 + EXIT["trail_arm_pct"] / 100)
+        if armed and price <= s["peak"] * (1 - EXIT["trail_pct"] / 100):
             out(1.0, "trailing_stop"); continue
         if hours >= EXIT["time_stop_hours"] and pct < EXIT["time_stop_min_pct"]:
             out(1.0, "time_stop")

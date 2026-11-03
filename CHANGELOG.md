@@ -67,3 +67,9 @@
 - config.py: new constant INSIGHTX = {"max_bundler_pct": 20, "max_cluster_pct": 20, "monthly_budget": 900}. No existing number changed.
 - checks.csv: two new columns at the end, bundler_pct and max_cluster_pct (the header is migrated once, and old rows get blanks). When one overview call proves every cluster is within the limit, max_cluster_pct is written as "<=X" (X = the total of all clusters), not as an exact value.
 - Dashboard kill rows and data.json kills, the mini app kill list, the bot's /check output and the scan journal lines show bundler_pct, max_cluster_pct and the 13b note. insightx_state.json is added to the nightly state backup.
+
+## 2026-11-03
+- Exit ladder changed at the user's request ("Integrate a take profit of 3x then 5x then 10x etc"). config.py EXIT ladder was [(100, 0.50), (200, 0.25)] and is now [(200, 0.25), (400, 0.25), (900, 0.25), (1900, 0.15)]. That is: 3x sell 25%, 5x sell 25%, 10x sell 25% and 20x sell 15%, all of the ORIGINAL size (book.sell already works on qty0). The last 10% rides on the trail.
+- New EXIT["trail_arm_pct"] = 100: the 30% trailing stop now arms once the peak reaches +100% (2x), or after any take. Before, it armed only after the first take. So a 2.5x move exits at around 1.75x instead of riding back down to the -35% stop. stop_pct -35, liq_drop_pct 40, trail_pct 30 and the 6h/+20% time stop are unchanged.
+- watch.py: legs taken are recorded by threshold in positions.json "taken" (steps = their count). If one price jump crosses several levels, every due leg is taken in that round, one trade each. Positions opened under the old ladder map their "steps" to the old +100%/+200% legs, so nothing is sold twice, and sells are capped at the remaining qty. No positions were open at the switch.
+- Mini app: the Positions tab shows the exit rules, read from the config in data.json, and the legs taken as "n/4".
