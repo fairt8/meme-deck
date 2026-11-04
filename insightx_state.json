@@ -1,16 +1,7 @@
 {
  "month": "2026-11",
- "calls": 32,
+ "calls": 43,
  "cache": {
-  "ATnGk91tqFpXhiqAnDfGav7YYMUiocQ2YHgY4gPBpump": {
-   "ts": 1793605772.8992321,
-   "res": {
-    "bundler_pct": 0.0,
-    "max_cluster_pct": 79.98,
-    "status": "kill",
-    "reason": "13b: one holder cluster holds 80.0% of supply (> 20%; tags funding_window,wallet)"
-   }
-  },
   "4nuj5NLHMtQSezfmz6CwBpCRJisFie6F6MxNNz1dpump": {
    "ts": 1793630965.5135577,
    "res": {
@@ -37,11 +28,37 @@
     "status": "kill",
     "reason": "13b: one holder cluster holds 57.6% of supply (> 20%; tags funding_window,intermediary,team,wallet)"
    }
+  },
+  "4gMXHewBS7B4qbUuNw9LLeq1DjBCuuZy3B76VJq6pump": {
+   "ts": 1793670571.7331047,
+   "res": {
+    "bundler_pct": 0.0,
+    "max_cluster_pct": 91.49,
+    "status": "kill",
+    "reason": "13b: one holder cluster holds 91.5% of supply (> 20%; tags funding_window,intermediary,wallet)"
+   }
+  },
+  "DayjoyjxCA2SVTApEW7oBFG3WMvrYZRMjAnqsetLpump": {
+   "ts": 1793675972.6489294,
+   "res": {
+    "bundler_pct": 2.6,
+    "max_cluster_pct": 47.78,
+    "status": "kill",
+    "reason": "13b: one holder cluster holds 47.8% of supply (> 20%; tags funding_window,wallet)"
+   }
+  },
+  "8DB8Fw5UiC1AzugQAfRyw3qL8omw772LJbdehNWhpump": {
+   "ts": 1793701782.9248378,
+   "res": {
+    "bundler_pct": 0.0,
+    "status": "pass",
+    "max_cluster_pct": "<=0.00",
+    "reason": "13b ok: bundlers 0.0%, all clusters 0.0% total"
+   }
   }
  },
  "stamps": [
-  1793668771.4470127,
-  1793668771.7215278
+  1793701782.6793888
  ],
- "quota_remaining": 968
+ "quota_remaining": 957
 }

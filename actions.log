@@ -1,85 +1,90 @@
-[00:09:03] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[00:09:03] watch.py rc=0 0s
-[00:09:03] x_fetch_apify.py rc=0 0s
-[00:09:04] judge_x.py rc=0 0s
-[00:09:07] dashboard.py rc=0 4s
-[00:19:02] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[00:19:02] watch.py rc=0 0s
-[00:19:05] scan.py rc=0 3s
-[00:19:05] x_fetch_apify.py rc=0 0s
-[00:19:06] judge_x.py rc=0 0s
-[00:19:09] dashboard.py rc=0 4s
-[00:29:03] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[00:29:03] watch.py rc=0 0s
-[00:29:03] x_fetch_apify.py rc=0 0s
-[00:29:04] judge_x.py rc=0 0s
-[00:29:07] dashboard.py rc=0 4s
-[00:39:02] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[00:39:03] watch.py rc=0 0s
-[00:39:03] x_fetch_apify.py rc=0 0s
-[00:39:03] judge_x.py rc=0 0s
-[00:39:07] dashboard.py rc=0 4s
-[00:49:03] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[00:49:03] watch.py rc=0 0s
-[00:49:06] scan.py rc=0 3s
-[00:49:06] x_fetch_apify.py rc=0 0s
-[00:49:06] judge_x.py rc=0 0s
-[00:49:10] dashboard.py rc=0 4s
-[00:59:03] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[00:59:03] watch.py rc=0 0s
-[00:59:03] x_fetch_apify.py rc=0 0s
-[00:59:04] judge_x.py rc=0 0s
-[00:59:07] dashboard.py rc=0 4s
-[01:09:02] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[01:09:03] watch.py rc=0 0s
-[01:09:03] x_fetch_apify.py rc=0 0s
-[01:09:03] judge_x.py rc=0 0s
-[01:09:07] dashboard.py rc=0 4s
-[01:19:02] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[01:19:03] watch.py rc=0 0s
-[01:19:05] scan.py rc=0 2s
-[01:19:05] x_fetch_apify.py rc=0 0s
-[01:19:06] judge_x.py rc=0 0s
-[01:19:09] dashboard.py rc=0 4s
-[01:29:02] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[01:29:03] watch.py rc=0 0s
-[01:29:03] x_fetch_apify.py rc=0 0s
-[01:29:03] judge_x.py rc=0 0s
-[01:29:07] dashboard.py rc=0 4s
-[01:39:02] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[01:39:02] watch.py rc=0 0s
-[01:39:03] x_fetch_apify.py rc=0 0s
-[01:39:03] judge_x.py rc=0 0s
-[01:39:07] dashboard.py rc=0 4s
-[01:49:03] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[01:49:03] watch.py rc=0 0s
-[01:49:07] scan.py rc=0 5s
-[01:49:08] x_fetch_apify.py rc=0 0s
-[01:49:08] judge_x.py rc=0 0s
-[01:49:12] dashboard.py rc=0 4s
-[01:59:02] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[01:59:03] watch.py rc=0 0s
-[01:59:03] x_fetch_apify.py rc=0 0s
-[01:59:03] judge_x.py rc=0 0s
-[01:59:07] dashboard.py rc=0 4s
-[02:09:02] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[02:09:02] watch.py rc=0 0s
-[02:09:03] x_fetch_apify.py rc=0 0s
-[02:09:03] judge_x.py rc=0 0s
-[02:09:07] dashboard.py rc=0 4s
-[02:19:03] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[02:19:03] watch.py rc=0 0s
-[02:19:33] scan.py rc=0 30s | USDC: 13b: one holder cluster holds 57.6% of supply (> 20%; tags funding_window,intermediary,team,wallet) -> KILL
-[02:19:33] x_fetch_apify.py rc=0 0s
-[02:19:33] judge_x.py rc=0 0s
-[02:19:37] dashboard.py rc=0 4s
-[02:29:02] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[02:29:02] watch.py rc=0 0s
-[02:29:03] x_fetch_apify.py rc=0 0s
-[02:29:03] judge_x.py rc=0 0s
-[02:29:07] dashboard.py rc=0 4s
-[02:39:02] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[02:39:03] watch.py rc=0 0s
-[02:39:03] x_fetch_apify.py rc=0 0s
-[02:39:03] judge_x.py rc=0 0s
-[02:39:07] dashboard.py rc=0 4s
+[00:05:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:05:10] watch.py rc=0 0s
+[00:05:10] x_fetch_apify.py rc=0 0s
+[00:05:11] judge_x.py rc=0 0s
+[00:05:14] dashboard.py rc=0 4s
+[00:15:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:15:10] watch.py rc=0 0s
+[00:15:10] x_fetch_apify.py rc=0 0s
+[00:15:10] judge_x.py rc=0 0s
+[00:15:14] dashboard.py rc=0 4s
+[00:25:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:25:09] watch.py rc=0 0s
+[00:25:12] scan.py rc=0 3s
+[00:25:12] x_fetch_apify.py rc=0 0s
+[00:25:13] judge_x.py rc=0 0s
+[00:25:16] dashboard.py rc=0 4s
+[00:35:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:35:10] watch.py rc=0 0s
+[00:35:10] x_fetch_apify.py rc=0 0s
+[00:35:10] judge_x.py rc=0 0s
+[00:35:14] dashboard.py rc=0 4s
+[00:45:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:45:09] watch.py rc=0 0s
+[00:45:10] x_fetch_apify.py rc=0 0s
+[00:45:10] judge_x.py rc=0 0s
+[00:45:14] dashboard.py rc=0 4s
+[00:55:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:55:09] watch.py rc=0 0s
+[00:55:12] scan.py rc=0 3s
+[00:55:12] x_fetch_apify.py rc=0 0s
+[00:55:12] judge_x.py rc=0 0s
+[00:55:16] dashboard.py rc=0 4s
+[01:05:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[01:05:09] watch.py rc=0 0s
+[01:05:10] x_fetch_apify.py rc=0 0s
+[01:05:10] judge_x.py rc=0 0s
+[01:05:14] dashboard.py rc=0 4s
+[01:15:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[01:15:10] watch.py rc=0 0s
+[01:15:10] x_fetch_apify.py rc=0 0s
+[01:15:10] judge_x.py rc=0 0s
+[01:15:14] dashboard.py rc=0 4s
+[01:25:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[01:25:10] watch.py rc=0 0s
+[01:25:12] scan.py rc=0 3s
+[01:25:13] x_fetch_apify.py rc=0 0s
+[01:25:13] judge_x.py rc=0 0s
+[01:25:17] dashboard.py rc=0 4s
+[01:35:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[01:35:09] watch.py rc=0 0s
+[01:35:10] x_fetch_apify.py rc=0 0s
+[01:35:10] judge_x.py rc=0 0s
+[01:35:13] dashboard.py rc=0 4s
+[01:45:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[01:45:10] watch.py rc=0 0s
+[01:45:10] x_fetch_apify.py rc=0 0s
+[01:45:10] judge_x.py rc=0 0s
+[01:45:14] dashboard.py rc=0 4s
+[01:55:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[01:55:09] watch.py rc=0 0s
+[01:55:12] scan.py rc=0 3s
+[01:55:12] x_fetch_apify.py rc=0 0s
+[01:55:12] judge_x.py rc=0 0s
+[01:55:16] dashboard.py rc=0 4s
+[02:05:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[02:05:10] watch.py rc=0 0s
+[02:05:10] x_fetch_apify.py rc=0 0s
+[02:05:10] judge_x.py rc=0 0s
+[02:05:14] dashboard.py rc=0 4s
+[02:15:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[02:15:09] watch.py rc=0 0s
+[02:15:10] x_fetch_apify.py rc=0 0s
+[02:15:10] judge_x.py rc=0 0s
+[02:15:14] dashboard.py rc=0 4s
+[02:25:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[02:25:09] watch.py rc=0 0s
+[02:25:12] scan.py rc=0 2s
+[02:25:12] x_fetch_apify.py rc=0 0s
+[02:25:12] judge_x.py rc=0 0s
+[02:25:16] dashboard.py rc=0 4s
+[02:35:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[02:35:10] watch.py rc=0 0s
+[02:35:10] x_fetch_apify.py rc=0 0s
+[02:35:11] judge_x.py rc=0 0s
+[02:35:14] dashboard.py rc=0 4s
+[02:45:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[02:45:09] watch.py rc=0 0s
+[02:45:10] x_fetch_apify.py rc=0 0s
+[02:45:10] judge_x.py rc=0 0s
+[02:45:14] dashboard.py rc=0 4s
