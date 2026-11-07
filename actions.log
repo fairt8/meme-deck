@@ -1,90 +1,90 @@
 [00:05:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
 [00:05:10] watch.py rc=0 0s
-[00:05:10] x_fetch_apify.py rc=0 0s
+[00:05:11] x_fetch_apify.py rc=0 0s
 [00:05:11] judge_x.py rc=0 0s
-[00:05:14] dashboard.py rc=0 4s
-[00:15:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[00:15:09] watch.py rc=0 0s
-[00:15:09] x_fetch_apify.py rc=0 0s
-[00:15:10] judge_x.py rc=0 0s
-[00:15:13] dashboard.py rc=0 4s
-[00:25:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[00:25:10] watch.py rc=0 0s
-[00:25:12] scan.py rc=0 2s
-[00:25:13] x_fetch_apify.py rc=0 0s
-[00:25:13] judge_x.py rc=0 0s
-[00:25:16] dashboard.py rc=0 4s
-[00:35:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:05:15] dashboard.py rc=0 4s
+[00:15:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:15:11] watch.py rc=0 0s
+[00:15:11] x_fetch_apify.py rc=0 0s
+[00:15:11] judge_x.py rc=0 0s
+[00:15:15] dashboard.py rc=0 4s
+[00:25:11] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:25:11] watch.py rc=0 0s
+[00:25:28] scan.py rc=0 17s | DCAT: 13b: one holder cluster holds 53.2% of supply (> 20%; tags funding_window,intermediary,team,wallet) -> KILL
+[00:25:28] x_fetch_apify.py rc=0 0s
+[00:25:29] judge_x.py rc=0 0s
+[00:25:32] dashboard.py rc=0 4s
+[00:35:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
 [00:35:10] watch.py rc=0 0s
-[00:35:10] x_fetch_apify.py rc=0 0s
-[00:35:10] judge_x.py rc=0 0s
+[00:35:11] x_fetch_apify.py rc=0 0s
+[00:35:11] judge_x.py rc=0 0s
 [00:35:14] dashboard.py rc=0 4s
-[00:45:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[00:45:09] watch.py rc=0 0s
-[00:45:10] x_fetch_apify.py rc=0 0s
-[00:45:10] judge_x.py rc=0 0s
-[00:45:14] dashboard.py rc=0 4s
-[00:55:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[00:55:10] watch.py rc=0 0s
-[00:55:12] scan.py rc=0 3s
-[00:55:13] x_fetch_apify.py rc=0 0s
-[00:55:13] judge_x.py rc=0 0s
-[00:55:17] dashboard.py rc=0 4s
-[01:05:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[01:05:10] watch.py rc=0 0s
-[01:05:10] x_fetch_apify.py rc=0 0s
-[01:05:10] judge_x.py rc=0 0s
-[01:05:14] dashboard.py rc=0 4s
-[01:15:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[01:15:09] watch.py rc=0 0s
+[00:45:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:45:11] watch.py rc=0 0s
+[00:45:11] x_fetch_apify.py rc=0 0s
+[00:45:11] judge_x.py rc=0 0s
+[00:45:15] dashboard.py rc=0 4s
+[00:55:11] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:55:11] watch.py rc=0 0s
+[00:55:14] scan.py rc=0 3s
+[00:55:14] x_fetch_apify.py rc=0 0s
+[00:55:14] judge_x.py rc=0 0s
+[00:55:18] dashboard.py rc=0 4s
+[01:05:11] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[01:05:11] watch.py rc=0 0s
+[01:05:11] x_fetch_apify.py rc=0 0s
+[01:05:12] judge_x.py rc=0 0s
+[01:05:15] dashboard.py rc=0 4s
+[01:15:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[01:15:10] watch.py rc=0 0s
 [01:15:10] x_fetch_apify.py rc=0 0s
-[01:15:10] judge_x.py rc=0 0s
+[01:15:11] judge_x.py rc=0 0s
 [01:15:14] dashboard.py rc=0 4s
-[01:25:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[01:25:09] watch.py rc=0 0s
-[01:25:11] scan.py rc=0 2s
-[01:25:12] x_fetch_apify.py rc=0 0s
-[01:25:12] judge_x.py rc=0 0s
-[01:25:16] dashboard.py rc=0 4s
+[01:25:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[01:25:10] watch.py rc=0 0s
+[01:25:13] scan.py rc=0 3s | 2LJEoK: SKIP at facts - rugcheck down/unindexed: 400 Client Error: Bad Request for url: https://api.rugcheck.xyz/v1/tokens/2LJEoK
+[01:25:13] x_fetch_apify.py rc=0 0s
+[01:25:13] judge_x.py rc=0 0s
+[01:25:17] dashboard.py rc=0 4s
 [01:35:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
 [01:35:10] watch.py rc=0 0s
 [01:35:10] x_fetch_apify.py rc=0 0s
-[01:35:10] judge_x.py rc=0 0s
+[01:35:11] judge_x.py rc=0 0s
 [01:35:14] dashboard.py rc=0 4s
 [01:45:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
 [01:45:10] watch.py rc=0 0s
-[01:45:10] x_fetch_apify.py rc=0 0s
+[01:45:11] x_fetch_apify.py rc=0 0s
 [01:45:11] judge_x.py rc=0 0s
 [01:45:14] dashboard.py rc=0 4s
 [01:55:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
 [01:55:10] watch.py rc=0 0s
-[01:55:12] scan.py rc=0 3s
+[01:55:13] scan.py rc=0 3s | 6NhLum: SKIP at facts - rugcheck down/unindexed: 400 Client Error: Bad Request for url: https://api.rugcheck.xyz/v1/tokens/6NhLum | AML8jQ: SKIP at facts - rugcheck down/unindexed: 400 Client Error: Bad Request for url: https://api.rugcheck.xyz/v1/tokens/AML8jQ | 8b4SeQ: SKIP at facts - rugcheck down/unindexed: 400 Client Error: Bad Request for url: https://api.rugcheck.xyz/v1/tokens/8b4SeQ
 [01:55:13] x_fetch_apify.py rc=0 0s
-[01:55:13] judge_x.py rc=0 0s
+[01:55:14] judge_x.py rc=0 0s
 [01:55:17] dashboard.py rc=0 4s
-[02:05:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[02:05:09] watch.py rc=0 0s
-[02:05:09] x_fetch_apify.py rc=0 0s
-[02:05:10] judge_x.py rc=0 0s
-[02:05:13] dashboard.py rc=0 4s
-[02:15:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[02:15:09] watch.py rc=0 0s
+[02:05:11] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[02:05:11] watch.py rc=0 0s
+[02:05:11] x_fetch_apify.py rc=0 0s
+[02:05:12] judge_x.py rc=0 0s
+[02:05:15] dashboard.py rc=0 4s
+[02:15:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[02:15:10] watch.py rc=0 0s
 [02:15:10] x_fetch_apify.py rc=0 0s
-[02:15:10] judge_x.py rc=0 0s
+[02:15:11] judge_x.py rc=0 0s
 [02:15:14] dashboard.py rc=0 4s
-[02:25:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[02:25:10] watch.py rc=0 0s
-[02:25:11] scan.py rc=0 1s
-[02:25:11] x_fetch_apify.py rc=0 0s
-[02:25:12] judge_x.py rc=0 0s
-[02:25:16] dashboard.py rc=0 4s
-[02:35:09] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[02:35:10] watch.py rc=0 0s
-[02:35:10] x_fetch_apify.py rc=0 0s
-[02:35:10] judge_x.py rc=0 0s
-[02:35:14] dashboard.py rc=0 4s
+[02:25:11] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[02:25:11] watch.py rc=0 0s
+[02:25:41] scan.py rc=0 30s | 7tAjeX: SKIP at facts - rugcheck down/unindexed: 400 Client Error: Bad Request for url: https://api.rugcheck.xyz/v1/tokens/7tAjeX | F1YNtN: SKIP at facts - rugcheck down/unindexed: 400 Client Error: Bad Request for url: https://api.rugcheck.xyz/v1/tokens/F1YNtN | Busted: 13b ok: bundlers 0.0%, all clusters 5.7% total
+[02:25:49] x_fetch_apify.py rc=0 8s | Busted: 14 X posts fetched via Apify
+[02:28:49] judge_x.py rc=0 181s | Busted: KILL at judge_x - x: The buzz is manufactured: 6 accounts posted near-identical '154K→328K / 2X / 42m' copy within a 9-minute window, all funneling to DMs/paid groups, stacked on top of paid DexScreener ad bots. The ticke | x_read: Of 14 posts: 2 paid-dex scanner bots first (01:12-01:17, one flags 'PAID DEXScreener' and '24 bundler wallets'), then 6 template shills 01:17-01:21 with same wording and same CA, plus older posts under $BUSTED with a different CA and @busted_sol — no organic c
+[02:28:53] dashboard.py rc=0 4s
+[02:35:11] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[02:35:11] watch.py rc=0 0s
+[02:35:11] x_fetch_apify.py rc=0 0s
+[02:35:11] judge_x.py rc=0 0s
+[02:35:15] dashboard.py rc=0 4s
 [02:45:10] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
 [02:45:10] watch.py rc=0 0s
-[02:45:10] x_fetch_apify.py rc=0 0s
+[02:45:11] x_fetch_apify.py rc=0 0s
 [02:45:11] judge_x.py rc=0 0s
-[02:45:14] dashboard.py rc=0 4s
+[02:45:15] dashboard.py rc=0 4s
