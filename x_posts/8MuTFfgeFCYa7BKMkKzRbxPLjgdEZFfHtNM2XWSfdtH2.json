@@ -1,0 +1,140 @@
+{
+ "mint": "8MuTFfgeFCYa7BKMkKzRbxPLjgdEZFfHtNM2XWSfdtH2",
+ "symbol": "BUIDL",
+ "fetched_at": "2026-11-09T05:55:43Z",
+ "source": "apify:lance_api~x-tweet-scraper-api",
+ "queries": [
+  "8MuTFfgeFCYa7BKMkKzRbxPLjgdEZFfHtNM2XWSfdtH2",
+  "$BUIDL (solana OR pump OR pumpfun OR sol)"
+ ],
+ "posts": [
+  {
+   "text": "Streaming on Pumpfun and giving out $BUIDL\n\n( CA: 8MuTFfgeFCYa7BKMkKzRbxPLjgdEZFfHtNM2XWSfdtH2 ) \n\nDrop addresses in live chat, going live in a few minutes https://t.co/mCj88S7K8V",
+   "author_username": "STEEZ_TW",
+   "author_created_at": "2016-06-20T01:33:38.000Z",
+   "followers": 109,
+   "created_at": "2026-11-09T05:55:19.000Z",
+   "url": "https://x.com/STEEZ_TW/status/2119670149963743731"
+  },
+  {
+   "text": "dev is live $BUIDL \n\n8MuTFfgeFCYa7BKMkKzRbxPLjgdEZFfHtNM2XWSfdtH2\n\nwatch now \n\nhttps://t.co/fyT4Yauq04",
+   "author_username": "1leafchan",
+   "author_created_at": "2014-02-06T09:54:07.000Z",
+   "followers": 316,
+   "created_at": "2026-11-09T05:55:14.000Z",
+   "url": "https://x.com/1leafchan/status/2119670126836580481"
+  },
+  {
+   "text": "Streaming on Pumpfun and giving out $BUIDL\n\n( CA: 8MuTFfgeFCYa7BKMkKzRbxPLjgdEZFfHtNM2XWSfdtH2 ) \n\nDrop addresses in live chat, going live in a few minutes https://t.co/0w19eWf3ry",
+   "author_username": "1leafchan",
+   "author_created_at": "2014-02-06T09:54:07.000Z",
+   "followers": 316,
+   "created_at": "2026-11-09T05:55:00.000Z",
+   "url": "https://x.com/1leafchan/status/2119670068389007867"
+  },
+  {
+   "text": "dev is live $BUIDL \n\n8MuTFfgeFCYa7BKMkKzRbxPLjgdEZFfHtNM2XWSfdtH2\n\nwatch now \n\nhttps://t.co/pKMOfPgQ1H",
+   "author_username": "ladyvalx",
+   "author_created_at": "2013-01-23T20:53:14.000Z",
+   "followers": 336,
+   "created_at": "2026-11-09T05:54:48.000Z",
+   "url": "https://x.com/ladyvalx/status/2119670019579871634"
+  },
+  {
+   "text": "\ud83d\udea8 PAID DEX SIGNAL\n$BUIDL | MC $102.4K | Liq $23.4K\nBundlers 72 | Fresh 274 | Age 65m\nSocials: X Yes | TG No\n\n\ud83d\ude80 Trade Token: https://t.co/dBhRN9n8y2",
+   "author_username": "SolanaTren59241",
+   "author_created_at": "2025-09-09T21:58:58.000Z",
+   "followers": 2804,
+   "created_at": "2026-11-09T05:43:04.000Z",
+   "url": "https://x.com/SolanaTren59241/status/2119667066185871411"
+  },
+  {
+   "text": "Le fonds $BUIDL de @Blackrock atteint d\u00e9sormais une capitalisation boursi\u00e8re de plus de 2 B$\n\n@Solana est la plus grande cha\u00eene h\u00f4te unique, avec environ 872 M$.\n\nEt @avax arrive en deuxi\u00e8me place dominante, avec environ 481,3 M$.\n\nEt @ethereum a la troisi\u00e8me place avec 420 M$\n\n$SOL\n$AVAX \n$ETH \n\n#NewsCrypto",
+   "author_username": "8DogsStreet",
+   "author_created_at": "2023-08-30T18:41:30.000Z",
+   "followers": 378,
+   "created_at": "2026-10-26T07:03:47.000Z",
+   "url": "https://x.com/8DogsStreet/status/2114613947554775259"
+  },
+  {
+   "text": "INSIGHT: \ud83d\udd25 Which Chains Host the Most of BlackRock\u2019s $2B+ $BUIDL Fund?\n\n@Blackrock\u2019s $BUIDL fund has surpassed $2.17B in market value, according to data from https://t.co/0H07ufADYN. But its blockchain distribution reveals some notable leaders.\n\n@Solana $SOL ranks first, hosting approximately $872M of the fund.\n\n@Avax $AVAX follows in second place with around $481.3M.\n\nThe figures highlight how tokenized real-world assets are expanding across multiple blockchain ecosystems, with Solana and Avalanche capturing significant shares of one of the largest tokenized fund products.",
+   "author_username": "bullonmarket",
+   "author_created_at": "2022-06-21T17:29:21.000Z",
+   "followers": 312982,
+   "created_at": "2026-10-25T22:49:53.000Z",
+   "url": "https://x.com/bullonmarket/status/2114489654070128717"
+  },
+  {
+   "text": "JUST IN: BlackRock\u2019s $BUIDL fund surpasses $2.17 billion in market value\n\nSolana leads as its largest host chain with $872 million in assets, followed by Avalanche at $481.3 million. https://t.co/LJBYxESDB7",
+   "author_username": "cryptodotnews",
+   "author_created_at": "2015-08-17T15:27:41.000Z",
+   "followers": 129831,
+   "created_at": "2026-10-25T21:30:00.000Z",
+   "url": "https://x.com/cryptodotnews/status/2114469551660544211"
+  },
+  {
+   "text": "BlackRock's $BUIDL fund now holds $2.17B onchain, and Solana is its #1 home \n\nSolana: $872M (~40% of the fund)\nAvalanche: $481M\nEthereum: $421M\nBNB Chain: $170M\n\n$BUIDL on Solana is up ~36% in 90 days \ud83d\ude80\n\nWall Street is picking its chains. #Solana $SOL #RWA #Tokenization https://t.co/6M2gsRBFGP",
+   "author_username": "RocketStrategy_",
+   "author_created_at": "2025-11-14T16:12:11.000Z",
+   "followers": 72,
+   "created_at": "2026-10-25T20:48:54.000Z",
+   "url": "https://x.com/RocketStrategy_/status/2114459209538383880"
+  },
+  {
+   "text": "Which chains dominate Blackrock's biggest crypto product...?\n\n@Blackrock's $BUIDL fund now has a market cap of more than $2B per data from RWA[.]zyx.\n\nHowever, the chains where it lives may surprise you.\n\n@Solana $SOL is the single biggest host chain, with some $872M of a total $2.17B hosted there.\n\nHowever, @Avax $AVAX comes as a dominant second place, with some $481.3M.",
+   "author_username": "BSCNews",
+   "author_created_at": "2020-11-03T23:02:01.000Z",
+   "followers": 1374689,
+   "created_at": "2026-10-25T17:13:00.000Z",
+   "url": "https://x.com/BSCNews/status/2114404873815117867"
+  },
+  {
+   "text": "LIVE NOW https://t.co/fyT4YatSaw",
+   "author_username": "1leafchan",
+   "author_created_at": "2014-02-06T09:54:07.000Z",
+   "followers": 316,
+   "created_at": "2026-11-09T05:55:01.000Z",
+   "url": "https://x.com/1leafchan/status/2119670071781965851"
+  },
+  {
+   "text": "Called $BUIDL 73K \u2192 165K.\n\n2X. I do this.\n\na 28m run from the call\n\nbio got the alpha\n\n8MuTFfgeFCYa7BKMkKzRbxPLjgdEZFfHtNM2XWSfdtH2 https://t.co/gKtQpMEGGq",
+   "author_username": "damiencrowns",
+   "author_created_at": "2023-05-16T20:42:06.000Z",
+   "followers": 150,
+   "created_at": "2026-11-09T05:54:11.000Z",
+   "url": "https://x.com/damiencrowns/status/2119669863128183120"
+  },
+  {
+   "text": "$BUIDL crossed 2X\n\n73K \u2192 165K\n\nQuiet build \u2192 loud breakout.\n\nall of this in 28m\n\nwhere i post these \u2192 bio\n\nCA: 8MuTFfgeFCYa7BKMkKzRbxPLjgdEZFfHtNM2XWSfdtH2 https://t.co/4jvOurD3zh",
+   "author_username": "plsea",
+   "author_created_at": "2009-11-19T10:30:03.000Z",
+   "followers": 517,
+   "created_at": "2026-11-09T05:53:16.000Z",
+   "url": "https://x.com/plsea/status/2119669633548468295"
+  },
+  {
+   "text": "$BUIDL just hit 2X \u2014 73K to 165K.\n\nLate or in? Who's seeing this?\n\ntook just 28m\n\ndm me for the early ones\n\n8MuTFfgeFCYa7BKMkKzRbxPLjgdEZFfHtNM2XWSfdtH2 https://t.co/G3UetL3zcj",
+   "author_username": "shamsidegen",
+   "author_created_at": "2019-11-08T15:45:46.000Z",
+   "followers": 102,
+   "created_at": "2026-11-09T05:53:04.000Z",
+   "url": "https://x.com/shamsidegen/status/2119669580755026009"
+  },
+  {
+   "text": "$BUIDL 2X \u2014 73K \u2192 165K\n\nWho caught this entry?\n\ntook just 28m\n\nCA: 8MuTFfgeFCYa7BKMkKzRbxPLjgdEZFfHtNM2XWSfdtH2\n\nplays here: https://t.co/5J8i9TzAJB https://t.co/NX5vKkOT2a",
+   "author_username": "eliasdiazzs",
+   "author_created_at": "2022-08-09T19:19:26.000Z",
+   "followers": 145,
+   "created_at": "2026-11-09T05:51:22.000Z",
+   "url": "https://x.com/eliasdiazzs/status/2119669152336248964"
+  },
+  {
+   "text": "$BUIDL was 73K at open.\n\n165K now \u2014 that's 2X, today alone. On watch.\n\nand it only took 28m\n\nCA: 8MuTFfgeFCYa7BKMkKzRbxPLjgdEZFfHtNM2XWSfdtH2 https://t.co/pWuCQfkp2j",
+   "author_username": "Bitkesh2",
+   "author_created_at": "2020-12-02T17:34:04.000Z",
+   "followers": 177,
+   "created_at": "2026-11-09T05:51:00.000Z",
+   "url": "https://x.com/Bitkesh2/status/2119669061290434736"
+  }
+ ]
+}
