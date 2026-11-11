@@ -1,0 +1,164 @@
+{
+ "mint": "4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump",
+ "symbol": "HOLD",
+ "fetched_at": "2026-11-10T22:25:39Z",
+ "source": "apify:lance_api~x-tweet-scraper-api",
+ "queries": [
+  "4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump",
+  "$HOLD (solana OR pump OR pumpfun OR sol)"
+ ],
+ "posts": [
+  {
+   "text": "CA;\n\n4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump https://t.co/6u7tejqg95",
+   "author_username": "degensignal1",
+   "author_created_at": "2025-04-23T18:18:43.000Z",
+   "followers": 262,
+   "created_at": "2026-11-10T22:25:21.000Z",
+   "url": "https://x.com/degensignal1/status/2120281685182865444"
+  },
+  {
+   "text": "$HOLD\n\n10.93x from the call\n\n\ud83d\udccb4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump\n\nThis chart brought +993% MC to the board. \ud83d\udd25 https://t.co/rFNDFSyM0V",
+   "author_username": "L_onchain",
+   "author_created_at": "2025-10-16T04:07:03.000Z",
+   "followers": 67,
+   "created_at": "2026-11-10T22:24:59.000Z",
+   "url": "https://x.com/L_onchain/status/2120281593025573278"
+  },
+  {
+   "text": "I don\u2019t often shill a coin publicly on x \n\nAll I\u2019m saying is that we finally have something FUNCTIONAL\n\nThis coin pays you to hold but it increases the payout the longer you hold \n\nExcellent deploy \n\nCA: 4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump https://t.co/5PesxVRd5p",
+   "author_username": "noahmalloy",
+   "author_created_at": "2026-06-01T15:58:48.000Z",
+   "followers": 356,
+   "created_at": "2026-11-10T22:24:50.000Z",
+   "url": "https://x.com/noahmalloy/status/2120281557080412195"
+  },
+  {
+   "text": "\u26a1\ufe0f CTO ALPHA BREAKOUT \u26a1\ufe0f\n\n\ud83d\udd25 Token: Hold ($HOLD)\n\ud83d\udccd Venue: Pump Fun (pump_amm)\n\n\ud83d\udcca MARKET METRICS:\n\u2022 Peak MC: $164.2K\n\u2022 Liquidity: $26.0K\n\u2022 Total Holders: 1030\n\n\ud83d\udd12 RISK METRIC SUMMARY:\n\u2022 Team Allocation: 0.00%\n\u2022 Mint Rights: \u2705 Renounced\n\u2022 Freeze Rights: \u2705 Renounced\n\n\ud83d\udd17 CA: $HOLD\n\n\ud83d\ude80 Trade Token: https://t.co/MrB5WQBFPx",
+   "author_username": "SolTokenScan",
+   "author_created_at": "2026-03-17T17:41:51.000Z",
+   "followers": 3351,
+   "created_at": "2026-11-10T22:22:39.000Z",
+   "url": "https://x.com/SolTokenScan/status/2120281007391748500"
+  },
+  {
+   "text": "6x profit from my call on $HOLD\n\nCA&gt;\n4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump\n\n#Trading #memecoin #Solana #web3community #Germany https://t.co/xrZOF9RZiz",
+   "author_username": "Solalmighty001",
+   "author_created_at": "2013-03-10T20:58:45.000Z",
+   "followers": 2492,
+   "created_at": "2026-11-10T22:20:01.000Z",
+   "url": "https://x.com/Solalmighty001/status/2120280343827583222"
+  },
+  {
+   "text": "$HOLD\n\n8.49x from the call\n\n\ud83d\udccb4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump\n\nThis chart brought +749% MC to the board. \ud83d\udd25 https://t.co/3Crh7nwxff",
+   "author_username": "L_onchain",
+   "author_created_at": "2025-10-16T04:07:03.000Z",
+   "followers": 67,
+   "created_at": "2026-11-10T22:24:29.000Z",
+   "url": "https://x.com/L_onchain/status/2120281467963969745"
+  },
+  {
+   "text": "6x up from my call on $Hold\nCa&gt;&gt;\n\n4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump\n\n#solana #memecoin #Degen https://t.co/jW8A8PAGfB",
+   "author_username": "sol_lord111",
+   "author_created_at": "2025-04-04T23:13:43.000Z",
+   "followers": 3440,
+   "created_at": "2026-11-10T22:15:02.000Z",
+   "url": "https://x.com/sol_lord111/status/2120279090922229799"
+  },
+  {
+   "text": "26x up on my call $HOLD\nTG eating massively \n\nDm me to join my VIP TG\n\n4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump\n#solana #memecoin #memecoin1000x https://t.co/w6OzHGprCt",
+   "author_username": "belemradio",
+   "author_created_at": "2010-06-03T22:11:02.000Z",
+   "followers": 1264,
+   "created_at": "2026-11-10T22:14:30.000Z",
+   "url": "https://x.com/belemradio/status/2120278956221866088"
+  },
+  {
+   "text": "3.8x up from my call on $HOLD\n\n4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump https://t.co/2ZRNwFVrKB",
+   "author_username": "satoshiqueen001",
+   "author_created_at": "2009-07-27T23:26:27.000Z",
+   "followers": 1452,
+   "created_at": "2026-11-10T22:22:18.000Z",
+   "url": "https://x.com/satoshiqueen001/status/2120280918887948689"
+  },
+  {
+   "text": "Amazing 18x up on my call $HOLD\nTG eating massively \n\nDm me to join my VIP TG \n\n4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump\n#solana #memecoin #memecoin1000x https://t.co/joF1mYpLoO",
+   "author_username": "belemradio",
+   "author_created_at": "2010-06-03T22:11:02.000Z",
+   "followers": 1264,
+   "created_at": "2026-11-10T22:11:32.000Z",
+   "url": "https://x.com/belemradio/status/2120278207517855915"
+  },
+  {
+   "text": "Flagged $HOLD alpha \ud83d\udc3a early at $44k \ud83e\ude99MCap \ud83d\udcca \n\nDid you catch on with this trade ..? \ud83d\ude09 \n\nMy TG \u2709\ufe0f crew aped in right before the market knew \u26a1\n\nContract address:\n4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump\n\n#HOLD\n#\u0e02\u0e48\u0e21\u0e02\u0e25\u0e31\u0e07\u0e15\u0e2d\u0e19\u0e08\u0e1a\n#Web3\n#Chatwatcher https://t.co/GjhG9TouO4",
+   "author_username": "MemeRadar__",
+   "author_created_at": "2023-10-26T12:41:53.000Z",
+   "followers": 4884,
+   "created_at": "2026-11-10T22:19:03.000Z",
+   "url": "https://x.com/MemeRadar__/status/2120280102021783761"
+  },
+  {
+   "text": "Called $HOLD at 39K.\n\nNow 131K \u2014 3X. Receipts up.\n\nstart to now in 54m\n\npinned tells you the rest\n\n4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump\n\n\ud83d\udfe3 Chain: SOLANA https://t.co/Eb0XTfS1rh",
+   "author_username": "plsea",
+   "author_created_at": "2009-11-19T10:30:03.000Z",
+   "followers": 521,
+   "created_at": "2026-11-10T22:10:20.000Z",
+   "url": "https://x.com/plsea/status/2120277907478041006"
+  },
+  {
+   "text": "4X profit up on $HOLD\nCA\n\n4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump\n\n#Eth #memecoin #memecoin1000x https://t.co/XZF5w67Btw",
+   "author_username": "Samurai_Gems0",
+   "author_created_at": "2015-07-01T17:45:42.000Z",
+   "followers": 1877,
+   "created_at": "2026-11-10T22:17:03.000Z",
+   "url": "https://x.com/Samurai_Gems0/status/2120279595320590612"
+  },
+  {
+   "text": "$HOLD printing 3X from 39K\n\nNow at 146K. Bag check time.\n\nthe group is always early, X stays late\n\nCA: 4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump\n\nChain: SOLANA https://t.co/H1bta3tBlf",
+   "author_username": "Jolliversa",
+   "author_created_at": "2021-03-13T00:20:12.000Z",
+   "followers": 78,
+   "created_at": "2026-11-10T22:09:50.000Z",
+   "url": "https://x.com/Jolliversa/status/2120277782714524070"
+  },
+  {
+   "text": "2X up $HOLD\nCA\n\n4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump\n\n#Eth #memecoin #memecoin1000x https://t.co/SES0bWEUna",
+   "author_username": "Samurai_Gems0",
+   "author_created_at": "2015-07-01T17:45:42.000Z",
+   "followers": 1877,
+   "created_at": "2026-11-10T22:16:37.000Z",
+   "url": "https://x.com/Samurai_Gems0/status/2120279487577198694"
+  },
+  {
+   "text": "Watch your entry on $HOLD\nGamble for now\nCA:\n\n4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump\n#solana #memecoin #memecoin1000x https://t.co/eQ3ajGMDvG",
+   "author_username": "belemradio",
+   "author_created_at": "2010-06-03T22:11:02.000Z",
+   "followers": 1264,
+   "created_at": "2026-11-10T22:09:37.000Z",
+   "url": "https://x.com/belemradio/status/2120277728024805614"
+  },
+  {
+   "text": "Entry on $HOLD\nCA\n\n4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump\n\n#Eth #memecoin #memecoin1000x https://t.co/MKMeVnWwG1",
+   "author_username": "Samurai_Gems0",
+   "author_created_at": "2015-07-01T17:45:42.000Z",
+   "followers": 1877,
+   "created_at": "2026-11-10T22:16:11.000Z",
+   "url": "https://x.com/Samurai_Gems0/status/2120279378248482937"
+  },
+  {
+   "text": "26x up on my call $HOLD\n\n4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump\n#solana #memecoin #Memecoin1000x https://t.co/JhiaxupxTV",
+   "author_username": "callerfiona11",
+   "author_created_at": "2009-12-07T15:53:56.000Z",
+   "followers": 1469,
+   "created_at": "2026-11-10T22:07:46.000Z",
+   "url": "https://x.com/callerfiona11/status/2120277259147939939"
+  },
+  {
+   "text": "Decent 5x profit pump up on $HOLD\n\n4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump https://t.co/ogwQn89MlW",
+   "author_username": "VantageAlpha_1",
+   "author_created_at": "2023-12-30T20:39:06.000Z",
+   "followers": 2627,
+   "created_at": "2026-11-10T22:06:56.000Z",
+   "url": "https://x.com/VantageAlpha_1/status/2120277053077438910"
+  }
+ ]
+}
