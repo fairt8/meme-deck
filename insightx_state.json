@@ -1,46 +1,38 @@
 {
  "month": "2026-11",
- "calls": 174,
+ "calls": 193,
  "cache": {
-  "C7JpvPbaQZTYuWnCsKyPtTCnRSmmESWgZwxZrmthpump": {
-   "ts": 1794322536.4926922,
+  "FQMJg81Xee3HLkXKXEexmcsr42hDzKmLMb4U8Nempump": {
+   "ts": 1794371144.3198054,
    "res": {
-    "bundler_pct": 0.16,
-    "max_cluster_pct": 61.86,
+    "bundler_pct": 0.03,
+    "max_cluster_pct": 30.93,
     "status": "kill",
-    "reason": "13b: one holder cluster holds 61.9% of supply (> 20%; tags funding_window,intermediary,wallet)"
+    "reason": "13b: one holder cluster holds 30.9% of supply (> 20%; tags funding_window,wallet)"
    }
   },
-  "4HLzQoz5KkhXFrwKfX1Jb2iEFBd9QseFAEJvjqDdpump": {
-   "ts": 1794329739.6076276,
+  "DR6vDrGn4HSfmHouEjnm1Hu1eLWvgt61V63N7LYbpump": {
+   "ts": 1794423344.5647273,
    "res": {
-    "bundler_pct": 8.51,
-    "max_cluster_pct": 53.59,
+    "bundler_pct": 29.43,
     "status": "kill",
-    "reason": "13b: one holder cluster holds 53.6% of supply (> 20%; tags funding_window,intermediary,team,wallet)"
+    "max_cluster_pct": null,
+    "reason": "13b: bundlers hold 29.4% of supply (> 20%)"
    }
   },
-  "9Uz1XmRQGjD2NspWH1FYAtVromkt74s45FXEwXpmpump": {
-   "ts": 1794338736.0750477,
+  "H57bUBka6sBfPQph6f58TsQvUvxugJQmqMANFV1mpump": {
+   "ts": 1794446738.5491471,
    "res": {
-    "bundler_pct": 5.89,
-    "max_cluster_pct": 73.74,
+    "bundler_pct": 7.78,
+    "max_cluster_pct": 61.76,
     "status": "kill",
-    "reason": "13b: one holder cluster holds 73.7% of supply (> 20%; tags funding_window,intermediary,team,wallet)"
-   }
-  },
-  "4iJ7xEQrUvVUQH9KVStvw3FaY2PZDd7RtR4L9zx2pump": {
-   "ts": 1794349529.4329238,
-   "res": {
-    "bundler_pct": 0.07,
-    "status": "pass",
-    "max_cluster_pct": "<=0.00",
-    "reason": "13b ok: bundlers 0.1%, all clusters 0.0% total"
+    "reason": "13b: one holder cluster holds 61.8% of supply (> 20%; tags funding_window,intermediary,team,wallet)"
    }
   }
  },
  "stamps": [
-  1794349528.9867516
+  1794446737.9847896,
+  1794446738.3397572
  ],
- "quota_remaining": 826
+ "quota_remaining": 807
 }
