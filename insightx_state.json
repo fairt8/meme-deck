@@ -1,25 +1,7 @@
 {
  "month": "2026-11",
- "calls": 193,
+ "calls": 213,
  "cache": {
-  "FQMJg81Xee3HLkXKXEexmcsr42hDzKmLMb4U8Nempump": {
-   "ts": 1794371144.3198054,
-   "res": {
-    "bundler_pct": 0.03,
-    "max_cluster_pct": 30.93,
-    "status": "kill",
-    "reason": "13b: one holder cluster holds 30.9% of supply (> 20%; tags funding_window,wallet)"
-   }
-  },
-  "DR6vDrGn4HSfmHouEjnm1Hu1eLWvgt61V63N7LYbpump": {
-   "ts": 1794423344.5647273,
-   "res": {
-    "bundler_pct": 29.43,
-    "status": "kill",
-    "max_cluster_pct": null,
-    "reason": "13b: bundlers hold 29.4% of supply (> 20%)"
-   }
-  },
   "H57bUBka6sBfPQph6f58TsQvUvxugJQmqMANFV1mpump": {
    "ts": 1794446738.5491471,
    "res": {
@@ -28,11 +10,46 @@
     "status": "kill",
     "reason": "13b: one holder cluster holds 61.8% of supply (> 20%; tags funding_window,intermediary,team,wallet)"
    }
+  },
+  "Eh5zz6vrPK66MHzhBLrzEFHvATE7Z1SqoALzcNu4pump": {
+   "ts": 1794462930.772936,
+   "res": {
+    "bundler_pct": 7.75,
+    "max_cluster_pct": 65.79,
+    "status": "kill",
+    "reason": "13b: one holder cluster holds 65.8% of supply (> 20%; tags funding_window,intermediary,team,wallet)"
+   }
+  },
+  "5u6Bpbz5kJiYgR3dtRQsdKvUKNmJN2pxGojdsYMDpump": {
+   "ts": 1794513344.4925878,
+   "res": {
+    "bundler_pct": 3.85,
+    "max_cluster_pct": 59.39,
+    "status": "kill",
+    "reason": "13b: one holder cluster holds 59.4% of supply (> 20%; tags funding_window,intermediary,team,wallet)"
+   }
+  },
+  "EZyMpc1477jpZfRh8c8HrRzVFhwq7uKXxBT54cpepump": {
+   "ts": 1794527742.9167652,
+   "res": {
+    "bundler_pct": 0.0,
+    "status": "pass",
+    "max_cluster_pct": "<=3.70",
+    "reason": "13b ok: bundlers 0.0%, all clusters 3.7% total"
+   }
+  },
+  "ttwocSxKgj4NpQEUzBaFzLxEFzVdLytUbLsnnjGew9v": {
+   "ts": 1794529549.1871836,
+   "res": {
+    "bundler_pct": 1.89,
+    "status": "pass",
+    "max_cluster_pct": "<=2.03",
+    "reason": "13b ok: bundlers 1.9%, all clusters 2.0% total"
+   }
   }
  },
  "stamps": [
-  1794446737.9847896,
-  1794446738.3397572
+  1794529548.9842048
  ],
- "quota_remaining": 807
+ "quota_remaining": 787
 }
