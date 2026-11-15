@@ -1,6 +1,6 @@
 {
  "month": "2026-11",
- "calls": 229,
+ "calls": 236,
  "cache": {
   "9sFGCTjEsBk78uC2bCdxtwuUM1aartbBhe8WQXwRpump": {
    "ts": 1794560459.9951005,
@@ -28,10 +28,28 @@
     "max_cluster_pct": "<=19.90",
     "reason": "13b ok: bundlers 1.8%, all clusters 19.9% total"
    }
+  },
+  "4B1mCGeSjTadzH7okALwdFm8taxoHbZBFCTA1nZRpump": {
+   "ts": 1794625250.5481336,
+   "res": {
+    "bundler_pct": 2.92,
+    "max_cluster_pct": 30.47,
+    "status": "kill",
+    "reason": "13b: one holder cluster holds 30.5% of supply (> 20%; tags funding_window,wallet)"
+   }
+  },
+  "5ZDiuBxCLuAjjxSKiBdumQJ36P7Jd9mh5HFLY94Ppump": {
+   "ts": 1794625289.0409334,
+   "res": {
+    "bundler_pct": 0.01,
+    "status": "pass",
+    "max_cluster_pct": "<=6.24",
+    "reason": "13b ok: bundlers 0.0%, all clusters 6.2% total"
+   }
   }
  },
  "stamps": [
-  1794619849.8476713
+  1794625288.8382108
  ],
- "quota_remaining": 771
+ "quota_remaining": 764
 }
