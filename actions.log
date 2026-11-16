@@ -1,91 +1,91 @@
 [00:00:36] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[00:00:36] watch.py rc=0 0s
+[00:00:37] watch.py rc=0 0s
 [00:00:39] scan.py rc=0 3s
-[00:00:39] x_fetch_apify.py rc=0 0s
-[00:00:39] judge_x.py rc=0 0s
-[00:00:43] dashboard.py rc=0 4s
-[00:10:36] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[00:10:36] watch.py rc=0 0s
-[00:10:36] x_fetch_apify.py rc=0 0s
-[00:10:36] judge_x.py rc=0 0s
-[00:10:40] dashboard.py rc=0 4s
+[00:00:40] x_fetch_apify.py rc=0 1s | Busted: SOURCE DOWN: Apify (HTTP 401), X fetch skipped (still queued)
+[00:00:40] judge_x.py rc=0 0s
+[00:00:44] dashboard.py rc=0 4s
+[00:10:37] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:10:37] watch.py rc=0 0s
+[00:10:38] x_fetch_apify.py rc=0 1s | Busted: SOURCE DOWN: Apify (HTTP 401), X fetch skipped (still queued)
+[00:10:38] judge_x.py rc=0 0s
+[00:10:42] dashboard.py rc=0 4s
 [00:20:36] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[00:20:36] watch.py rc=0 0s
-[00:20:36] x_fetch_apify.py rc=0 0s
-[00:20:36] judge_x.py rc=0 0s
-[00:20:40] dashboard.py rc=0 4s
+[00:20:37] watch.py rc=0 0s
+[00:20:37] x_fetch_apify.py rc=0 1s | Busted: SOURCE DOWN: Apify (HTTP 401), X fetch skipped (still queued)
+[00:20:38] judge_x.py rc=0 0s
+[00:20:41] dashboard.py rc=0 4s
 [00:30:36] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
 [00:30:36] watch.py rc=0 0s
 [00:30:39] scan.py rc=0 3s
-[00:30:39] x_fetch_apify.py rc=0 0s
+[00:30:39] x_fetch_apify.py rc=0 1s | Busted: SOURCE DOWN: Apify (HTTP 401), X fetch skipped (still queued)
 [00:30:40] judge_x.py rc=0 0s
 [00:30:44] dashboard.py rc=0 4s
-[00:40:35] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[00:40:35] watch.py rc=0 0s
-[00:40:36] x_fetch_apify.py rc=0 0s
-[00:40:36] judge_x.py rc=0 0s
-[00:40:40] dashboard.py rc=0 4s
-[00:50:35] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:40:36] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:40:37] watch.py rc=0 0s
+[00:40:37] x_fetch_apify.py rc=0 1s | Busted: SOURCE DOWN: Apify (HTTP 401), X fetch skipped (still queued)
+[00:40:37] judge_x.py rc=0 0s
+[00:40:41] dashboard.py rc=0 4s
+[00:50:36] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
 [00:50:36] watch.py rc=0 0s
-[00:50:36] x_fetch_apify.py rc=0 0s
-[00:50:36] judge_x.py rc=0 0s
-[00:50:40] dashboard.py rc=0 4s
-[01:00:35] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[00:50:37] x_fetch_apify.py rc=0 1s | Busted: SOURCE DOWN: Apify (HTTP 401), X fetch skipped (still queued)
+[00:50:37] judge_x.py rc=0 0s
+[00:50:41] dashboard.py rc=0 4s
+[01:00:36] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
 [01:00:36] watch.py rc=0 0s
-[01:00:38] scan.py rc=0 3s
-[01:00:39] x_fetch_apify.py rc=0 0s
-[01:00:39] judge_x.py rc=0 0s
-[01:00:43] dashboard.py rc=0 4s
-[01:10:35] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[01:00:41] scan.py rc=0 5s
+[01:00:42] x_fetch_apify.py rc=0 1s | Busted: SOURCE DOWN: Apify (HTTP 401), X fetch skipped (still queued)
+[01:00:42] judge_x.py rc=0 0s
+[01:00:46] dashboard.py rc=0 4s
+[01:10:36] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
 [01:10:36] watch.py rc=0 0s
-[01:10:36] x_fetch_apify.py rc=0 0s
-[01:10:36] judge_x.py rc=0 0s
-[01:10:40] dashboard.py rc=0 4s
-[01:20:35] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[01:20:35] watch.py rc=0 0s
-[01:20:36] x_fetch_apify.py rc=0 0s
-[01:20:36] judge_x.py rc=0 0s
-[01:20:40] dashboard.py rc=0 4s
-[01:30:36] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[01:30:36] watch.py rc=0 0s
-[01:30:39] scan.py rc=0 3s
+[01:10:37] x_fetch_apify.py rc=0 1s | Busted: SOURCE DOWN: Apify (HTTP 401), X fetch skipped (still queued)
+[01:10:37] judge_x.py rc=0 0s | Busted: SKIP x_read_timeout (queued 2026-11-15 19:01:11, no X posts within 6h)
+[01:10:41] dashboard.py rc=0 4s
+[01:20:36] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[01:20:37] watch.py rc=0 0s
+[01:20:37] x_fetch_apify.py rc=0 0s
+[01:20:37] judge_x.py rc=0 0s
+[01:20:41] dashboard.py rc=0 4s
+[01:30:37] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[01:30:37] watch.py rc=0 0s
+[01:30:40] scan.py rc=0 3s
 [01:30:40] x_fetch_apify.py rc=0 0s
 [01:30:40] judge_x.py rc=0 0s
 [01:30:44] dashboard.py rc=0 4s
-[01:40:35] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[01:40:36] watch.py rc=0 0s
-[01:40:36] x_fetch_apify.py rc=0 0s
-[01:40:36] judge_x.py rc=0 0s
-[01:40:40] dashboard.py rc=0 4s
+[01:40:37] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[01:40:37] watch.py rc=0 0s
+[01:40:37] x_fetch_apify.py rc=0 0s
+[01:40:38] judge_x.py rc=0 0s
+[01:40:42] dashboard.py rc=0 4s
 [01:50:36] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
 [01:50:36] watch.py rc=0 0s
-[01:50:36] x_fetch_apify.py rc=0 0s
-[01:50:36] judge_x.py rc=0 0s
-[01:50:40] dashboard.py rc=0 4s
-[02:00:35] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[02:00:35] watch.py rc=0 0s
-[02:00:38] scan.py rc=0 3s
-[02:00:38] x_fetch_apify.py rc=0 0s
-[02:00:39] judge_x.py rc=0 0s
-[02:00:43] dashboard.py rc=0 4s
-[02:10:35] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[02:10:35] watch.py rc=0 0s
-[02:10:36] x_fetch_apify.py rc=0 0s
-[02:10:36] judge_x.py rc=0 0s
-[02:10:40] dashboard.py rc=0 4s
-[02:20:35] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[02:20:35] watch.py rc=0 0s
-[02:20:36] x_fetch_apify.py rc=0 0s
-[02:20:36] judge_x.py rc=0 0s
-[02:20:40] dashboard.py rc=0 4s
-[02:30:35] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[02:30:36] watch.py rc=0 0s
-[02:30:38] scan.py rc=0 3s
-[02:30:39] x_fetch_apify.py rc=0 0s
-[02:30:39] judge_x.py rc=0 0s
-[02:30:43] dashboard.py rc=0 4s
-[02:40:35] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
-[02:40:36] watch.py rc=0 0s
-[02:40:36] x_fetch_apify.py rc=0 0s
-[02:40:36] judge_x.py rc=0 0s
-[02:40:40] dashboard.py rc=0 4s
+[01:50:37] x_fetch_apify.py rc=0 0s
+[01:50:37] judge_x.py rc=0 0s
+[01:50:41] dashboard.py rc=0 4s
+[02:00:37] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[02:00:37] watch.py rc=0 0s
+[02:00:40] scan.py rc=0 3s
+[02:00:40] x_fetch_apify.py rc=0 0s
+[02:00:41] judge_x.py rc=0 0s
+[02:00:44] dashboard.py rc=0 4s
+[02:10:36] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[02:10:36] watch.py rc=0 0s
+[02:10:37] x_fetch_apify.py rc=0 0s
+[02:10:37] judge_x.py rc=0 0s
+[02:10:41] dashboard.py rc=0 4s
+[02:20:36] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[02:20:36] watch.py rc=0 0s
+[02:20:37] x_fetch_apify.py rc=0 0s
+[02:20:37] judge_x.py rc=0 0s
+[02:20:41] dashboard.py rc=0 4s
+[02:30:37] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[02:30:37] watch.py rc=0 0s
+[02:30:54] scan.py rc=0 17s | FiveM: 13b: one holder cluster holds 33.7% of supply (> 20%; tags funding_window,intermediary,wallet) -> KILL
+[02:30:54] x_fetch_apify.py rc=0 0s
+[02:30:55] judge_x.py rc=0 0s
+[02:30:59] dashboard.py rc=0 4s
+[02:40:36] bot_listener.py --once rc=0 0s | listener --once: off (DESK_TG_COMMANDS != 1; box listener is primary)
+[02:40:37] watch.py rc=0 0s
+[02:40:37] x_fetch_apify.py rc=0 0s
+[02:40:37] judge_x.py rc=0 0s
+[02:40:41] dashboard.py rc=0 4s
