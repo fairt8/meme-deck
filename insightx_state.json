@@ -1,46 +1,55 @@
 {
  "month": "2026-11",
- "calls": 338,
+ "calls": 347,
  "cache": {
-  "HF2RBPrfNBk9TxggL2cYZFEKSgirzh5HKCngLENTpump": {
-   "ts": 1795140057.6901045,
+  "2TngN4B7XaoGSKsYvttq5bFAdM4Z4xCSnuyRwGiFpump": {
+   "ts": 1795237262.158952,
    "res": {
-    "bundler_pct": 42.93,
+    "bundler_pct": 40.29,
     "status": "kill",
     "max_cluster_pct": null,
-    "reason": "13b: bundlers hold 42.9% of supply (> 20%)"
+    "reason": "13b: bundlers hold 40.3% of supply (> 20%)"
    }
   },
-  "FyCaKh6wXuot5NmqQMt5oBrSHh3wFk14w5M9dHQDpump": {
-   "ts": 1795143668.6460385,
+  "2GiS8L6jzveE7cQ61bjGN6wVn5MS9FcBjarSAMFppump": {
+   "ts": 1795240872.9795668,
    "res": {
-    "bundler_pct": 1.19,
-    "max_cluster_pct": 80.24,
+    "bundler_pct": 27.52,
     "status": "kill",
-    "reason": "13b: one holder cluster holds 80.2% of supply (> 20%; tags funding_window,intermediary,wallet)"
+    "max_cluster_pct": null,
+    "reason": "13b: bundlers hold 27.5% of supply (> 20%)"
    }
   },
-  "gHZhqEnFnitWCJ1MA2i9BzqTReFMhsGmbdL17xypump": {
-   "ts": 1795177861.6376438,
+  "Jd3NCawdFiDNWpLiTtsMqoeoBMjC1ZQMrMScRVzpump": {
+   "ts": 1795276868.3807719,
    "res": {
-    "bundler_pct": 0.55,
-    "status": "pass",
-    "max_cluster_pct": "<=19.68",
-    "reason": "13b ok: bundlers 0.6%, all clusters 19.7% total"
+    "bundler_pct": 3.08,
+    "max_cluster_pct": 29.47,
+    "status": "kill",
+    "reason": "13b: one holder cluster holds 29.5% of supply (> 20%; tags funding_window,intermediary,wallet)"
    }
   },
-  "7i8AXjBdKGjGpRo4Ex5aDKUaX55xed5Hrgoww1G9pump": {
-   "ts": 1795219290.0249326,
+  "6C9r2gzu8Pr54hTevHo3x5gSj9JqtpApj7obJnrtpump": {
+   "ts": 1795278674.1337035,
    "res": {
-    "bundler_pct": 3.56,
+    "bundler_pct": 0.0,
     "status": "pass",
-    "max_cluster_pct": "<=2.10",
-    "reason": "13b ok: bundlers 3.6%, all clusters 2.1% total"
+    "max_cluster_pct": "<=1.96",
+    "reason": "13b ok: bundlers 0.0%, all clusters 2.0% total"
+   }
+  },
+  "82mseLFauphc2yutbaDGgViahquJ1jGVLpyof99xpump": {
+   "ts": 1795309255.1749592,
+   "res": {
+    "bundler_pct": 2.63,
+    "status": "pass",
+    "max_cluster_pct": "<=13.84",
+    "reason": "13b ok: bundlers 2.6%, all clusters 13.8% total"
    }
   }
  },
  "stamps": [
-  1795219289.8637934
+  1795309255.0194902
  ],
- "quota_remaining": 662
+ "quota_remaining": 653
 }
