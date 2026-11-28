@@ -1,56 +1,37 @@
 {
  "month": "2026-11",
- "calls": 399,
+ "calls": 415,
  "cache": {
-  "Bnw5JRPek5JvJhzUiB9yrs2cmzt4bLeFqSRzDzSppump": {
-   "ts": 1795653068.3929603,
+  "G2XqmSc8vJpLLwaLVXUeNkxsrhVT8vQ3Pje8MqeDpump": {
+   "ts": 1795748464.0112607,
    "res": {
-    "bundler_pct": 0.0,
-    "status": "pass",
-    "max_cluster_pct": "<=15.76",
-    "reason": "13b ok: bundlers 0.0%, all clusters 15.8% total"
+    "bundler_pct": 3.25,
+    "max_cluster_pct": 43.89,
+    "status": "kill",
+    "reason": "13b: one holder cluster holds 43.9% of supply (> 20%; tags funding_window,intermediary,team,wallet)"
    }
   },
-  "73R7L2jLfnweJTXxTiccHMZV6mECaVELPUy3PkHopump": {
-   "ts": 1795654855.8132052,
+  "GXpQZkap4ExgQTTX4SXfETV7nt1YZKEZSakqos3hpump": {
+   "ts": 1795788067.0427973,
    "res": {
-    "bundler_pct": 0.0,
-    "max_cluster_pct": 47.59,
+    "bundler_pct": 0.79,
+    "max_cluster_pct": 34.16,
     "status": "kill",
-    "reason": "13b: one holder cluster holds 47.6% of supply (> 20%; tags funding_window,intermediary,team,wallet)"
+    "reason": "13b: one holder cluster holds 34.2% of supply (> 20%; tags funding_window,intermediary,team,wallet)"
    }
   },
-  "6HS1aeSk7osT5B1CzLp1HTRTAweFr5wurfMHS4vppump": {
-   "ts": 1795654888.9270806,
+  "9G9Ssh55SZEoniFjMrMefug9fBy67bUvHzWAxb5Ypump": {
+   "ts": 1795827669.710906,
    "res": {
-    "bundler_pct": 0.34,
-    "max_cluster_pct": 56.32,
+    "bundler_pct": 60.1,
     "status": "kill",
-    "reason": "13b: one holder cluster holds 56.3% of supply (> 20%; tags funding_window,intermediary,team,wallet)"
-   }
-  },
-  "9tERTsZZj19ZHAqg7URtfkfPdaCiVeR4JkuPVoHrpump": {
-   "ts": 1795716068.7938125,
-   "res": {
-    "bundler_pct": 0.07,
-    "max_cluster_pct": 67.78,
-    "status": "kill",
-    "reason": "13b: one holder cluster holds 67.8% of supply (> 20%; tags funding_window,intermediary,wallet)"
-   }
-  },
-  "ChYn9ZpCUzrwd8rcpUtr7K7iKgDWUfJijM4xwxBCpump": {
-   "ts": 1795726867.736534,
-   "res": {
-    "bundler_pct": 8.45,
-    "max_cluster_pct": 60.06,
-    "status": "kill",
-    "reason": "13b: one holder cluster holds 60.1% of supply (> 20%; tags funding_window,intermediary,team,wallet)"
+    "max_cluster_pct": null,
+    "reason": "13b: bundlers hold 60.1% of supply (> 20%)"
    }
   }
  },
  "stamps": [
-  1795726867.4286735,
-  1795726867.624609
+  1795827669.5891426
  ],
- "quota_remaining": 601
+ "quota_remaining": 585
 }
